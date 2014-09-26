@@ -1,5 +1,5 @@
 <template name="postAdmin">
-  {{#if currentUser.isAdmin}}
+  {{#if is_admin currentUser}}
     <div class="post-meta-item">
       {{#if postsMustBeApproved}}
         |

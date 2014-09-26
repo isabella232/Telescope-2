@@ -47,19 +47,11 @@ Template[getTemplate('user_item')].events({
   },
   'click .admin-link': function(e, instance){
     e.preventDefault();
-    Meteor.users.update(instance.data._id,{
-      $set:{
-        isAdmin: true
-      }
-    });
+    Roles.addUsersToRoles([instance.data._id], ["Admin"], Roles.GLOBAL_GROUP);
   },
   'click .unadmin-link': function(e, instance){
     e.preventDefault();
-    Meteor.users.update(instance.data._id,{
-      $set:{
-        isAdmin: false
-      }
-    });
+    Roles.removeUsersFromRoles([instance.data._id], ["Admin"], Roles.GLOBAL_GROUP);
   },
   'click .delete-link': function(e, instance){
     e.preventDefault();

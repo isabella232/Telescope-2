@@ -3,7 +3,6 @@ Accounts.onCreateUser(function(options, user){
     profile: options.profile || {},
     karma: 0,
     isInvited: false,
-    isAdmin: false,
     postCount: 0,
     commentCount: 0,
     invitedCount: 0,
@@ -38,7 +37,7 @@ Accounts.onCreateUser(function(options, user){
 
   // if this is the first user ever, make them an admin
   if (!Meteor.users.find().count() )
-    user.isAdmin = true;
+    Roles.addUsersToRoles(user, ["Admin"], Roles.GLOBAL_GROUP);
 
   // give new users a few invites (default to 3)
   user.inviteCount = getSetting('startInvitesCount', 3);
@@ -73,7 +72,7 @@ Accounts.onCreateUser(function(options, user){
   }
 
   // send notifications to admins
-  var admins = Meteor.users.find({isAdmin: true});
+  var admins = Roles.getUsersInRole("Admin", Roles.GLOBAL_GROUP);
   admins.forEach(function(admin){
     if(getUserSetting('notifications.users', false, admin)){
       var emailProperties = {

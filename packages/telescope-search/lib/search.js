@@ -24,8 +24,7 @@ Searches.allow({
 // XXX
 // TODO: find a way to make the package use the same isAdminById as the rest of the app
 isAdminById=function(userId){
-  var user = Meteor.users.findOne(userId);
-  return !!(user && isAdmin(user));
+  return Roles.userIsInGroup(userId, "Admin", Roles.GLOBAL_GROUP);
 };
 
 
