@@ -79,6 +79,10 @@ Template[getTemplate('comment_item')].helpers({
   authorName: function(){
     return getAuthorName(this);
   },
+  authorSignature: function() {
+    var user = Meteor.users.findOne(this.userId);
+    return user && user.profile ? user.profile.signature : "";
+  },
   user_avatar: function(){
     if(author=Meteor.users.findOne(this.userId))
       return getAvatarUrl(author);
