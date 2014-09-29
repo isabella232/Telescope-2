@@ -110,7 +110,7 @@ Template[getTemplate('comment_item')].helpers({
     var user = Meteor.users.findOne(this.userId);
     if(user)
       return getProfileUrl(user);
-  }  
+  }
 });
 
 Template[getTemplate('comment_item')].rendered=function(){
@@ -125,7 +125,7 @@ Template[getTemplate('comment_item')].rendered=function(){
   //     // note: testing on the class works because Meteor apparently preserves newly assigned CSS classes
   //     // across template renderings
   //     // TODO: save scroll position
-      
+
   //     // get comment author name
   //     var user=Meteor.users.findOne(comment.userId);
   //     var author=getDisplayName(user);

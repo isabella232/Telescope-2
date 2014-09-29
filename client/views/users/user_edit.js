@@ -49,7 +49,6 @@ Template[getTemplate('user_edit')].events({
       "profile.name": name,
       "profile.slug": slugify(name),
       "profile.bio": $target.find('[name=bio]').val(),
-      "profile.email": $target.find('[name=email]').val(),
       "profile.twitter": $target.find('[name=twitter]').val(),
       "profile.github": $target.find('[name=github]').val(),
       "profile.site": $target.find('[name=site]').val(),
@@ -67,6 +66,17 @@ Template[getTemplate('user_edit')].events({
         // TODO: interrupt update if there's an error at this point
         if(error)
           throwError(error.reason);
+      });
+    }
+
+    var new_email = $target.find("[name=email]").val();
+    var old_email = user.emails[0].address;
+    if (old_email != new_email) {
+      Meteor.call("changeEmail", new_email, function(error) {
+        // TODO: interrupt update if there's an error at this point
+        if (error){
+          throwError(error.reason);
+        }
       });
     }
 

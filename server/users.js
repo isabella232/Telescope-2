@@ -15,8 +15,13 @@ Accounts.onCreateUser(function(options, user){
   };
   user = _.extend(user, userProperties);
 
-  if (options.email)
-    user.profile.email = options.email;
+  if (options.email) {
+    if (user.emails && user.emails[0]) {
+      user.emails[0].address = options.email;
+    } else {
+      user.emails = [{address: options.email, verified: false}];
+    }
+  }
     
   if (getEmail(user))
     user.email_hash = getEmailHash(user);
@@ -42,10 +47,10 @@ Accounts.onCreateUser(function(options, user){
   // give new users a few invites (default to 3)
   user.inviteCount = getSetting('startInvitesCount', 3);
 
-  trackEvent('new user', {username: user.username, email: user.profile.email});
+  trackEvent('new user', {username: user.username, email: getEmail(user)});
 
   // if user has already filled in their email, add them to MailChimp list
-  // if(user.profile.email)
+  // if(getEmail(user)) {
   //   addToMailChimpList(user, false, function(error, result){
   //     if(error){
   //       console.log(error)
@@ -54,8 +59,8 @@ Accounts.onCreateUser(function(options, user){
 
   // if the new user has been invited 
   // set her status accordingly and update invitation info
-  if(invitesEnabled() && user.profile.email){
-    var invite = Invites.findOne({ invitedUserEmail : user.profile.email });
+  if(invitesEnabled() && getEmail(user)){
+    var invite = Invites.findOne({ invitedUserEmail : getEmail(user) });
     if(invite){
       var invitedBy = Meteor.users.findOne({ _id : invite.invitingUserId });
       
@@ -90,7 +95,16 @@ Accounts.onCreateUser(function(options, user){
 
 Meteor.methods({
   changeEmail: function(newEmail) {
-    Meteor.users.update(Meteor.userId(), {$set: {emails: [{address: newEmail}]}});
+    // Update the working user so we can use it to fetch the email_hash.
+    var user = Meteor.user();
+    var emails = [{address: newEmail}];
+    user.emails = emails;
+    user.email_hash = getEmailHash(user);
+    // Update the db and hash.
+    Meteor.users.update(user._id, {$set: {
+      emails: user.emails,
+      email_hash: user.email_hash
+    }});
   },
   numberOfPostsToday: function(){
     console.log(numberOfItemsInPast24Hours(Meteor.user(), Posts));
