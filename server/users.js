@@ -18,6 +18,7 @@ Accounts.onCreateUser(function(options, user){
   if (options.email) {
     if (user.emails && user.emails[0]) {
       user.emails[0].address = options.email;
+      user.emails[0].verified = false;
     } else {
       user.emails = [{address: options.email, verified: false}];
     }
@@ -97,7 +98,7 @@ Meteor.methods({
   changeEmail: function(newEmail) {
     // Update the working user so we can use it to fetch the email_hash.
     var user = Meteor.user();
-    var emails = [{address: newEmail}];
+    var emails = [{address: newEmail, verified: false}];
     user.emails = emails;
     user.email_hash = getEmailHash(user);
     // Update the db and hash.
