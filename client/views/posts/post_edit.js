@@ -102,19 +102,6 @@ Template[getTemplate('post_edit')].events({
       categories:       []
     };
 
-    // URL
-
-    var url = $('#url').val();
-    if(!!url){
-      properties.url = (url.substring(0, 7) == "http://" || url.substring(0, 8) == "https://") ? url : "http://"+url;
-    }
-
-    // ShortURL
-
-    var shortUrl = $('#short-url').val();
-    if(!!shortUrl)
-        properties.shortUrl = shortUrl;
-
     // ------------------------------ Admin Properties ------------------------------ //
 
 

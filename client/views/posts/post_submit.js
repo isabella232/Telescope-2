@@ -95,14 +95,6 @@ Template[getTemplate('post_submit')].events({
       properties.postedAt = postedAt;
 
 
-    // URL
-
-    var url = $('#url').val();
-    if(!!url){
-      var cleanUrl = (url.substring(0, 7) == "http://" || url.substring(0, 8) == "https://") ? url : "http://"+url;
-      properties.url = cleanUrl;
-    }
-
     // ------------------------------ Callbacks ------------------------------ //
 
     // run all post submit client callbacks on properties object successively
@@ -132,25 +124,5 @@ Template[getTemplate('post_submit')].events({
       $(e.target).removeClass('disabled');      
     }
 
-  },
-  'click .get-title-link': function(e){
-    e.preventDefault();
-    var url=$("#url").val();
-    var $getTitleLink = $(".get-title-link");
-    $getTitleLink.addClass("loading");
-    if(url){
-      $.get(url, function(response){
-          if ((suggestedTitle=((/<title>(.*?)<\/title>/m).exec(response.responseText))) != null){
-              $("#title").val(suggestedTitle[1]);
-          }else{
-              alert("Sorry, couldn't find a title...");
-          }
-          $getTitleLink.removeClass("loading");
-       });
-    }else{
-      alert("Please fill in an URL first!");
-      $getTitleLink.removeClass("loading");
-    }
   }
-
 });
