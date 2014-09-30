@@ -72,4 +72,5 @@ service-configuration
 accounts-ui
 splendido:accounts-templates-unstyled
 alanning:roles
+admithub:shared-auth
 
