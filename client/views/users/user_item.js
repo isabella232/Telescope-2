@@ -44,11 +44,11 @@ Template[getTemplate('user_item')].events({
   },
   'click .admin-link': function(e, instance){
     e.preventDefault();
-    Roles.addUsersToRoles([instance.data._id], ["Admin"], Roles.GLOBAL_GROUP);
+    updateAdmin(instance.data._id, true);
   },
   'click .unadmin-link': function(e, instance){
     e.preventDefault();
-    Roles.removeUsersFromRoles([instance.data._id], ["Admin"], Roles.GLOBAL_GROUP);
+    updateAdmin(instance.data._id, false);
   },
   'click .delete-link': function(e, instance){
     e.preventDefault();

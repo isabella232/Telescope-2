@@ -42,8 +42,11 @@ Accounts.onCreateUser(function(options, user){
   user.slug = slugify(getUserName(user));
 
   // if this is the first user ever, make them an admin
-  if (!Meteor.users.find().count() )
-    Roles.addUsersToRoles(user, ["Admin"], Roles.GLOBAL_GROUP);
+  if (!Meteor.users.find().count() ) {
+    setAdmin(user, true);
+  } else {
+    setAdmin(user, false);
+  }
 
   // give new users a few invites (default to 3)
   user.inviteCount = getSetting('startInvitesCount', 3);
@@ -78,7 +81,7 @@ Accounts.onCreateUser(function(options, user){
   }
 
   // send notifications to admins
-  var admins = Roles.getUsersInRole("Admin", Roles.GLOBAL_GROUP);
+  var admins = adminUsers();
   admins.forEach(function(admin){
     if(getUserSetting('notifications.users', false, admin)){
       var emailProperties = {

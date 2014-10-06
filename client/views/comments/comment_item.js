@@ -87,9 +87,6 @@ Template[getTemplate('comment_item')].helpers({
     if(author=Meteor.users.findOne(this.userId))
       return getAvatarUrl(author);
   },
-  is_admin: function(user) {
-    return Roles.userIsInRole(user, "Admin", Roles.GLOBAL_GROUP);
-  },
   can_edit: function(){
     if(this.userId && Meteor.userId())
       return canEdit(Meteor.user(), this, false);

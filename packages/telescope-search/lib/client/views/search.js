@@ -9,6 +9,9 @@ var delay = (function(){
 
 Meteor.startup(function () {
   Template[getTemplate('search')].helpers({
+    canSearch: function () {
+      return canView(Meteor.user());
+    },
     searchQuery: function () {
       return Session.get("searchQuery");
     },
@@ -37,7 +40,7 @@ Meteor.startup(function () {
           var opts = {query: 'q=' + encodeURIComponent(val)};
           // if we're already on the search page, do a replaceState. Otherwise,
           // just use the pushState default.
-          if(getCurrentRoute().indexOf('search') !== -1) {
+          if(getCurrentRoute().indexOf('/search') === 0) {
             opts.replaceState = true;
           }
           Router.go('search', null, opts);
