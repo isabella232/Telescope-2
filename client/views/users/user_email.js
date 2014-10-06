@@ -4,6 +4,12 @@ Template[getTemplate('user_email')].helpers({
   },
   username: function () {
     return getUserName(Meteor.user());
+  },
+  getTemplate: function() {
+    return getTemplate(this.template);
+  },
+  userProfileFinishSignup: function() {
+    return userProfileFinishSignup;
   }
 });
 
@@ -27,6 +33,10 @@ Template[getTemplate('user_email')].events({
         username: username,
         slug: slugify(username)
       };
+      update = userEditClientCallbacks.reduce(function(result, currentFunction) {
+        return currentFunction(result);
+      }, update);
+
       Meteor.users.update(user._id, {
         $set: update
       }, function(error){
