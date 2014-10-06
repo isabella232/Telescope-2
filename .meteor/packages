@@ -10,7 +10,6 @@ backbone
 accounts-base
 accounts-password
 accounts-twitter
-spiderable
 email
 accounts-facebook
 
@@ -73,3 +72,5 @@ splendido:accounts-templates-unstyled
 alanning:roles
 admithub:shared-auth
 force-ssl
+spiderable
+
