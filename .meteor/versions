@@ -50,11 +50,13 @@ less@1.0.9
 livedata@1.0.10
 localstorage@1.0.0
 logging@1.0.3
+manuelschoebel:ms-seo@0.3.0
 matb33:collection-hooks@0.7.6
 meteor-platform@1.1.1
 meteor@1.1.1
 meteorhacks:async@1.0.0
 meteorhacks:fast-render@1.1.2
+meteorhacks:kadira-binary-deps@1.2.0
 meteorhacks:kadira@2.11.2
 meteorhacks:npm@1.2.0
 meteorhacks:subs-manager@1.1.0
