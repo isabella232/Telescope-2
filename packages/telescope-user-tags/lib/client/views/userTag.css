@@ -1,0 +1,10 @@
+.user-tag {
+  color: #444;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 11px;
+  border-radius: 3px;
+  background: #ffe;
+  padding: 0px 6px;
+  vertical-align: middle;
+}

@@ -1,0 +1,69 @@
+<template name='userTagsForPost'>
+  {{#each userTags}}
+    <span class='user-tag {{slug}}'>{{ name }}</span>
+  {{/each}}
+</template>
+
+<!-- Admin -->
+<template name='usertags'>
+  <div class="grid-small gid-module dialog admin">
+    <h2>Edit Available User Tags</h2>
+    <form class="form-block js-add-user-tag">
+      <h3>Add new user tag</h3>
+      <div class='control-group'>
+        <label>Name</label>
+        <div class='controls'><input name="newtagname" type="text" value="" /></div>
+      </div>
+      <div class="form-actions">
+        <input type="submit" class="button" value="Submit" />
+      </div>
+    </form>
+    <ul>
+      {{#each usertags}}
+        {{> UI.dynamic template="usertagItem"}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name='usertagItem'>
+  <li>
+    <form class='js-edit-user-tag'>
+      <div class='control-group'>
+        <div class='controls'>
+          <input class='tag-name' name='name' data-tag-id='{{_id}}' type='text' value='{{name}}' placeholder='Name' />
+          <a class='submit delete' style='float: left;' href='#' data-tag-id='{{_id}}'>Delete</a>
+          <input type='submit' class='button submit' style='float: right;' href='#' value='Save'/>
+          <div style='clear: both;'></div>
+        </div>
+      </div>
+    </form>
+  </li>
+</template>
+
+<template name='listUserTags'>
+  <tr>
+    <td>
+      I am a:
+    </td>
+    <td>
+      {{#each mytags}}
+        <span class='user-tag'>{{name}}</span>
+      {{/each}}
+    </td>
+  </tr>
+</template>
+
+<template name='editUserTags'>
+  <div class='control-group'>
+    <label>I am a:</label>
+    <div class='controls'>
+      {{#each availableTags}}
+        <label>
+          {{ name }}
+          <input type='checkbox' {{ attrs }} />
+        </label>
+      {{/each}}
+    </div>
+  </div>
+</template>
