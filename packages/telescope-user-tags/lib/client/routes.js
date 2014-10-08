@@ -19,9 +19,9 @@ userEditClientCallbacks.push(function(properties) {
   return properties;
 });
 // Callback to determine whether or not a user profile is complete.
-userProfileCompleteChecks.push(function(user) {
-  return user && user.profile && typeof user.profile.tags !== "undefined";
-});
+//userProfileCompleteChecks.push(function(user) {
+//  return user && user.profile && typeof user.profile.tags !== "undefined";
+//});
 // Add tags to the post info byline display
 postAuthor.push({template: "userTagsForPost", order: 2})
 
