@@ -8,7 +8,7 @@ userProfileEdit.push({template: "editUserTags", order: 2});
 userProfileFinishSignup.push({template: "editUserTags", order: 2});
 // Callback for processing user properties when editing a profile.
 userEditClientCallbacks.push(function(properties) {
-  if ($("[name=usertag]").length) {
+  if ($(".user-tag-form").length) {
     var tags = [];
 
     $("[name=usertag]:checked").each(function(i, el) {
@@ -20,7 +20,10 @@ userEditClientCallbacks.push(function(properties) {
 });
 // Callback to determine whether or not a user profile is complete.
 userProfileCompleteChecks.push(function(user) {
-  return user && user.profile && typeof user.profile.tags !== "undefined";
+  if (UserTags.find({}, {limit: 1}).count()) {
+    return user && user.profile && typeof user.profile.tags !== "undefined";
+  }
+  return true;
 });
 // Add tags to the post info byline display
 postAuthor.push({template: "userTagsForPost", order: 2})
