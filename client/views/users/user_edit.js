@@ -57,6 +57,7 @@ Template[getTemplate('user_edit')].events({
 
     var $target=$(e.target);
     var name = $target.find('[name=name]').val();
+    var email = $target.find('[name=email]').val();
     var user = this;
     var update = {
       "profile.name": name,
@@ -112,7 +113,7 @@ Template[getTemplate('user_edit')].events({
       });
     });
 
-    Meteor.call('setEmailHash', user);
+    Meteor.call('changeEmail', email);
 
   }
 
