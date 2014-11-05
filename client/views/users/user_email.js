@@ -16,7 +16,10 @@ Template[getTemplate('user_email')].helpers({
 Template[getTemplate('user_email')].events({
   'submit form': function(e){
     e.preventDefault();
-    if(!Meteor.user()) throwError(i18n.t('You must be logged in.'));
+    if(!Meteor.user()) {
+      flashMessage(i18n.t('You must be logged in.'), "error");
+      return;
+    }
     var $target=$(e.target);
     var user=Session.get('selectedUserId')? Meteor.users.findOne(Session.get('selectedUserId')) : Meteor.user();
     var email = $target.find('[name=email]').val();
@@ -42,12 +45,12 @@ Template[getTemplate('user_email')].events({
       }, function(error){
         if(error){
           if (error.reason.indexOf("duplicate key error index: meteor.users.$username") !== -1) {
-            throwError("That username is already taken.");
+            flashMessage("That username is already taken.", "error");
           } else {
-            throwError(error.reason);
+            flashMessage(error.reason, "error");
           }
         } else {
-          throwError(i18n.t('Thanks for signing up!'));
+          flashMessage(i18n.t('Thanks for signing up!'), "success");
           // Meteor.call('addCurrentUserToMailChimpList');
           trackEvent("new sign-up", {'userId': user._id, 'auth':'twitter'});
           Router.go('/');
@@ -56,7 +59,6 @@ Template[getTemplate('user_email')].events({
     } else {
       Router.go('/');
     }
-    
   }
 
 });
