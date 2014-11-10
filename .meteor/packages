@@ -59,7 +59,6 @@ telescope-i18n
 telescope-email
 telescope-update-prompt
 telescope-notifications
-telescope-kadira
 
 # Accounts Templates
 service-configuration
@@ -72,4 +71,3 @@ spiderable
 manuelschoebel:ms-seo
 telescope-user-tags
 admithub:admithub-telescope-theme
-
