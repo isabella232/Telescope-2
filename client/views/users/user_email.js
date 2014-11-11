@@ -25,7 +25,7 @@ Template[getTemplate('user_email')].events({
     var email = $target.find('[name=email]').val();
     var username = $target.find('[name=username]').val();
     if (email) {
-      Meteor.call("changeEmail", email, function(error) {
+      Meteor.call("changeEmail", user._id, email, function(error) {
         if (error) {
           flashMessage(error.reason, "error");
         }
@@ -37,7 +37,7 @@ Template[getTemplate('user_email')].events({
         slug: slugify(username)
       };
       update = userEditClientCallbacks.reduce(function(result, currentFunction) {
-        return currentFunction(result);
+        return currentFunction(user, result);
       }, update);
 
       Meteor.users.update(user._id, {

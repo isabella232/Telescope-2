@@ -88,7 +88,7 @@ Template[getTemplate('user_edit')].events({
     var new_email = $target.find("[name=email]").val();
     var old_email = user.emails[0].address;
     if (old_email != new_email) {
-      Meteor.call("changeEmail", new_email, function(error) {
+      Meteor.call("changeEmail", user._id, new_email, function(error) {
         // TODO: interrupt update if there's an error at this point
         if (error){
           flashMessage(error.reason, "error");
@@ -97,7 +97,7 @@ Template[getTemplate('user_edit')].events({
     }
 
     update = userEditClientCallbacks.reduce(function(result, currentFunction) {
-      return currentFunction(result);
+      return currentFunction(user, result);
     }, update);
 
     Meteor.users.update(user._id, {
@@ -113,8 +113,6 @@ Template[getTemplate('user_edit')].events({
         }
       });
     });
-
-    Meteor.call('changeEmail', email);
 
   }
 

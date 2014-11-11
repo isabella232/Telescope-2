@@ -7,7 +7,7 @@ userProfileEdit.push({template: "editUserTags", order: 2});
 // Add our template to the finish-signup view.
 userProfileFinishSignup.push({template: "editUserTags", order: 2});
 // Callback for processing user properties when editing a profile.
-userEditClientCallbacks.push(function(properties) {
+userEditClientCallbacks.push(function(user, properties) {
   if ($(".user-tag-form").length) {
     var tags = [];
 

@@ -98,17 +98,16 @@ Accounts.onCreateUser(function(options, user){
 
 
 Meteor.methods({
-  changeEmail: function(newEmail) {
-    // Update the working user so we can use it to fetch the email_hash.
-    var user = Meteor.user();
-    var emails = [{address: newEmail, verified: false}];
-    user.emails = emails;
-    user.email_hash = getEmailHash(user);
-    // Update the db and hash.
-    Meteor.users.update(user._id, {$set: {
-      emails: user.emails,
-      email_hash: user.email_hash
-    }});
+  changeEmail: function (_id, newEmail) {
+    if (Meteor.userId() !== _id && !isAdmin(Meteor.user())) {
+      throw new Meteor.Error(400, "Permission denied");
+    }
+    Meteor.users.update(_id,
+      {$set: {
+        emails: [{address: newEmail, verified: false}],
+        email_hash: Gravatar.hash(newEmail),
+      }
+    });
   },
   numberOfPostsToday: function(){
     console.log(numberOfItemsInPast24Hours(Meteor.user(), Posts));
