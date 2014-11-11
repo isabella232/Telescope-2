@@ -69,5 +69,6 @@ admithub:shared-auth
 force-ssl
 spiderable
 manuelschoebel:ms-seo
-telescope-user-tags
+admithub:telescope-user-tags
+admithub:telescope-user-signatures
 admithub:admithub-telescope-theme

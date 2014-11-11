@@ -1,0 +1,15 @@
+<template name="userSignature">
+  <div class='user-signature markdown'>{{{ profile.signatureHTML }}}</div>
+</template>
+<template name="userSignatureProfile">
+  <tr>
+    <td>{{i18n "Signature"}}</td>
+    <td>{{> userSignature profile=profile}}</td>
+  </tr>
+</template>
+<template name="editUserSignature">
+  <div class='control-group'>
+    <label>{{i18n "Signature" }}</label>
+    <div class='controls'><input name='signature' type='text' value='{{ profile.signature }}' /></div>
+  </div>
+</template>

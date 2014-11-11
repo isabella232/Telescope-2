@@ -1,6 +1,6 @@
 Package.describe({
   summary: "Telescope user tags package",
-  name: "telescope-user-tags",
+  name: "admithub:telescope-user-tags",
   version: "0.0.1"
 });
 
