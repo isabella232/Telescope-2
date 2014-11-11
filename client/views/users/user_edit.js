@@ -103,14 +103,14 @@ Template[getTemplate('user_edit')].events({
     Meteor.users.update(user._id, {
       $set: update
     }, function(error){
-      if(error){
-        flashMessage(error.reason, "error");
-      } else {
-        flashMessage(i18n.t('Profile updated'), "success");
-      }
       Deps.afterFlush(function() {
-        var element = $('.grid > .error');
-        $('html, body').animate({scrollTop: element.offset().top});
+        Router.go("/users/" + user.slug);
+        window.scrollTo(0, 0);
+        if(error){
+          flashMessage(error.reason, "error");
+        } else {
+          flashMessage(i18n.t('Profile updated'), "success");
+        }
       });
     });
 
