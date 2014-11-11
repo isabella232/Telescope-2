@@ -91,7 +91,7 @@ Template[getTemplate('user_edit')].events({
       Meteor.call("changeEmail", new_email, function(error) {
         // TODO: interrupt update if there's an error at this point
         if (error){
-          throwError(error.reason);
+          flashMessage(error.reason, "error");
         }
       });
     }
@@ -104,9 +104,9 @@ Template[getTemplate('user_edit')].events({
       $set: update
     }, function(error){
       if(error){
-        throwError(error.reason);
+        flashMessage(error.reason, "error");
       } else {
-        throwError(i18n.t('Profile updated'));
+        flashMessage(i18n.t('Profile updated'), "success");
       }
       Deps.afterFlush(function() {
         var element = $('.grid > .error');

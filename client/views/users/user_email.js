@@ -27,7 +27,7 @@ Template[getTemplate('user_email')].events({
     if (email) {
       Meteor.call("changeEmail", email, function(error) {
         if (error) {
-          throwError(error.reason);
+          flashMessage(error.reason, "error");
         }
       });
     }

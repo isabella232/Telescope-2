@@ -18,7 +18,7 @@ Meteor.startup(function() {
 
   var _handleError = function(err) {
     console.log(err);
-    throwError(err.reason);
+    flashMessage(err.reason, "error");
     clearSeenErrors();
   }
 
@@ -81,7 +81,7 @@ Meteor.startup(function() {
         if (err) {
           _handleError(err);
         } else {
-          throwError(i18n.t("Tag edited."));
+          flashMessage(i18n.t("Tag edited."), "success");
         }
       });
     },
@@ -94,7 +94,7 @@ Meteor.startup(function() {
           if (err) {
             _handleError(err);
           } else {
-            throwError(i18n.t("Tag deleted."));
+            flashMessage(i18n.t("Tag deleted."), "success");
           }
         });
       }
