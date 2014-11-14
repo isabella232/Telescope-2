@@ -25,6 +25,10 @@ Herald.addCourier('newPost', {
   media: {
     email: {
       emailRunner: function (user) {
+        // Herald doesn't fetch the 'emails' property. Fetch it.
+        if (!user.emails) {
+          user = Meteor.users.findOne(user._id, {fields: {emails: 1, profile: 1}})
+        }
         var email = getEmail(user);
         if (email) {
           var p = getPostProperties(this.data);
