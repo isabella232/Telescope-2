@@ -68,7 +68,8 @@ alanning:roles
 admithub:shared-auth
 force-ssl
 spiderable
-manuelschoebel:ms-seo
 admithub:telescope-user-tags
 admithub:telescope-user-signatures
 admithub:admithub-telescope-theme
+telescope-seo
+

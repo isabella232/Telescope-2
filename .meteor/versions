@@ -38,6 +38,8 @@ facebook@1.1.2
 fastclick@1.0.1
 follower-livedata@1.0.2
 force-ssl@1.0.2
+gadicohen:robots-txt@0.0.8
+gadicohen:sitemaps@0.0.20
 geojson-utils@1.0.1
 handlebars@1.0.1
 html-tools@1.0.2
@@ -118,6 +120,7 @@ telescope-newsletter@0.1.0
 telescope-notifications@0.1.0
 telescope-rss@0.0.0
 telescope-search@0.0.0
+telescope-seo@0.0.0
 telescope-tags@0.0.0
 telescope-theme-base@0.0.0
 telescope-update-prompt@0.1.0
