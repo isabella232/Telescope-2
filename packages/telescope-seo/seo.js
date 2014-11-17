@@ -61,7 +61,7 @@ if (Meteor.isClient) {
     Router.onAfterAction(function() {
       var post = this.post();
       var title = post.title;
-      if (post.categories.length > 0) {
+      if (post.categories && post.categories.length > 0) {
         title += " - " + _.pluck(post.categories, "name").join(", ");
       }
       var stitle = getSetting("title");
@@ -86,7 +86,7 @@ if (Meteor.isClient) {
       var user = Meteor.users.findOne(this.params._idOrSlug);
       if (user) {
         var title = getUserName(user) + " - " + getSetting("title", "");
-        var description = "User profile for " + getUserName(user) + " on " + getSetting("title", "");
+        var description = "User profile for " + getUserName(user) + " on " + getSetting("title");
         SEO.set({
           title: title,
           link: { canonical: getSiteUrl() + "users/" + user._id },
@@ -106,7 +106,7 @@ if (Meteor.isClient) {
       var stagline = getSetting("tagline");
       var title = (stagline ? stitle + ": " + stagline : stitle) || "";
       SEO.set({
-        title: title, 
+        title: title,
         meta: {description: getSetting("seoMetaDescription")},
         og: {
           title: title,
@@ -135,7 +135,7 @@ if (Meteor.isServer) {
           });
           return post ? post.postedAt : null;
         }
-        // Basic post pages
+        // Posts list pages
         var paths = [
           {page: "/", lastmod: _getLatest(getSetting("defaultView", "top")), changefreq: "hourly"},
           {page: "/top", lastmod: _getLatest("top"), changefreq: "hourly"},
@@ -160,7 +160,7 @@ if (Meteor.isServer) {
         var postPages = {};
         _.each(["top", "new", "best"], function(key) {
           var siteUrl = getSiteUrl();
-          var params = getPostsParameters(viewParameters[key.toLowerCase()]());
+          var params = getPostsParameters(viewParameters[key]());
           var posts = Posts.find(params.find, {
             fields: {postedAt: 1, title: 1, _id: 1},
             limit: 100,

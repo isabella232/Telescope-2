@@ -10,6 +10,7 @@ backbone
 accounts-base
 accounts-password
 accounts-twitter
+spiderable
 email
 accounts-facebook
 
@@ -59,17 +60,17 @@ telescope-i18n
 telescope-email
 telescope-update-prompt
 telescope-notifications
+telescope-seo
 
 # Accounts Templates
 service-configuration
 accounts-ui
 splendido:accounts-templates-unstyled
+
+# AdmitHub
 alanning:roles
 admithub:shared-auth
 force-ssl
-spiderable
 admithub:telescope-user-tags
 admithub:telescope-user-signatures
 admithub:admithub-telescope-theme
-telescope-seo
-
