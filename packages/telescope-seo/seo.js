@@ -123,6 +123,7 @@ if (Meteor.isServer) {
     /*
      * Sitemap
      */
+    console.log("Do generate sitemap", getSetting("seoGenerateSitemap"));
     if (getSetting("seoGenerateSitemap")) {
       sitemaps.add("/sitemap.xml", function() {
         var _getLatest = function(viewParamKey, terms) {
@@ -173,6 +174,7 @@ if (Meteor.isServer) {
         });
         paths = paths.concat(_.values(postPages));
         paths = _.reject(paths, function(p) { return p.lastmod === null });
+        console.log("sitemap paths:", paths);
         return paths;
       });
     }
