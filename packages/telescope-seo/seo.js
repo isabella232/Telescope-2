@@ -46,7 +46,7 @@ addToSettingsSchema.push({
     label: "Generate sitemap",
     autoform: {
       group: "search engine optimization",
-      instructions: "Automatically generate an XML sitemap for search engines, and append the sitemap URL to the output of robots.txt?"
+      instructions: "Automatically generate an XML sitemap for search engines, and append the sitemap URL to the output of robots.txt?  NOTE: Requires restart to reflect change."
     }
   }
 })
@@ -123,7 +123,6 @@ if (Meteor.isServer) {
     /*
      * Sitemap
      */
-    console.log("Do generate sitemap", getSetting("seoGenerateSitemap"));
     if (getSetting("seoGenerateSitemap")) {
       sitemaps.add("/sitemap.xml", function() {
         var _getLatest = function(viewParamKey, terms) {
@@ -174,7 +173,6 @@ if (Meteor.isServer) {
         });
         paths = paths.concat(_.values(postPages));
         paths = _.reject(paths, function(p) { return p.lastmod === null });
-        console.log("sitemap paths:", paths);
         return paths;
       });
     }
