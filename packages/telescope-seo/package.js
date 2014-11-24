@@ -13,7 +13,7 @@ Package.onUse(function(api) {
     "telescope-lib",
     "telescope-base",
     "telescope-tags",
-    "manuelschoebel:ms-seo@0.3.0", // Need version compatible with Iron:Router < 1.0
+    "manuelschoebel:ms-seo@0.4.1",
     "gadicohen:sitemaps@0.0.20"
   ]);
 

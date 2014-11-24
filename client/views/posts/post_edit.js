@@ -80,6 +80,7 @@ Template[getTemplate('post_edit')].events({
   },
   'click input[type=submit]': function(e, instance){
     var post = this;
+    var updateObject = {};
 
     e.preventDefault();
 
@@ -162,10 +163,11 @@ Template[getTemplate('post_edit')].events({
 
     // ------------------------------ Update ------------------------------ //
 
-    if (properties) {      
-      Posts.update(post._id,{
-        $set: properties
-      }, function(error){
+    if (properties) {
+
+      updateObject.$set = properties;
+
+      Posts.update(post._id, updateObject, function(error){
         if(error){
           console.log(error);
           flashMessage(error.reason, "error");

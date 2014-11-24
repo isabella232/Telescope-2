@@ -59,7 +59,10 @@ if (Meteor.isClient) {
 
     // Post pages
     Router.onAfterAction(function() {
-      var post = this.post();
+      var post = Posts.findOne(this.params._id);
+      if (!post) {
+        return;
+      }
       var title = post.title;
       if (post.categories && post.categories.length > 0) {
         title += " - " + _.pluck(post.categories, "name").join(", ");
@@ -71,7 +74,7 @@ if (Meteor.isClient) {
       var description = [getSetting("tagline"), post.title].join(" ");
       SEO.set({
         title: title,
-        link: { canonical: getPostPageUrl(this.post()) },
+        link: { canonical: getPostPageUrl(post) },
         meta: { description: description },
         og: {
           title: title,
@@ -98,6 +101,7 @@ if (Meteor.isClient) {
           }
         });
       }
+      this.next();
     }, {only: ["user_profile"]});
 
     // All other pages

@@ -54,7 +54,6 @@ Schema.User = new SimpleSchema(userSchemaObj);
 
 Meteor.users.deny({
   update: function(userId, post, fieldNames) {
-    console.log(fieldNames)
     if(isAdminById(userId))
       return false;
     // deny the update if it contains something other than the profile field

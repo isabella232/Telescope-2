@@ -33,7 +33,7 @@ adminNav.push({route: 'usertags', label: "User Tags"});
 Meteor.startup(function() {
   Router.onBeforeAction(Router._filters.isAdmin, {only: ['usertags']});
   // User tags administration view
-  Router.map(function() {
-    this.route('usertags');
+  Router.route('/usertags', {
+    name: 'usertags'
   });
 });

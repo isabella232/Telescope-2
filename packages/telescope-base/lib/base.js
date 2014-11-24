@@ -32,7 +32,7 @@ viewNav = [
     label: 'Best'
   },
   {
-    route: 'posts_digest',
+    route: 'posts_digest_default',
     label: 'Digest'
   } 
 ];
