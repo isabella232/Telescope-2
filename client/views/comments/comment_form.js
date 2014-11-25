@@ -5,7 +5,7 @@ Template[getTemplate('comment_form')].helpers({
 });
 
 Template[getTemplate('comment_form')].rendered = function(){
-  if(Meteor.user() && !this.editor){
+  if(canComment(Meteor.user()) && !this.editor){
     this.editor = new EpicEditor(EpicEditorOptions).load();
     $(this.editor.editor).bind('keydown', 'meta+return', function(){
       $(window.editor).closest('form').find('input[type="submit"]').click();
