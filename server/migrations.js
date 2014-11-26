@@ -1,13 +1,5 @@
 // TODO: switch over to Tom's migration package.
 
-// XXX emergency migration
-Meteor.users.find(
-  {"email_hash": null},
-  {fields: {"_id": 1, "emails": 1}}
-).forEach(function(user) {
-  Meteor.users.update(user._id, {$set: {"email_hash": Gravatar.hash(getEmail(user))}});
-});
-
 
 // database migrations
 // http://stackoverflow.com/questions/10365496/meteor-how-to-perform-database-migrations
