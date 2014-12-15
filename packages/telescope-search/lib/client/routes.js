@@ -9,8 +9,8 @@ Meteor.startup(function () {
   PostsSearchController = PostsListController.extend({
     view: 'search',
     onBeforeAction: function() {
-      if ("q" in this.params) {
-        Session.set("searchQuery", this.params.q);
+      if ("q" in this.params.query) {
+        Session.set("searchQuery", this.params.query.q);
       }
       this.next();
     }
