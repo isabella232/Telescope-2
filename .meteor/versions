@@ -118,6 +118,7 @@ standard-app-packages@1.0.4
 stylus@1.0.6
 tap:http-methods@0.0.23
 tap:i18n@0.9.0
+telescope-airbrake@0.0.1
 telescope-api@0.0.0
 telescope-base@0.0.0
 telescope-daily@0.0.0

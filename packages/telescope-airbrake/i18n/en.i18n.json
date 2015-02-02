@@ -1,0 +1,5 @@
+{
+  "airbrakeErrorReporting": "Airbrake Error Reporting",
+  "airbrakeApiKey": "Airbrake API Key",
+  "airbrakeProjectId": "Airbrake Project ID"
+}
