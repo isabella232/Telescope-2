@@ -73,7 +73,7 @@ useraccounts:unstyled
 
 # AdmitHub
 alanning:roles
-admithub:shared-auth@0.0.5
+admithub:shared-auth@0.0.7
 force-ssl
 admithub:telescope-user-tags
 admithub:telescope-user-signatures
