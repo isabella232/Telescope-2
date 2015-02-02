@@ -87,6 +87,9 @@ if (Meteor.isClient) {
     // User pages
     Router.onAfterAction(function() {
       var user = Meteor.users.findOne(this.params._idOrSlug);
+      if (!user) {
+        user = Meteor.users.findOne({slug: this.params._idOrSlug});
+      }
       if (user) {
         var title = getUserName(user) + " - " + getSetting("title", "");
         var description = "User profile for " + getUserName(user) + " on " + getSetting("title");
@@ -101,7 +104,6 @@ if (Meteor.isClient) {
           }
         });
       }
-      this.next();
     }, {only: ["user_profile"]});
 
     // All other pages
