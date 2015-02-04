@@ -103,6 +103,7 @@ reactive-dict@1.0.5
 reactive-var@1.0.4
 reload@1.1.2
 retry@1.0.2
+richsilv:pikaday@1.0.0
 routepolicy@1.0.4
 sacha:juice@0.1.1
 sacha:spin@2.0.4
@@ -134,7 +135,6 @@ telescope-rss@0.0.0
 telescope-search@0.0.0
 telescope-seo@0.0.1
 telescope-tags@0.0.0
-telescope-theme-base@0.0.0
 telescope-update-prompt@0.1.0
 templating@1.0.11
 tracker@1.0.5
