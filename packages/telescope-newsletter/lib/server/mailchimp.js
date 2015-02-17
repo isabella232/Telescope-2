@@ -79,7 +79,6 @@ scheduleCampaign = function (campaign, isTest) {
 
 addToMailChimpList = function(userOrEmail, confirm, done){
   var user, email;
-
   if(typeof userOrEmail == "string"){
     user = null;
     email = userOrEmail;
@@ -119,8 +118,9 @@ addToMailChimpList = function(userOrEmail, confirm, done){
         done(null, result);
       }
     }));
+  } else {
+    done(null, null);
   }
-
 };
 
 syncAddToMailChimpList = Async.wrap(addToMailChimpList);
@@ -136,7 +136,7 @@ Meteor.methods({
   },
   addEmailToMailChimpList: function (email) {
     try {
-      return syncAddToMailChimpList(email, true);
+      var result = syncAddToMailChimpList(email, true);
     } catch (error) {
       throw new Meteor.Error(500, error.message);
     }
