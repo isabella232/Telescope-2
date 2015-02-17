@@ -21,8 +21,11 @@ Categories = new Meteor.Collection("categories", {
 
 // category post list parameters
 viewParameters.category = function (terms) { 
+  console.log(terms);
+  var category =  Categories.findOne({slug: terms.category});
+  var categoryId = category ? category._id : null;
   return {
-    find: {'categories.slug': terms.category},
+    find: {'categories': {$in: [categoryId]}},
     options: {sort: {sticky: -1, score: -1}}
   };
 }
