@@ -1,12 +1,22 @@
 // add new post notification callback on post submit
 postAfterSubmitMethodCallbacks.push(function (post) {
-  if(Meteor.isServer){
-    var userIds = Meteor.users.find({'profile.notifications.posts': 1}, {fields: {}}).map(function (user) {
-      return user._id
-    });
-    Herald.createNotification(userIds, {courier: 'newPost', data: post})
+
+  var adminIds = _.pluck(Meteor.users.find(adminMongoQuery, {fields: {_id:1}}).fetch(), '_id');
+  var notifiedUserIds = _.pluck(Meteor.users.find({'profile.notifications.posts': 1}, {fields: {_id:1}}).fetch(), '_id');
+
+  // remove post author ID from arrays
+  var adminIds = _.without(adminIds, post.userId);
+  var notifiedUserIds = _.without(notifiedUserIds, post.userId);
+
+  if (post.status === STATUS_PENDING && !!adminIds.length) { 
+    // if post is pending, only notify admins
+    Herald.createNotification(adminIds, {courier: 'newPost', data: post});
+  } else if (!!notifiedUserIds.length) { 
+    // if post is approved, notify everybody
+    Herald.createNotification(notifiedUserIds, {courier: 'newPost', data: post});
   }
   return post;
+
 });
 
 // add new comment notification callback on comment submit
