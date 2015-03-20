@@ -11,8 +11,9 @@ Package.onUse(function (api) {
     'telescope-base',
     'telescope-email',
     'iron:router',
-    'kestanous:herald@1.1.3',
-    'kestanous:herald-email'
+    'kestanous:herald@1.3.0',
+    'kestanous:herald-email',
+    'tap:i18n'
   ], ['client', 'server']);
 
   api.use([
@@ -28,7 +29,8 @@ Package.onUse(function (api) {
 
   api.add_files([
     'lib/notifications.js',
-    'lib/herald.js'
+    'lib/herald.js',
+    'package-tap.i18n'
   ], ['client', 'server']);
 
   api.add_files([
@@ -36,6 +38,7 @@ Package.onUse(function (api) {
     'lib/client/templates/notification_item.js',
     'lib/client/templates/notification_new_comment.html',
     'lib/client/templates/notification_new_reply.html',
+    'lib/client/templates/notification_post_approved.html',
     'lib/client/templates/notifications_menu.html',
     'lib/client/templates/notifications_menu.js',
     'lib/client/templates/unsubscribe.html',
@@ -47,6 +50,15 @@ Package.onUse(function (api) {
     'lib/server/routes.js'
   ], ['server']);
   
+  api.add_files([
+    "i18n/de.i18n.json",
+    "i18n/en.i18n.json",
+    "i18n/es.i18n.json",
+    "i18n/fr.i18n.json",
+    "i18n/it.i18n.json",
+    "i18n/zh-CN.i18n.json",
+  ], ["client", "server"]);
+
   api.export([
     'Herald',
     'buildEmailNotification',

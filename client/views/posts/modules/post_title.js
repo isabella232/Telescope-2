@@ -1,10 +1,6 @@
 Template[getTemplate('postTitle')].helpers({
   postLink: function(){
-    if (!!this.url) {
-      return getOutgoingUrl(this.url);
-    } else {
-      return getPostPageUrl(this);
-    }
+    return !!this.url ? getOutgoingUrl(this.url) : "/posts/"+this._id;
   },
   postTarget: function() {
     return !!this.url ? '_blank' : '';

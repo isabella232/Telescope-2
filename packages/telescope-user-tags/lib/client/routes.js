@@ -5,7 +5,7 @@ userProfileDisplay.push({template: "listUserTags", order: 2});
 // Add our template to user profile editing.
 userProfileEdit.push({template: "editUserTags", order: 2});
 // Add our template to the finish-signup view.
-userProfileFinishSignup.push({template: "editUserTags", order: 2});
+//userProfileFinishSignup.push({template: "editUserTags", order: 2});
 // Callback for processing user properties when editing a profile.
 userEditClientCallbacks.push(function(user, properties) {
   if ($(".user-tag-form").length) {
@@ -26,10 +26,10 @@ userProfileCompleteChecks.push(function(user) {
   return true;
 });
 // Add tags to the post info byline display
-postAuthor.push({template: "userTagsForPost", order: 2})
+// postAuthor.push({template: "userTagsForPost", order: 2})
 
 // Add our admin view to nav.
-adminNav.push({route: 'usertags', label: "User Tags"});
+adminMenu.push({route: 'usertags', label: "User Tags"});
 Meteor.startup(function() {
   Router.onBeforeAction(Router._filters.isAdmin, {only: ['usertags']});
   // User tags administration view

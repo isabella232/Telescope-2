@@ -14,7 +14,9 @@ addToUserSchema.push({
   }
 })
 
+/*
 postAuthor.push({
   template: 'userTags',
   order: 2
 });
+*/

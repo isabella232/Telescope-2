@@ -10,6 +10,7 @@ Package.onUse(function (api) {
   // --------------------------- 1. Meteor packages dependencies ---------------------------
 
   api.use([
+    'templating',
     'tap:i18n', // internationalization package
     'jquery',
     'telescope-base', // basic Telescope hooks and objects

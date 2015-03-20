@@ -1,6 +1,6 @@
 Meteor.startup(function() {
   Meteor.publish('usertags', function() {
-    if(canViewById(this.userId)){
+    if(can.viewById(this.userId)){
       return UserTags.find();
     }
     return [];

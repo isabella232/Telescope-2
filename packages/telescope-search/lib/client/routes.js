@@ -1,16 +1,14 @@
-adminNav.push({
-  route: 'searchLogs',
-  label: 'Search Logs'
-});
-
-
 Meteor.startup(function () {
 
   PostsSearchController = PostsListController.extend({
     view: 'search',
     onBeforeAction: function() {
-      if ("q" in this.params.query) {
-        Session.set("searchQuery", this.params.query.q);
+      var query = this.params.query;
+      if ('q' in query) {
+        Session.set('searchQuery', query.q);
+        if (query.q) {
+          Meteor.call('logSearch', query.q)
+        }
       }
       this.next();
     }
@@ -22,7 +20,7 @@ Meteor.startup(function () {
 
   Router.route('/search/:limit?', {
     name: 'search',
-    controller: PostsSearchController    
+    controller: PostsSearchController
   });
 
   // Search Logs

@@ -1,6 +1,5 @@
 // TODO: switch over to Tom's migration package.
 
-
 // database migrations
 // http://stackoverflow.com/questions/10365496/meteor-how-to-perform-database-migrations
 Migrations = new Meteor.Collection('migrations');
@@ -15,7 +14,7 @@ Meteor.startup(function () {
 Meteor.methods({
   removeMigration: function (name) {
     if (isAdmin(Meteor.user())) {
-      console.log('// removing migration: '+name)
+      console.log('// removing migration: ' + name);
       Migrations.remove({name: name});
     }
   }
@@ -33,7 +32,7 @@ var runMigration = function (migrationName) {
     }else{
       // do nothing
       // console.log('Migration "'+migrationName+'" already exists, doing nothing.')
-      return
+      return;
     }
   }
 
@@ -59,11 +58,12 @@ var migrationsList = {
       Posts.update(post._id, {$set: {status: 2}});
       console.log("---------------------");
       console.log("Post: "+post.title);
-      console.log("Updating status to approved");  
+      console.log("Updating status to approved");
     });
     return i;
   },
   updateCategories: function () {
+    if (typeof Categories === "undefined" || Categories === null) return;
     var i = 0;
     Categories.find({slug: {$exists : false}}).forEach(function (category) {
         i++;
@@ -72,11 +72,11 @@ var migrationsList = {
         console.log("---------------------");
         console.log("Category: "+category.name);
         console.log("Updating category with new slug: "+slug);
-    
     });
     return i;
   },
   updatePostCategories: function () {
+    if (typeof Categories === "undefined" || Categories === null) return;
     var i = 0;
     Posts.find().forEach(function (post) {
       i++;
@@ -141,7 +141,7 @@ var migrationsList = {
       // update postCount
       var postsByUser = Posts.find({userId: user._id});
       properties.postCount = postsByUser.count();
-      
+
       // update commentCount
       var commentsByUser = Comments.find({userId: user._id});
       properties.commentCount = commentsByUser.count();
@@ -203,7 +203,7 @@ var migrationsList = {
   },
   commentsSubmittedToCreatedAt: function () {
     var i = 0;
-    Comments.find().forEach(function (comment) {
+    Comments.find({createdAt: {$exists: false}}).forEach(function (comment) {
       i++;
       console.log("Comment: "+comment._id);
       Comments.update(comment._id, { $rename: { 'submitted': 'createdAt'}}, {multi: true, validate: false});
@@ -272,7 +272,7 @@ var migrationsList = {
   },
   parentToParentCommentId: function () {
     var i = 0;
-    Comments.find({parentCommentId: {$exists : false}}).forEach(function (comment) {
+    Comments.find({parent: {$exists: true}, parentCommentId: {$exists : false}}).forEach(function (comment) {
       i++;
       console.log("Comment: "+comment._id);
       Comments.update(comment._id, { $set: { 'parentCommentId': comment.parent}}, {multi: true, validate: false});
@@ -283,7 +283,7 @@ var migrationsList = {
   addLastCommentedAt: function () {
     var i = 0;
     Posts.find({$and: [
-      {comments: {$gt: 0}}, 
+      {comments: {$gt: 0}},
       {lastCommentedAt: {$exists : false}}
     ]}).forEach(function (post) {
       i++;
@@ -297,10 +297,10 @@ var migrationsList = {
   },
   commentsToCommentCount: function () {
     var i = 0;
-    Posts.find({commentCount: {$exists : false}}).forEach(function (post) {
+    Posts.find({comments: {$exists : true}, commentCount: {$exists : false}}).forEach(function (post) {
       i++;
       console.log("Post: "+post._id);
-      Posts.update(post._id, { $rename: { 'comments': 'commentCount'}}, {multi: true, validate: false});
+      Posts.update(post._id, { $set: { 'commentCount': post.comments}, $unset: { 'comments': ''}}, {multi: true, validate: false});
       console.log("---------------------");
     });
     return i;
@@ -367,10 +367,10 @@ var migrationsList = {
   },
   clicksToClickCount: function () {
     var i = 0;
-    Posts.find({"clickCount": {$exists : false}}).forEach(function (post) {
+    Posts.find({"clicks": {$exists: true}, "clickCount": {$exists : false}}).forEach(function (post) {
       i++;
       console.log("Post: " + post._id);
-      Posts.update(post._id, { $rename: { 'clicks': 'clickCount'}}, {multi: true, validate: false});
+      Posts.update(post._id, { $set: { 'clickCount': post.clicks}, $unset: { 'clicks': ''}}, {multi: true, validate: false});
       console.log("---------------------");
     });
     return i;
@@ -378,10 +378,10 @@ var migrationsList = {
   commentsCountToCommentCount: function () {
     var i = 0;
     Posts.find({"commentCount": {$exists : false}}).forEach(function (post) {
-        i++;
-        console.log("Post: " + post._id);
-        var result = Posts.update({_id: post._id}, { $set: { 'commentCount': post.commentsCount}, $unset: {'commentsCount': ""}}, {multi: true, validate: false});
-        console.log("---------------------");
+      i++;
+      console.log("Post: " + post._id);
+      var result = Posts.update({_id: post._id}, { $set: { 'commentCount': post.commentsCount}, $unset: {'commentsCount': ""}}, {multi: true, validate: false});
+      console.log("---------------------");
     });
     return i;
   },
@@ -395,5 +395,60 @@ var migrationsList = {
       console.log("---------------------");
     });
     return i;
-   }
+   },
+  clicksToClickCountForRealThisTime: function () { // since both fields might be co-existing, add to clickCount instead of overwriting it
+    var i = 0;
+    Posts.find({'clicks': {$exists: true}}).forEach(function (post) {
+      i++;
+      console.log("Post: " + post._id);
+      var result = Posts.update(post._id, { $inc: { 'clickCount': post.clicks}, $unset: {'clicks': ""}}, {multi: true, validate: false});
+      console.log("---------------------");
+    });
+    return i;
+  },
+  normalizeCategories: function () {
+    var i = 0;
+    Posts.find({'categories': {$exists: true}}).forEach(function (post) {
+      i++;
+      console.log("Post: " + post._id);
+      var justCategoryIds = post.categories.map(function (category){
+        return category._id;
+      });
+      var result = Posts.update(post._id, {$set: {categories: justCategoryIds, oldCategories: post.categories}}, {multi: true, validate: false});
+      console.log("---------------------");
+    });
+    return i;
+  },
+  cleanUpStickyProperty: function () {
+    var i = 0;
+    Posts.find({'sticky': {$exists: false}}).forEach(function (post) {
+      i++;
+      console.log("Post: " + post._id);
+      var result = Posts.update(post._id, {$set: {sticky: false}}, {multi: true, validate: false});
+      console.log("---------------------");
+    });
+    return i;
+  },
+  show0112ReleaseNotes: function () {
+    var i = 0;
+    // if this is the 0.11.2 update, the first run event will not exist yet.
+    // if that's the case, make sure to still show release notes
+    if (!Events.findOne({name: 'firstRun'})) {
+      Releases.update({number:'0.11.2'}, {$set: {read:false}});
+    }
+    return i;
+  },
+  removeThumbnailHTTP: function () {
+    var i = 0;
+    Posts.find({thumbnailUrl: {$exists : true}}).forEach(function (post) {
+      i++;
+      var newThumbnailUrl = post.thumbnailUrl.replace("http:", "");
+      console.log("Post: "+post._id);
+      Posts.update(post._id, { $set: { 'thumbnailUrl': newThumbnailUrl}}, {multi: true, validate: false});
+      console.log("---------------------");
+    });
+    return i;
+  }
 };
+
+// TODO: normalize categories?

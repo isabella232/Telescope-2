@@ -1,6 +1,10 @@
 {
   "dependencies": [
     [
+      "aldeed:simple-schema",
+      "1.2.0"
+    ],
+    [
       "application-configuration",
       "1.0.3"
     ],
@@ -37,8 +41,12 @@
       "2.0.0"
     ],
     [
+      "coffeescript",
+      "1.0.4"
+    ],
+    [
       "ddp",
-      "1.0.11"
+      "1.0.12"
     ],
     [
       "deps",
@@ -78,19 +86,19 @@
     ],
     [
       "iron:core",
-      "1.0.3"
+      "1.0.4"
     ],
     [
       "iron:dynamic-template",
-      "1.0.3"
+      "1.0.5"
     ],
     [
       "iron:layout",
-      "1.0.3"
+      "1.0.5"
     ],
     [
       "iron:location",
-      "1.0.3"
+      "1.0.4"
     ],
     [
       "iron:middleware-stack",
@@ -102,7 +110,7 @@
     ],
     [
       "iron:url",
-      "1.0.3"
+      "1.0.4"
     ],
     [
       "jquery",
@@ -130,7 +138,7 @@
     ],
     [
       "mongo",
-      "1.0.8"
+      "1.0.9"
     ],
     [
       "observe-sequence",
@@ -161,12 +169,24 @@
       "1.0.2"
     ],
     [
+      "session",
+      "1.0.4"
+    ],
+    [
       "spacebars",
       "1.0.3"
     ],
     [
       "spacebars-compiler",
       "1.0.3"
+    ],
+    [
+      "tap:http-methods",
+      "0.0.23"
+    ],
+    [
+      "tap:i18n",
+      "1.2.1"
     ],
     [
       "telescope-base",
@@ -206,6 +226,6 @@
     ]
   ],
   "pluginDependencies": [],
-  "toolVersion": "meteor-tool@1.0.35",
+  "toolVersion": "meteor-tool@1.0.36",
   "format": "1.0"
 }

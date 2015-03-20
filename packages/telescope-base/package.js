@@ -2,15 +2,21 @@ Package.describe({summary: "Telescope base package"});
 
 Package.onUse(function (api) {
 
-  api.use(['telescope-i18n', 'telescope-lib'], ['client', 'server']);
+  api.use(['telescope-i18n', 'telescope-lib', 'aldeed:simple-schema', 'check']);
+  api.imply(['aldeed:simple-schema']);
 
   api.add_files(['lib/base.js'], ['client', 'server']);
   api.add_files(['lib/base_client.js'], ['client']);
   api.add_files(['lib/base_server.js'], ['server']);
 
   api.export([
-    'adminNav', 
-    'viewNav', 
+    'postStatuses',
+    'STATUS_PENDING',
+    'STATUS_APPROVED',
+    'STATUS_REJECTED',
+    
+    'adminMenu', 
+    'viewsMenu', 
     'addToPostSchema', 
     'addToCommentsSchema', 
     'addToSettingsSchema', 
@@ -21,24 +27,28 @@ Package.onUse(function (api) {
     'viewParameters',
     'footerModules',
     'heroModules',
+    'threadModules',
     'postModules',
+    'postThumbnail',
     'postHeading',
     'postMeta',
-    'postAuthor',
     'modulePositions',
-    'userProfileDisplay',
-    'userProfileEdit',
-    'userProfileFinishSignup',
+
+    'postClassCallbacks',
 
     'postSubmitRenderedCallbacks',
     'postSubmitClientCallbacks',
     'postSubmitMethodCallbacks',
     'postAfterSubmitMethodCallbacks',
 
+    'postApproveCallbacks',
+    
     'postEditRenderedCallbacks',
     'postEditClientCallbacks',
     'postEditMethodCallbacks',
     'postAfterEditMethodCallbacks',
+
+    'commentClassCallbacks',
 
     'commentSubmitRenderedCallbacks',
     'commentSubmitClientCallbacks',
@@ -50,13 +60,27 @@ Package.onUse(function (api) {
     'commentEditMethodCallbacks',
     'commentAfterEditMethodCallbacks',
 
+    'upvoteCallbacks',
+    'downvoteCallbacks',
+    'cancelUpvoteCallbacks',
+    'cancelDownvoteCallbacks',
+    'upvoteMethodCallbacks',
+    'downvoteMethodCallbacks',
+    'cancelUpvoteMethodCallbacks',
+    'cancelDownvoteMethodCallbacks',
+    
     'userEditRenderedCallbacks',
     'userEditClientCallbacks',
     'userProfileCompleteChecks',
+    'userProfileDisplay',
+    'userProfileEdit',
+    'userCreatedCallbacks',
     
     'getTemplate',
     'templates',
 
-    'themeSettings'
+    'themeSettings',
+
+    'getVotePower'
     ]);
 });

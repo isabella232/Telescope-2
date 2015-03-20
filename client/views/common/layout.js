@@ -5,8 +5,8 @@ Template[getTemplate('layout')].helpers({
   nav: function () {
     return getTemplate('nav');
   },
-  error: function () {
-    return getTemplate('error');
+  messages: function () {
+    return getTemplate('messages');
   },
   notifications: function () {
     return getTemplate('notifications');
@@ -20,8 +20,11 @@ Template[getTemplate('layout')].helpers({
   css: function () {
     return getTemplate('css');
   },
+  extraCode: function() {
+    return getSetting('extraCode');
+  },
   heroModules: function () {
-    return heroModules;
+    return _.sortBy(heroModules, 'order');
   },
   getTemplate: function () {
     return getTemplate(this.template);
@@ -37,4 +40,21 @@ Template[getTemplate('layout')].rendered = function(){
     $('body').scrollTop(currentScroll);
     Session.set('currentScroll', null);
   }
+
+  // favicon
+  var link = document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = getSetting('faviconUrl', '/img/favicon.ico');
+  document.getElementsByTagName('head')[0].appendChild(link);
+
 };
+
+Template[getTemplate('layout')].events({
+  'click .inner-wrapper': function (e) {
+    if ($('body').hasClass('mobile-nav-open')) {
+      e.preventDefault();
+      $('body').removeClass('mobile-nav-open');
+    }
+  }
+});

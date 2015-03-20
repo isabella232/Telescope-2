@@ -15,6 +15,8 @@ email
 accounts-facebook
 service-configuration
 accounts-ui
+reactive-var
+http
 
 # Atmosphere Packages
 
@@ -24,14 +26,12 @@ meteorhacks:fast-render
 meteorhacks:subs-manager
 meteorhacks:npm
 
-aldeed:autoform
+aldeed:autoform@5.0.0
 aldeed:collection2
 aldeed:simple-schema
 
 mrt:jquery-hotkeys
 mrt:cookies
-mrt:moment
-mrt:mailchimp
 
 cmather:handlebars-server
 sacha:spin
@@ -42,8 +42,18 @@ npm-container
 matb33:collection-hooks
 djedi:sanitize-html
 rajit:bootstrap3-datepicker
-bengott:avatar@0.6.0
+bengott:avatar
 jparker:gravatar
+tap:i18n
+useraccounts:unstyled@1.4.0
+tsega:bootstrap3-datetimepicker@3.1.3_1
+momentjs:moment
+aslagle:reactive-table
+
+# Testing
+
+# sanjo:jasmine
+# velocity:html-reporter
 
 # Telescope Packages (Required)
 
@@ -53,23 +63,27 @@ telescope-i18n
 
 # Telescope Packages (Optional)
 
+telescope-datetimepicker
 telescope-module-share
 telescope-api
 telescope-rss
 telescope-search
 telescope-tags
 telescope-email
-telescope-module-embedly
 telescope-newsletter
 telescope-daily
 telescope-update-prompt
 telescope-kadira
-
 telescope-notifications
+telescope-singleday
+telescope-invites
+telescope-post-by-feed
+telescope-releases
+telescope-getting-started
+telescope-subscribe-to-posts
+telescope-tagline-banner
 
-# Accounts Templates
-useraccounts:unstyled
-
+# Custom Packages
 # AdmitHub
 alanning:roles
 admithub:shared-auth@0.0.7
@@ -78,4 +92,3 @@ admithub:telescope-user-tags
 admithub:telescope-user-signatures
 admithub:admithub-telescope-theme
 telescope-seo
-telescope-airbrake

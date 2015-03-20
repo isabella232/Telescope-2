@@ -19,6 +19,7 @@ dump/
 dump/*
 
 settings.json
+settings.json.not-used
 .idea
 
 scratch
@@ -33,7 +34,7 @@ mup.json
 # AdmitHub
 .floo
 .flooignore
-tests/.npm
-tests/.reports
-tests/nightwatch/.bin
-tests/nightwatch/.logs
+tests/ah_tests/.npm
+tests/ah_tests/.reports
+tests/ah_tests/nightwatch/.bin
+tests/ah_tests/nightwatch/.logs
