@@ -1,18 +1,18 @@
 {
-  "src_folders" : ["tests/nightwatch"],
-  "output_folder" : "tests/.reports/nightwatch",
+  "src_folders" : ["tests/ah_tests/nightwatch"],
+  "output_folder" : "tests/ah_tests/.reports/nightwatch",
   "custom_commands_path" : "",
   "custom_assertions_path" : "",
-  "globals_path" : "tests/nightwatch_globals.js",
+  "globals_path" : "tests/ah_tests/nightwatch_globals.js",
   
   "selenium" : {
     "start_process" : true,
-    "server_path" : "tests/nightwatch/.bin/selenium-server-standalone.jar",
-    "log_path" : "tests/nightwatch/.logs",
+    "server_path" : "tests/ah_tests/nightwatch/.bin/selenium-server-standalone.jar",
+    "log_path" : "tests/ah_tests/nightwatch/.logs",
     "host" : "127.0.0.1",
     "port" : 4444,
     "cli_args" : {
-      "webdriver.chrome.driver" : "tests/nightwatch/.bin/chromedriver",
+      "webdriver.chrome.driver" : "tests/ah_tests/nightwatch/.bin/chromedriver",
       "webdriver.ie.driver" : ""
     }  
   },
