@@ -9,7 +9,6 @@ Template[getTemplate('user_email')].helpers({
 
 Template[getTemplate('user_email')].events({
   'submit form': function(e){
-    console.log(e);
     e.preventDefault();
     if(!Meteor.user())
       flashMessage(i18n.t('you_must_be_logged_in'), 'error');
@@ -20,7 +19,6 @@ Template[getTemplate('user_email')].events({
       "username": $target.find('[name=username]').val(),
         "slug": slugify($target.find('[name=username]').val())
     };
-    console.log(update);
 
     // TODO: enable change email
     var email = $target.find('[name=email]').val();
