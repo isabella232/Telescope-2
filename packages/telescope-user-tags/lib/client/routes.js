@@ -3,7 +3,7 @@ preloadSubscriptions.push('usertags');
 // Add our template to user profile viewing.
 userProfileDisplay.push({template: "listUserTags", order: 2});
 // Add our template to user profile editing.
-userProfileEdit.push({template: "editUserTags", order: 2});
+userProfileEdit.push({template: "editUserTagsProfile", order: 2});
 // Add our template to the finish-signup view.
 //userProfileFinishSignup.push({template: "editUserTags", order: 2});
 // Callback for processing user properties when editing a profile.

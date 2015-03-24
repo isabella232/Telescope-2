@@ -5,7 +5,7 @@ addToUserSchema.push({propertyName: "profile.signatureHTML", propertySchema: {ty
 // Add the user signature bits to what is displayed on the user profile.
 userProfileDisplay.push({template: "userSignatureProfile", order: 1});
 // Add the signature bits to what is displayed when editing the user profile.
-userProfileEdit.push({template: "editUserSignature", order: 1});
+userProfileEdit.push({template: "editUserSignatureProfile", order: 1});
 // Process changes to the signature.
 userEditClientCallbacks.push(function(user, properties) {
   var sig = $.trim($("[name=signature]").val());

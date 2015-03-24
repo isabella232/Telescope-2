@@ -13,10 +13,3 @@ addToUserSchema.push({
     optional: true
   }
 })
-
-/*
-postAuthor.push({
-  template: 'userTags',
-  order: 2
-});
-*/

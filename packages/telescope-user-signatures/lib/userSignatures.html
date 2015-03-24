@@ -7,6 +7,14 @@
     <td>{{> userSignature profile=profile}}</td>
   </tr>
 </template>
+<template name='editUserSignatureProfile'>
+  <div class='grid-small grid-block dialog admin'>
+    <h2>Forum signature</h2>
+    <form id='user-signature'>
+      {{> editUserSignature}}
+    </form>
+  </div>
+</template>
 <template name="editUserSignature">
   <div class='control-group'>
     <label>Signature</label>

@@ -54,14 +54,23 @@
   </tr>
 </template>
 
+<template name='editUserTagsProfile'>
+  <div class='grid-small grid-block dialog admin'>
+    <h2>Interest</h2>
+    <form id='user-tags-form'>
+      {{> editUserTags}}
+    </form>
+  </div>
+</template>
+
 <template name='editUserTags'>
   <div class='control-group'>
     <label>I am a:</label>
     <div class='controls user-tag-form'>
       {{#each availableTags}}
         <label>
-          {{ name }}
           <input type='checkbox' {{ attrs }} />
+          {{ name }}
         </label>
       {{/each}}
     </div>
