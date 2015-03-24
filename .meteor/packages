@@ -33,6 +33,7 @@ aldeed:simple-schema
 mrt:jquery-hotkeys
 mrt:cookies
 
+ccan:cssreset # CSS reset (Must come before any other css)
 cmather:handlebars-server
 sacha:spin
 sacha:juice
@@ -64,12 +65,15 @@ telescope-i18n
 # Telescope Packages (Optional)
 
 telescope-datetimepicker
+telescope-theme-base
 telescope-module-share
 telescope-api
 telescope-rss
 telescope-search
 telescope-tags
+telescope-theme-hubble
 telescope-email
+telescope-embedly
 telescope-newsletter
 telescope-daily
 telescope-update-prompt
@@ -84,11 +88,3 @@ telescope-subscribe-to-posts
 telescope-tagline-banner
 
 # Custom Packages
-# AdmitHub
-alanning:roles
-admithub:shared-auth@0.0.7
-force-ssl
-admithub:telescope-user-tags
-admithub:telescope-user-signatures
-admithub:admithub-telescope-theme
-telescope-seo

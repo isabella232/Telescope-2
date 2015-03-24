@@ -36,11 +36,9 @@ Template[getTemplate('comment_form')].events({
       comment.parentCommentId = this.comment._id;
     }
 
-
     Meteor.call('submitComment', comment, function(error, newComment){
       // $commentForm.prop('disabled', false);
       // $submitButton.removeClass('loading');
-      console.log(error, newComment, "HELLO?");
       if(error){
         console.log(error);
         flashMessage(error.reason, "error");
