@@ -19,7 +19,7 @@ Meteor.startup(function() {
   var _handleError = function(err) {
     console.log(err);
     flashMessage(err.reason, "error");
-    clearSeenErrors();
+    clearSeenMessages();
   }
 
   Template[getTemplate('usertags')].events({
