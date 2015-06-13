@@ -1,6 +1,3 @@
 [submodule "packages/admithub-telescope-theme"]
 	path = packages/admithub-telescope-theme
 	url = https://github.com/AdmitHub/admithub-telescope-theme.git
-[submodule "packages/admithub-auth"]
-	path = packages/admithub-auth
-	url = https://github.com/AdmitHub/admithub-auth.git
