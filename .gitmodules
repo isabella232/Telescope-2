@@ -3,4 +3,4 @@
 	url = https://github.com/AdmitHub/admithub-telescope-theme.git
 [submodule "packages/admithub-auth"]
 	path = packages/admithub-auth
-	url = git@github.com:AdmitHub/admithub-auth.git
+	url = https://github.com/AdmitHub/admithub-auth.git
