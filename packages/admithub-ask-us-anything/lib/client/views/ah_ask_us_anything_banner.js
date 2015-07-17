@@ -13,19 +13,19 @@ Template.ah_ask_us_anything_banner.helpers({
           editable: true
         }
       },
-      body: {
-        type: String,
-        optional: true,
-        label: 'Details',
-        autoform: {
-          editable: true,
-          rows: 5
-        }
-      },
       email: {
         type: String,
-        optional: false,
-        label: 'Email',
+        optional: true,
+        label: 'Email Address',
+        regEx: SimpleSchema.RegEx.Email,
+        autoform: {
+          editable: true
+        }
+      },
+      newsletter: {
+        type: Boolean,
+        optional: true,
+        label: 'Join the newsletter?',
         autoform: {
           editable: true
         }
@@ -40,37 +40,50 @@ Template.ah_ask_us_anything_banner.helpers({
 AutoForm.hooks({
   askUsAnythingForm: {
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
+
+      function submitCallback(err, post) {
+        if (err) {
+          flashMessage(err.message.split('|')[0].split('[')[0].trim(), 'error');
+          clearSeenMessages();
+          return;
+        }
+        Router.go('post_page', {_id: post._id});
+      }
+
       this.template.$('button[type=submit]').addClass('loading');
 
       if (Meteor.user()) {
         insertDoc.email = Meteor.user().emails[0].address;
         insertDoc.userId = Meteor.userId();
-        Meteor.call('submitPost', insertDoc, function() {
-          this.done();
-        });
+        Meteor.call('submitPost', {
+          userId: Meteor.userId(),
+          title: insertDoc.title
+        }, submitCallback);
       }
       else {
-        Template.instance().showEmail.set(true);
+        var showEmail = this.template.get('showEmail');
+
+        if (showEmail.get()) {
+          Meteor.call('registerAndAsk',
+            insertDoc.email,
+            insertDoc.newsletter,
+            insertDoc.title,
+            submitCallback);
+        }
+        else {
+          showEmail.set(true);
+          flashMessage('Enter your email address so we can get you your answer!');
+        }
       }
+      return false;
     },
     onSuccess: function(operation, post) {
       this.template.$('button[type=submit]').removeClass('loading');
-      // trackEvent("new post", {'postId': post._id});
-      // Router.go('post_page', {_id: post._id});
-      // if (post.status === STATUS_PENDING) {
-      //   flashMessage(i18n.t('thanks_your_post_is_awaiting_approval'), 'success');
-      // }
     },
     onError: function(operation, error) {
-      console.log('onerror', arguments);
       this.template.$('button[type=submit]').removeClass('loading');
-      flashMessage(error.message.split('|')[0], 'error'); // workaround because error.details returns undefined
+      flashMessage(error.message.split('|')[0].split('[')[0].trim(), 'error');
       clearSeenMessages();
-      // $(e.target).removeClass('disabled');
-      if (error.error == 603) {
-        var dupePostId = error.reason.split('|')[1];
-        Router.go('post_page', {_id: dupePostId});
-      }
     }
   }
 })

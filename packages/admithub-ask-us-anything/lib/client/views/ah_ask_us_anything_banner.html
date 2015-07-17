@@ -1,25 +1,14 @@
 <template name="ah_ask_us_anything_banner">
   {{#if showBanner}}
-    <!-- <form class="newsletter-banner-form js-newsletter-banner-wrap">
-      <div class="newsletter-banner-form-left">
-        <span class='sidebar-header newsletter-banner-form-title'>NEWSLETTER</span>&nbsp;<span class="type-secondary type-small newsletter-banner-form-subtitle">Get the latest admissions tips</span>
-      </div>
-
-      <div class="newsletter-banner-form-right">
-        <input type="email" class="ui-form-small newsletter-banner-form-input js-newsletter-email" placeholder="example@email.com"
-        value="{{ currentUser.emails.[0].address }}" /><button class="ui-btn ui-form-input-submit ui-small ah-newsletter-button js-newsletter-button newsletter-banner-form-submit">Go</button>
-      </div>
-    </form> -->
     <div class="ask-us-anything-banner">
       <h1 class='post-edit-title'>Ask Us Anything</h1>
       <div class="single-post grid submit">
         <div class='grid-block form-horizontal'>
           {{#autoForm schema=schema id="askUsAnythingForm" template="telescope" type="normal" buttonContent="Ask"}}
             {{> afQuickField name="title" label-class="control-label" input-col-class="controls"}}
-            {{> afQuickField name="body" label-class="control-label" input-col-class="controls" rows=3}}
             {{#if showEmail}}
-              <p>Want an answer? Enter your email!</p>
               {{> afQuickField name="email" label-class="control-label" input-col-class="controls"}}
+              {{> afQuickField name="newsletter" label-class="hidden" input-col-class="controls" label=false}}
             {{/if}}
             <div class="form-group">
               <div class="control-label"></div>
