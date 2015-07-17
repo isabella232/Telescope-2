@@ -1,22 +1,35 @@
 <template name="ah_ask_us_anything_banner">
   {{#if showBanner}}
     <div class="ask-us-anything-banner">
-      <h1 class='post-edit-title'>Ask Us Anything</h1>
+      <h2 class='post-edit-title'>Ask Us Anything</h2>
       <div class="single-post grid submit">
         <div class='grid-block form-horizontal'>
-          {{#autoForm schema=schema id="askUsAnythingForm" template="telescope" type="normal" buttonContent="Ask"}}
-            {{> afQuickField name="title" label-class="control-label" input-col-class="controls"}}
+          <form id="ah_ask_us_form">
+            {{#unless showEmail}}
+              <textarea id="ah_ask_us_question" rows="5"></textarea>
+            {{/unless}}
             {{#if showEmail}}
-              {{> afQuickField name="email" label-class="control-label" input-col-class="controls"}}
-              {{> afQuickField name="newsletter" label-class="hidden" input-col-class="controls" label=false}}
+              <p>Enter your email address so we can get you your answer!</p>
+              <div class="form-group">
+                <label class="control-label">Email Address:</label>
+                <div class="controls">
+                  <input id="ah_ask_us_email" class="form-control" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="control-label"></div>
+                <div class="controls">
+                  <label><input id="ah_ask_us_newsletter" class="form-control" type="checkbox">Join the newsletter?</label>
+                </div>
+              </div>
             {{/if}}
             <div class="form-group">
               <div class="control-label"></div>
-              <div class="controls">
+              <div class="controls button-controls">
                 <button type="submit" class="btn btn-primary">Ask</button>
               </div>
             </div>
-          {{/autoForm}}
+          </form>
         </div>
       </div>
     </div>

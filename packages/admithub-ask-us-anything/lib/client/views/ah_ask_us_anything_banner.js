@@ -1,88 +1,49 @@
 Template.ah_ask_us_anything_banner.created = function() {
   this.showEmail = new ReactiveVar(false);
+  this.question = new ReactiveVar();
 };
 
 Template.ah_ask_us_anything_banner.helpers({
-  schema: function() {
-    return new SimpleSchema({
-      title: {
-        type: String,
-        optional: false,
-        label: 'Question',
-        autoform: {
-          editable: true
-        }
-      },
-      email: {
-        type: String,
-        optional: true,
-        label: 'Email Address',
-        regEx: SimpleSchema.RegEx.Email,
-        autoform: {
-          editable: true
-        }
-      },
-      newsletter: {
-        type: Boolean,
-        optional: true,
-        label: 'Join the newsletter?',
-        autoform: {
-          editable: true
-        }
-      }
-    });
-  },
   showEmail: function() {
     return Template.instance().showEmail.get();
   }
 });
 
-AutoForm.hooks({
-  askUsAnythingForm: {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+Template.ah_ask_us_anything_banner.events({
+  'submit #ah_ask_us_form': function(e) {
+    e.preventDefault();
 
-      function submitCallback(err, post) {
-        if (err) {
-          flashMessage(err.message.split('|')[0].split('[')[0].trim(), 'error');
-          clearSeenMessages();
-          return;
-        }
-        Router.go('post_page', {_id: post._id});
+    var question = Template.instance().question.get() ||
+                   $('#ah_ask_us_question').val();
+    var email = $('#ah_ask_us_email').val();
+    var newsletter = $('#ah_ask_us_newsletter').is(':checked');
+
+    function submitCallback(err, post) {
+      if (err) {
+        flashMessage(err.message.split('|')[0].split('[')[0].trim(), 'error');
+        clearSeenMessages();
+        return;
       }
+      Router.go('post_page', {_id: post._id});
+    }
 
-      this.template.$('button[type=submit]').addClass('loading');
-
-      if (Meteor.user()) {
-        insertDoc.email = Meteor.user().emails[0].address;
-        insertDoc.userId = Meteor.userId();
-        Meteor.call('submitPost', {
-          title: insertDoc.title
-        }, submitCallback);
+    if (Meteor.user()) {
+      Meteor.call('submitPost', {
+        title: question
+      }, submitCallback);
+    }
+    else {
+      if (Template.instance().showEmail.get()) {
+        Meteor.call('registerAndAsk',
+          email,
+          newsletter,
+          question,
+          submitCallback);
       }
       else {
-        var showEmail = this.template.get('showEmail');
-
-        if (showEmail.get()) {
-          Meteor.call('registerAndAsk',
-            insertDoc.email,
-            insertDoc.newsletter,
-            insertDoc.title,
-            submitCallback);
-        }
-        else {
-          showEmail.set(true);
-          flashMessage('Enter your email address so we can get you your answer!');
-        }
+        Template.instance().showEmail.set(true);
+        Template.instance().question.set(question);
       }
-      return false;
-    },
-    onSuccess: function(operation, post) {
-      this.template.$('button[type=submit]').removeClass('loading');
-    },
-    onError: function(operation, error) {
-      this.template.$('button[type=submit]').removeClass('loading');
-      flashMessage(error.message.split('|')[0].split('[')[0].trim(), 'error');
-      clearSeenMessages();
     }
   }
-})
+});

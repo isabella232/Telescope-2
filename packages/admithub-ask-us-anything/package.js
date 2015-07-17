@@ -11,7 +11,6 @@ Package.onUse(function (api) {
       'underscore',
       'aldeed:simple-schema',
       'aldeed:autoform@5.0.0',
-      'aldeed:template-extension@3.4.3',
       'telescope-lib',
       'telescope-base',
       'telescope-newsletter',
