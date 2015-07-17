@@ -56,7 +56,6 @@ AutoForm.hooks({
         insertDoc.email = Meteor.user().emails[0].address;
         insertDoc.userId = Meteor.userId();
         Meteor.call('submitPost', {
-          userId: Meteor.userId(),
           title: insertDoc.title
         }, submitCallback);
       }
