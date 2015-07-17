@@ -14,9 +14,13 @@
       <h1 class='post-edit-title'>Ask Us Anything</h1>
       <div class="single-post grid submit">
         <div class='grid-block form-horizontal'>
-          {{#autoForm collection="Posts" id="askUsAnythingForm" template="telescope" type="normal" buttonContent="Ask"}}
+          {{#autoForm schema=schema id="askUsAnythingForm" template="telescope" type="normal" buttonContent="Ask"}}
             {{> afQuickField name="title" label-class="control-label" input-col-class="controls"}}
             {{> afQuickField name="body" label-class="control-label" input-col-class="controls" rows=3}}
+            {{#if showEmail}}
+              <p>Want an answer? Enter your email!</p>
+              {{> afQuickField name="email" label-class="control-label" input-col-class="controls"}}
+            {{/if}}
             <div class="form-group">
               <div class="control-label"></div>
               <div class="controls">

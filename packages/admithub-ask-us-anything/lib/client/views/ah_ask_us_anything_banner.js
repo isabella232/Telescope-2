@@ -1,28 +1,57 @@
+Template.ah_ask_us_anything_banner.created = function() {
+  this.showEmail = new ReactiveVar(false);
+};
+
+Template.ah_ask_us_anything_banner.helpers({
+  schema: function() {
+    return new SimpleSchema({
+      title: {
+        type: String,
+        optional: false,
+        label: 'Question',
+        autoform: {
+          editable: true
+        }
+      },
+      body: {
+        type: String,
+        optional: true,
+        label: 'Details',
+        autoform: {
+          editable: true,
+          rows: 5
+        }
+      },
+      email: {
+        type: String,
+        optional: false,
+        label: 'Email',
+        autoform: {
+          editable: true
+        }
+      }
+    });
+  },
+  showEmail: function() {
+    return Template.instance().showEmail.get();
+  }
+});
+
 AutoForm.hooks({
   askUsAnythingForm: {
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.template.$('button[type=submit]').addClass('loading');
-      setTimeout(function() {
-        this.done();
-      }.bind(this), 1000);
-      return false;
-        // var post = doc;
 
-        // // ------------------------------ Checks ------------------------------ //
-
-        // if (!Meteor.user()) {
-        //   flashMessage(i18n.t('you_must_be_logged_in'), 'error');
-        //   return false;
-        // }
-
-        // // ------------------------------ Callbacks ------------------------------ //
-
-        // // run all post submit client callbacks on properties object successively
-        // post = postSubmitClientCallbacks.reduce(function(result, currentFunction) {
-        //     return currentFunction(result);
-        // }, post);
-
-        // return post;
+      if (Meteor.user()) {
+        insertDoc.email = Meteor.user().emails[0].address;
+        insertDoc.userId = Meteor.userId();
+        Meteor.call('submitPost', insertDoc, function() {
+          this.done();
+        });
+      }
+      else {
+        Template.instance().showEmail.set(true);
+      }
     },
     onSuccess: function(operation, post) {
       this.template.$('button[type=submit]').removeClass('loading');
@@ -33,6 +62,7 @@ AutoForm.hooks({
       // }
     },
     onError: function(operation, error) {
+      console.log('onerror', arguments);
       this.template.$('button[type=submit]').removeClass('loading');
       flashMessage(error.message.split('|')[0], 'error'); // workaround because error.details returns undefined
       clearSeenMessages();

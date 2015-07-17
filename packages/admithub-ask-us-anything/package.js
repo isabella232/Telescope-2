@@ -25,7 +25,8 @@ Package.onUse(function (api) {
       'telescope-search',
       'telescope-tags',
       'standard-app-packages',
-      'stylus'
+      'stylus',
+      'reactive-var'
   ]);
 
   api.addFiles('lib/ask_us_anything.js', ['client', 'server']);

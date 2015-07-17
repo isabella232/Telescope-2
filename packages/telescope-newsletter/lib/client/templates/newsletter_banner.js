@@ -30,7 +30,7 @@ Meteor.startup(function () {
     showBanner: function () {
       // note: should not be reactive
       if(
-            getSetting('showBanner', false) == false
+            getSetting('showBanner', true) == false
         ||  !can.view(Meteor.user())
         ||  Router.current().location.get().path != '/'
         ||  Cookie.get('showBanner') == "no"
