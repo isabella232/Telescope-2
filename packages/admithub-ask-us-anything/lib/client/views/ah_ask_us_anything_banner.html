@@ -1,0 +1,24 @@
+<template name="ah_ask_us_anything_banner">
+  {{#if showBanner}}
+    <div class="ask-us-anything-banner">
+      <h1 class='post-edit-title'>Ask Us Anything</h1>
+      <div class="single-post grid submit">
+        <div class='grid-block form-horizontal'>
+          {{#autoForm schema=schema id="askUsAnythingForm" template="telescope" type="normal" buttonContent="Ask"}}
+            {{> afQuickField name="title" label-class="control-label" input-col-class="controls"}}
+            {{#if showEmail}}
+              {{> afQuickField name="email" label-class="control-label" input-col-class="controls"}}
+              {{> afQuickField name="newsletter" label-class="hidden" input-col-class="controls" label=false}}
+            {{/if}}
+            <div class="form-group">
+              <div class="control-label"></div>
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">Ask</button>
+              </div>
+            </div>
+          {{/autoForm}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>
