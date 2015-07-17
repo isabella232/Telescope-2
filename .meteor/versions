@@ -5,6 +5,7 @@ accounts-password@1.0.6
 accounts-twitter@1.0.3
 accounts-ui@1.1.4
 accounts-ui-unstyled@1.1.6
+admithub:admithub-ask-us-anything@0.0.1
 admithub:admithub-telescope-theme@0.0.1
 admithub:shared-auth@0.0.7
 admithub:telescope-user-signatures@0.0.1
