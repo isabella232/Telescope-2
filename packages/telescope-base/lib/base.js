@@ -101,7 +101,17 @@ viewsMenu = [
     route: 'posts_best',
     label: 'best',
     description: 'highest_ranked_posts_ever'
-  }
+  },
+  {
+    route: 'posts_pending',
+    label: 'pending',
+    description: 'posts_awaiting_moderation'
+  },
+  {
+    route: 'posts_scheduled',
+    label: 'scheduled',
+    description: 'future_scheduled_posts'
+  },
 ];
 
 // ------------------------------------- Views -------------------------------- //
