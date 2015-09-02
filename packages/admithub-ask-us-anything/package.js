@@ -10,11 +10,10 @@ Package.onUse(function (api) {
   api.use([
       'underscore',
       'aldeed:simple-schema',
-      'aldeed:autoform@5.0.0',
-      'telescope-lib',
-      'telescope-base',
-      'telescope-newsletter',
-      'telescope-notifications',
+      'aldeed:autoform@5.3.2',
+      'telescope:core',
+      'telescope:newsletter',
+      'telescope:notifications',
       'standard-app-packages',
       'stylus',
       'reactive-var'

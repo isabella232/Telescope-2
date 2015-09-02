@@ -1,0 +1,49 @@
+.mod-section
+  mod-section()
+  position relative
+  clearfix()
+
+.mod-section-dark
+  @extend .mod-section
+  background-color color-purple
+  color color-white
+
+.mod-section-grey
+  @extend .mod-section
+  background-color color-grey-xlight 
+
+.mod-section-header
+  mod-section-header()
+
+.mod-section-header-title
+  type-huge()
+  color color-type
+  text-transform capitalize
+  max-width: 75rem;
+
+.mod-section-header-title-center
+  @extend .mod-section-header-title
+  margin 0 auto
+
+.mod-section-header-subtitle
+  margin-top 1rem
+  margin-bottom 0
+  type-large()
+
+.mod-section-subtitle
+  margin-bottom 1rem
+  type-large()
+  type-serif-bold()
+  text-transform capitalize
+
+.mod-space-bottom
+  mod-space-bottom()
+
+.mod-space-bottom-1-5
+  mod-space-bottom 1.5
+
+.mod-space-bottom-half
+  mod-space-bottom 0.5
+
+.mod-space-right-half
+  mod-space-right 0.5

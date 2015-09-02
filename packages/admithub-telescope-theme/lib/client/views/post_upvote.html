@@ -1,0 +1,27 @@
+<template name="ah_post_upvote">
+<div class="ui-btn ui-btn-with-rank">
+    {{#if upvoted}}
+      <span class="post-upvoted upvote-link voted">
+        <i class="icon-check"></i>
+      </span>
+
+      <span class="js-unupvote post-unupvote">
+        <i class="icon-x"></i>
+      </span>
+
+      <span class="ui-rank"><span>{{voteCount}}</span></span>
+    {{else}}
+
+      <a class="upvote-link not-voted" href="#">
+      <span class="ui-rank-action">Vote Up</span></a>
+
+      <span class="ui-rank">
+        {{#if voteCount}}
+          <span>{{voteCount}}</span>
+        {{else}}
+          <span>0</span>
+        {{/if}}
+      </span>
+    {{/if}}
+  </div>
+</template>

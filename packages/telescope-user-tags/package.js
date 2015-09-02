@@ -6,10 +6,9 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    'telescope-lib',
-    'telescope-base',
-    'aldeed:simple-schema',
-    'standard-app-packages'
+    'standard-app-packages',
+    'telescope:core',
+    'aldeed:simple-schema'
   ], ['client', 'server']);
 
   api.use([

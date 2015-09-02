@@ -1,0 +1,75 @@
+.grid-wrap 
+  margin 0 auto
+  max-width mq-sm-width + 20rem
+
+  @media mq-med
+    max-width mq-med-width + 50rem
+
+  @media mq-lg
+    max-width grid-width
+
+.grid-row
+  clearfix()
+  padding 0 grid-page-gutter-mobile
+
+  &:before
+  &:after
+    display none
+
+  @media mq-med
+    padding 0 grid-page-gutter
+    margin-left: -(grid-gutter);
+
+.grid-inner-row
+  position relative
+
+  @media mq-med
+    margin-left: -(grid-gutter)
+
+  .grid-2
+  .grid-3
+    margin-bottom (grid-gutter)
+
+.grid-el
+  padding 0 1.5rem
+
+.grid-space
+  position relative
+  @media mq-med
+    margin-left grid-gutter
+
+for i in 1 2 3 4
+  .grid-{i}
+    grid-col i
+
+.grid-2-3
+  grid-col (3/2)
+
+.grid-inline-block
+  float none
+  inline-block()
+
+.grid-left-sidebar
+  @media mq-med
+    width 20%
+    float left
+
+  @media mq-lg
+    width 17%
+
+.grid-right-sidebar-collapse-left
+  @media mq-lg
+    position absolute
+    top 0
+    right 0
+    width 24%
+
+.grid-posts
+
+  @media mq-med
+    float left
+    width 80%
+    padding-left space*2
+
+  @media mq-lg
+    width 56%

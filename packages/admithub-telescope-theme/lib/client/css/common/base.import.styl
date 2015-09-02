@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box
+}
+
+body
+  background-color color-white
+  margin 0
+
+body,
+input {
+  font-family base-font-family
+}
+
+input,
+button
+  outline 0
+
+ul
+  list-style none
+  padding 0
+
+li
+  margin 0
+
+ul,ol
+  margin-top 0
+  margin-bottom base-font-size
+
+  ul, ol
+    margin-bottom: 0
+
+
+h1, h2, h3, h4, h5, h6
+  margin 0
+  font-weight normal
+
+img
+  max-width 100%
+
+// BS3 override for radio buttons in forms
+input[type=radio].form-control
+  display: inline-block
+  height: auto
+  width: auto
+
+.form-control
+  +placeholder()
+    font-size 80%
+    line-height auto
+
+button
+  max-width inherit
+  width auto
+  background-color inherit
+  padding 0
+
+table
+  width 100%;
+  border-collapse collapse
+
+  tr
+    border-bottom border
+
+  td
+    padding 1rem
+
+  p
+    margin 0

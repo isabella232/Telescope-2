@@ -13,9 +13,7 @@ Package.onUse(function (api) {
     'templating',
     'tap:i18n', // internationalization package
     'jquery',
-    'telescope-base', // basic Telescope hooks and objects
-    'telescope-lib', // useful functions
-    'telescope-i18n', // internationalization wrapper
+    'telescope:core',
   ]);
 
   // ---------------------------------- 2. Files to include ----------------------------------

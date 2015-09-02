@@ -1,0 +1,78 @@
+.mod-dropdown-trigger
+  position relative
+  &:hover
+    .mod-dropdown
+      display block
+
+.g-header-nav .mod-dropdown 
+.mod-dropdown
+  display none
+  position absolute
+  right 0
+  top 100%
+  background-color color-white
+  min-width mod-dropdown-width
+  ui-border-radius()
+  text-align left
+  border border
+  z-index 1
+
+  li:last-child
+    {class-list-header-links}
+      border-bottom 0
+
+.g-header-nav 
+  .g-header-user-menu-trigger
+    display none
+    @media mq-med
+      display block
+
+  .mod-dropdown-trigger
+    @media mq-med
+      &:hover
+        background-color color-purple-dark
+
+  .mod-dropdown
+    display block
+    border 0
+    @extend .alt-on-dark
+    border-bottom-left-radius ui-border-radius*4
+    border-bottom-right-radius ui-border-radius*4
+    background-color transparent
+
+    @media mq-med
+      display none
+      padding space
+      background-color color-purple-dark
+
+    .mod-dropdown-text-link-list
+      li
+        margin-bottom space
+
+        &:last-child
+          margin-bottom 0
+
+      a
+        padding 0
+        border-bottom 0
+
+        &:hover
+          background-color color-purple-dark
+          text-decoration underline
+
+.mod-dropdown-center
+  @extend .mod-dropdown
+  pos-x-center mod-dropdown-width
+
+
+.mod-dropdown-text-link-list
+  a
+    color color-link
+    display block
+    padding 1rem
+    type-xsmall()
+    border-bottom border
+    transition-property none
+
+    &:hover
+      background-color color-grey-xlight

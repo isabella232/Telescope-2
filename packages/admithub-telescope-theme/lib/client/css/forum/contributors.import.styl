@@ -1,0 +1,80 @@
+.pg-partners-img-wrap
+  display block
+  width 100%
+  @media mq-med
+    display inline-block
+    width pg-partners-img-width
+    border border
+  padding layout-space
+  border-radius ui-border-radius*4
+  vertical-align top 
+
+  img 
+    display block
+    width pg-partners-img-width
+    margin auto
+
+.pg-partners-info
+  display inline-block
+  @media mq-med
+    width 75%
+    width "calc(100% - %s)" % (pg-partners-img-width)
+  vertical-align middle
+  padding-left layout-space*2
+
+.pg-partners-info-title
+  display block
+  type-serif-bold()
+  type-medium()
+  margin-bottom (layout-space/2)
+
+.pg-partners-contrib-comment-count
+  type-sans-bold()
+  type-small()
+  padding 0 0.5em
+  position absolute
+  bottom -0.35rem 
+  left -0.35rem
+  color white
+  background-color color-green
+  border-radius ui-border-radius
+  border-radius bottom right ui-border-radius
+  z-index 15
+
+  .icon-chat-triangle
+    position absolute
+    color color-green
+    font-size 1rem
+    right 0
+    top 100%
+    margin-top -0.6em
+
+  .count
+    position relative
+
+.pg-partners-sponsor
+  row()
+
+.pg-partners-contrib
+  row 1 true
+  position relative
+
+.pg-partners-contrib-name
+  type-serif-bold()
+  type-medium()
+
+.pg-partners-contrib-avatar
+  display inline-block
+  vertical-align middle
+  width pg-partners-contrib-avatar-width
+  position relative
+
+.pg-partners-contrib-info
+  display inline-block
+  vertical-align middle
+  width 75%
+  width "calc(100% - %s)" % (pg-partners-contrib-avatar-width)
+  padding-left layout-space
+
+.pg-partners .contributors
+  clearfix()

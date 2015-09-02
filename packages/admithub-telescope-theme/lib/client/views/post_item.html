@@ -1,0 +1,37 @@
+<template name="ah_post_title_content">
+  <div class="post-content">
+    <h4 class="type-large type-header">
+      {{> UI.dynamic template=postTitle data=. }}
+    </h4>
+
+    <p class="mod-space-bottom">
+      {{> UI.dynamic template=getBodyTemplateName }}
+    </p>
+
+    <div class="mod-space-bottom-1-5 post-info">
+      {{> UI.dynamic template=postDomain data=. }}
+      {{> UI.dynamic template=postInfo data=. }}
+      {{#if categories}}
+        <span class="type-secondary">in</span>
+        {{> UI.dynamic template=postCategories data=. }}
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="post-actions">
+    {{> UI.dynamic template=postUpvote }}
+    {{#if can_edit}}
+      <a href='/posts/{{_id}}/edit' class="edit-link ui-btn ">Edit</a>
+    {{/if}}
+    {{> UI.dynamic template=postShare }}{{> UI.dynamic template=postDiscuss }}{{> UI.dynamic template=postAdmin }}
+  </div>
+</template>
+<template name="ah_post_item">
+  <div class="post {{rankClass}} {{#if sticky}}sticky{{/if}} {{inactiveClass}}" id="{{_id}}">
+    <div class="modules-group center-modules">
+      <div class="inner">
+        {{> UI.dynamic template=ah_post_title_content }}
+      </div>
+    </div>
+  </div>
+</template>

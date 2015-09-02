@@ -1,0 +1,139 @@
+html
+  font-size base-font-size
+  color color-type
+
+body,
+input,
+button
+  -webkit-font-smoothing antialiased
+  type-medium()
+  color color-type
+
+body,
+input
+  type-serif()
+
+// Placeholder styles can't be stacked with any other selector, or browsers
+// ignore them.
+input
+  +placeholder()
+    // Careful setting sizes without checking line-heights in firefox and chrome
+    type-secondary()
+
+h1, h2, h3, h4, h5, h6
+  color color-type
+
+a
+  color color-link
+
+h1, h2, h3, h4, h5, h6
+  font-weight bold
+
+.mod-section-dark
+  h1, h2, h3, h4, h5, h6
+    color color-white
+
+heading-size(font)
+  font-size: font
+  line-height: (0.666 * font)
+
+h1
+  type-huge()
+h2
+  type-xlarge()
+h3
+  type-large()
+h4
+  type-medium()
+h5
+  type-small()
+h6
+  type-xsmall()
+
+strong
+  font-weight bold
+
+a
+  transition color 0.2s
+  text-decoration none
+
+  &:hover
+    color color-grey-xdark
+
+.alt-on-dark
+  color color-white
+
+  a
+    color white
+
+  .type-secondary
+    color rgba(color-white, 0.5)
+
+.alt-on-light
+  a
+    color color-link
+
+.type-serif-bold
+  type-serif-bold()
+
+.type-sans-bold
+  type-sans-bold
+
+.type-sans-uppercase
+  type-sans-uppercase()
+
+.type-small
+  type-small()
+
+.type-medium
+  type-medium()
+
+.type-medium
+  type-medium()
+
+.type-large
+  type-large()
+
+.type-xlarge
+  type-xlarge()
+
+.type-huge
+  type-huge()
+
+.type-xhuge
+  type-xhuge()
+
+.type-left
+  text-align left
+
+.type-center
+  text-align center
+
+.type-right
+  text-align right
+
+.type-secondary
+  type-secondary()
+
+  a
+    color color-link
+
+.type-color-white
+  color color-white !important
+
+.type-capitalize
+  text-transform capitalize
+
+.type-ui
+a.type-ui
+  type-ui()
+
+.type-icon-inline
+  font-size 1rem
+  margin-left: (space/2)
+
+.type-link
+  color color-link
+
+  &:hover
+    text-decoration underline

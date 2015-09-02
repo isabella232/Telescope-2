@@ -1,0 +1,230 @@
+diff --git a/client/views/users/account/user_account.js b/client/views/users/account/user_account.js
+index 1bcab3c..21a83de 100644
+--- a/client/views/users/account/user_account.js
++++ b/client/views/users/account/user_account.js
+@@ -89,7 +89,7 @@ Template[getTemplate('userAccount')].events({
+       });
+     });
+ 
+-    Meteor.call('changeEmail', email);
++    Meteor.call('changeEmail', user._id, email);
+ 
+   }
+ 
+diff --git a/client/views/users/list/users_list_avatar.html b/client/views/users/list/users_list_avatar.html
+index 41dfa53..0823e09 100644
+--- a/client/views/users/list/users_list_avatar.html
++++ b/client/views/users/list/users_list_avatar.html
+@@ -1,3 +1,3 @@
+ <template name="users_list_avatar">
+-  {{> avatar user=this shape="circle"}}
++  <a href="{{profileUrl this}}">{{> avatar user=this shape="circle"}}</a>
+ </template>
+diff --git a/client/views/users/list/users_list_email.html b/client/views/users/list/users_list_email.html
+index 302097c..ed8fe70 100644
+--- a/client/views/users/list/users_list_email.html
++++ b/client/views/users/list/users_list_email.html
+@@ -1,3 +1,3 @@
+ <template name="users_list_email">
+-  <a href="mailto:{{profile.email}}">{{profile.email}}</a>
++  <a href="mailto:{{getEmail}}">{{getEmail}}</a>
+ </template>
+diff --git a/client/views/users/list/users_list_email.js b/client/views/users/list/users_list_email.js
+new file mode 100644
+index 0000000..9af9bef
+--- /dev/null
++++ b/client/views/users/list/users_list_email.js
+@@ -0,0 +1,5 @@
++Template.users_list_email.helpers({
++  getEmail: function() {
++    return getEmail(this);
++  }
++});
+\ No newline at end of file
+diff --git a/collections/posts.js b/collections/posts.js
+index 4d00e0c..cf6cb88 100644
+--- a/collections/posts.js
++++ b/collections/posts.js
+@@ -471,6 +471,12 @@ Meteor.methods({
+         // loop over each property being operated on
+         _.keys(operation).forEach(function (propertyName) {
+           var property = postSchemaObject[propertyName];
++          // If we're handed an array index instead of a top-level property,
++          // try looking up by the parent array key.
++          if (!property) {
++            var parentKey = propertyName.split(/\.\d+/)[0];
++            property = postSchemaObject[parentKey];
++          }
+           if (!property || !property.autoform || !property.autoform.editable) {
+             console.log('//' + i18n.t('disallowed_property_detected') + ": " + propertyName);
+             throw new Meteor.Error("disallowed_property", i18n.t('disallowed_property_detected') + ": " + propertyName);
+diff --git a/lib/config/at_config.js b/lib/config/at_config.js
+index 6565745..79297a1 100644
+--- a/lib/config/at_config.js
++++ b/lib/config/at_config.js
+@@ -57,7 +57,7 @@ AccountsTemplates.configureRoute('signUp', {
+ AccountsTemplates.configureRoute('forgotPwd');
+ AccountsTemplates.configureRoute('resetPwd');
+ //AccountsTemplates.configureRoute('changePwd');
+-//AccountsTemplates.configureRoute('enrollAccount');
++AccountsTemplates.configureRoute('enrollAccount');
+ //AccountsTemplates.configureRoute('verifyEmail');
+ 
+ 
+diff --git a/lib/publications.js b/lib/publications.js
+index 5f4da93..692d08e 100644
+--- a/lib/publications.js
++++ b/lib/publications.js
+@@ -24,7 +24,7 @@ privacyOptions = { // true means exposed
+   'votes.upvotedComments': true,
+   'votes.upvotedPosts': true
+ };
+- 
++
+ // minimum required properties to display avatars
+ avatarOptions = {
+   _id: true,
+@@ -40,3 +40,12 @@ avatarOptions = {
+   'services.twitter.screenName': true,
+   'services.github.screenName': true, // Github is not really used, but there are some mentions to it in the code
+ }
++
++ah_additions = {
++  "roles": true,
++  "profile.signature": true,
++  "profile.signatureHTML": true,
++  "profile.tags": true
++}
++_.extend(privacyOptions, ah_additions);
++_.extend(avatarOptions, ah_additions);
+diff --git a/lib/users.js b/lib/users.js
+index becb668..272feae 100644
+--- a/lib/users.js
++++ b/lib/users.js
+@@ -1,3 +1,4 @@
++/* Overridden by package.
+ isAdminById=function(userId){
+   var user = Meteor.users.findOne(userId);
+   return !!(user && isAdmin(user));
+@@ -9,17 +10,20 @@ isAdmin=function(user){
+ updateAdmin = function(userId, admin) {
+   Meteor.users.update(userId, {$set: {isAdmin: admin}});
+ };
++*/
+ isInvited=function(user){
+   if(!user || typeof user === 'undefined')
+     return false;
+   return isAdmin(user) || !!user.isInvited;
+ };
++/* Overridden by package.
+ adminUsers = function(){
+   return Meteor.users.find({isAdmin : true}).fetch();
+ };
+ 
+ adminMongoQuery = {isAdmin: true};
+ notAdminMongoQuery = {isAdmin: false};
++*/
+ 
+ getUserName = function(user){
+   try{
+@@ -69,6 +73,7 @@ getGitHubName = function(user){
+ getTwitterNameById = function(userId){
+   return getTwitterName(Meteor.users.findOne(userId));
+ };
++/* Overridden by package.
+ getEmail = function(user){
+   if(user.profile && user.profile.email){
+     return user.profile.email;
+@@ -76,6 +81,7 @@ getEmail = function(user){
+     return null;
+   }
+ };
++*/
+ getEmailHash = function(user){
+   // has to be this way to work with Gravatar
+   return Gravatar.hash(getEmail(user));
+@@ -116,12 +122,14 @@ numberOfItemsInPast24Hours = function(user, collection){
+   });
+   return items.count();
+ };
++/* Overridden by package.
+ getUserSetting = function(setting, defaultValue, user){
+   var user = (typeof user == 'undefined') ? Meteor.user() : user;
+   var defaultValue = (typeof defaultValue == "undefined") ? null: defaultValue;
+   var settingValue = getProperty(user.profile, setting);
+   return (settingValue == null) ? defaultValue : settingValue;
+ };
++*/
+ setUserSetting = function (setting, value, userArgument) {
+   // note: for some very weird reason, doesn't work when called from Accounts.onCreateUser
+ 
+diff --git a/run_nightwatch.sh b/run_nightwatch.sh
+new file mode 100755
+index 0000000..a6014e4
+--- /dev/null
++++ b/run_nightwatch.sh
+@@ -0,0 +1,41 @@
++#!/bin/bash
++
++# Get the directory for the current file.
++DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
++# Path to nightwatch binary
++NPM_BASE="$DIR/tests/ah_tests/.npm"
++LOG_DIR="$DIR/tests/ah_tests/nightwatch/.logs"
++NIGHTWATCH="$NPM_BASE/node_modules/nightwatch/bin/nightwatch"
++
++PACKAGES="nightwatch mongodb underscore"
++
++mkdir -p $NPM_BASE $LOG_DIR
++cd $NPM_BASE
++
++for package in $PACKAGES; do
++    if [ ! -e "$NPM_BASE/node_modules/$package" ] ; then
++      npm install $package
++    fi
++done
++
++# Get the selenium server if it doesn't exist yet
++SELENIUM_JAR="$DIR/tests/ah_tests/nightwatch/.bin/selenium-server-standalone.jar"
++mkdir -p `dirname $SELENIUM_JAR`
++if [ ! -e  $SELENIUM_JAR ] ; then
++  curl -L "https://selenium-release.storage.googleapis.com/2.43/selenium-server-standalone-2.43.1.jar" > $SELENIUM_JAR
++fi
++
++CHROME_DRIVER="$DIR/tests/ah_tests/nightwatch/.bin/chromedriver"
++if [ ! -e $CHROME_DRIVER ] ; then
++  if [[ "$OSTYPE" == "linux-gnu" ]]; then
++    ARCH="linux64"
++  elif [[ "$unamestr" == "darwin"* ]]; then
++    ARCH="mac32"
++  fi
++  curl -L "https://chromedriver.storage.googleapis.com/2.14/chromedriver_${ARCH}.zip" > ${CHROME_DRIVER}.zip
++  unzip ${CHROME_DRIVER}.zip -d `dirname $CHROME_DRIVER`
++  rm ${CHROME_DRIVER}.zip
++fi
++
++cd $DIR
++NODE_PATH=$NPM_BASE/node_modules $NIGHTWATCH -c $DIR/tests/ah_tests/nightwatch_config.json "$@"
+diff --git a/server/users.js b/server/users.js
+index cdd6fb9..3828733 100644
+--- a/server/users.js
++++ b/server/users.js
+@@ -57,11 +57,15 @@ Accounts.onCreateUser(function(options, user){
+ 
+ 
+ Meteor.methods({
+-  changeEmail: function (newEmail) {
++  changeEmail: function (userId, newEmail) {
++    var user = Meteor.users.findOne(userId);
++    if (can.edit(Meteor.user(), user) !== true) {
++      throw new Meteor.Error("Permission denied");
++    }
+     Meteor.users.update(
+-      Meteor.userId(),
++      userId,
+       {$set: {
+-          emails: [{address: newEmail}],
++          emails: [{address: newEmail, verified: false}],
+           email_hash: Gravatar.hash(newEmail),
+           // Just in case this gets called from somewhere other than /client/views/users/user_edit.js
+           "profile.email": newEmail

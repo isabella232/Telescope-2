@@ -1,0 +1,16 @@
+<template name="ah_nav_notifications_menu">
+  {{#if hasNotifications }}
+    <div class="mod-dropdown-trigger notifications-menu">
+      <a href="/" class="notifications-count"><span class="ui-btn ui-btn-circle ui-small">{{countNotifications}}</span></a>
+      <div class="mod-dropdown mod-dropdown-center">
+        <h6 class="notifications-title">Notifications</h6>
+        <ul role="menu" aria-labelledby="dLabel">
+          {{#each notifications}}
+            {{> UI.dynamic template=notificationItem}}
+          {{/each}}
+          <li><button class="ui-btn ui-small ui-stretch mark-as-read">{{_ "mark_as_read"}}</button></li>
+        </ul>
+      </div>
+    </div>
+  {{/if}}
+</template>

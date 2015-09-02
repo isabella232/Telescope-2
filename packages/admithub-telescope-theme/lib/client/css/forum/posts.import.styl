@@ -1,0 +1,101 @@
+.single-post
+.posts
+  margin-bottom (space*4)
+  max-width: 65rem
+
+  .post-body
+  .post-body p
+    type-medium()
+
+h1.post-list-title
+h1.post-edit-title
+  type-huge()
+  type-header()
+  mod-section-header()
+
+.post
+  row()
+
+  .center-modules
+    width 100%
+    display block
+
+  .user-tag
+    ui-unbtn()
+
+  .post-upvote
+    ui-unbtn()
+
+.single-post
+  .post
+    row-base()
+
+.post-heading
+  type-large()
+
+.post-info
+  type-small()
+
+a.post-title
+  display block
+  margin-bottom 1rem
+  color color-type
+
+.post-meta
+  type-small()
+  color color-type-secondary
+  line-height inherit
+  margin-bottom 0.5rem
+
+.post-categories
+  type-secondary()
+  margin-bottom 0.5rem
+
+.post-upvote
+  type-medium()
+
+.post-upvoted
+  &:hover
+    .post-upvoted
+      display none
+    .post-unupvote
+      inline-block()
+      vertical-align top
+
+.post-unupvote
+  display none
+  line-height ui-small-height
+
+  &:hover
+    color color-green
+
+.delete-link
+a.delete-link
+  color: rgb(216, 32, 32, 1)
+
+.post-share-icon
+a.post-share-icon
+  color white
+
+  &.facebook
+    background-color color-facebook
+  &.twitter
+    background-color color-twitter
+  &.linked-in
+    background-color color-linked-in
+  &.google-plus
+    background-color color-google-plus
+
+
+input[type='text'].white-input
+  background-color white
+  border 1px solid #aaa
+
+
+.post-actions
+  > * 
+    margin-right (space/2)
+
+.post-meta-item
+  display inline-block
+  type-small()

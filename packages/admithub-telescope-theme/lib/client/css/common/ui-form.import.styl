@@ -1,0 +1,84 @@
+form
+  .ui-f-input
+  #editor.controls iframe
+  input[type="text"]
+  input[type="password"]
+  input[type="email"]
+  textarea
+    ui-base()
+    height 4.5rem
+    border-radius ui-border-radius
+    display inline-block
+    vertical-align middle
+    type-serif()
+    padding 0 1em
+    // background-color color-grey-xlight
+    border border
+    color color-type
+    text-shadow 0 0 0 rgba(color-white, 0)
+
+    &:focus
+      box-shadow 0 0 0 rgba(color-white, 0)
+      border border-focus
+
+    &.ui-form-small
+      height 3rem
+
+  .comment-field
+    width 100%
+    padding 0
+    margin-bottom (space*2)
+
+.ui-form-phone
+  max-width 15.5rem
+
+.fieldset-heading
+  border-bottom border
+  padding-bottom row-space
+  margin-bottom row-space
+
+form 
+  .form-actions
+    border-top border
+    margin-top 3rem
+    padding-top 3rem
+
+    a
+      float left
+
+    input
+      float right
+
+  .control-group, .form-group
+    margin-bottom 2rem
+
+    > label 
+      font-weight bold
+      float left
+
+    .note
+      text-align right
+      type-secondary()
+
+    .controls
+      margin-left 20rem
+
+      label
+        display block
+
+      input[type="text"]
+      input[type="email"]
+      textarea
+        width 100%
+
+      textarea
+        min-height 15rem
+
+
+.at-error
+  color color-red
+
+.ui-form-input-submit
+  border-bottom-left-radius 0
+  border-top-left-radius 0
+  margin-left -0.1rem

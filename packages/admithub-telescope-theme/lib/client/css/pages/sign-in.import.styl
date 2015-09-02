@@ -1,0 +1,92 @@
+.at-form
+  max-width 40rem
+  margin 0 auto
+  mod-section()
+
+.at-title
+  h3
+    type-huge()
+    mod-space-bottom()
+    font-weight bold
+
+form
+  .at-input 
+    > label
+      font-weight normal
+      margin-bottom 0.5rem
+      display block
+
+    > input
+      stretch()
+      margin-bottom 2rem
+
+.at-social-btn
+  float left
+  width 47.5%
+
+.at-oauth
+  clearfix()
+
+.at-sep
+  position relative
+  text-align center
+  mod-space(2)
+
+  &:before
+    content ''
+    height at-sep-height
+    background-color color-grey-light
+    width 100%
+    position absolute
+    top 50%
+    left 0
+    margin-top -(at-sep-height/2)
+
+  strong
+    position relative
+    background-color color-white
+    padding 0 (grid-gutter/2)
+
+button#at-facebook
+  @extend .ui-btn
+  ui-btn-color color-facebook
+  ui-small()
+  margin-right 2.5%
+
+  .fa-facebook
+    icon()
+    &:before
+      @extend .icon-facebook:before
+
+button#at-twitter
+  @extend .ui-btn
+  ui-btn-color color-twitter
+  ui-small()
+  margin-left 2.5%
+
+  .fa-twitter
+    icon()
+    &:before
+      @extend .icon-twitter-bird:before
+
+.at-pwd-form
+  clearfix()
+
+.at-pwd-link
+  type-small()
+  float left
+
+.at-btn.submit
+  @extend .ui-btn
+  float right
+
+.at-signup-link
+.at-signin-link
+  mod-space-top 2
+  clear both
+  text-align center
+  type-small()
+  type-secondary()
+
+  a
+    text-transform capitalize

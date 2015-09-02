@@ -1,0 +1,18 @@
+<template name="ah_post_admin">
+  {{#if isAdmin}}
+    <div class="post-meta-item">
+      {{#if showApprove}}
+        <a href="#" class="approve-link goto-edit">{{_ "approve" }}</a>
+      {{/if}}
+      {{#if showUnapprove}}
+        <a href="#" class="unapprove-link goto-edit">{{_ "unapprove" }}</a>
+      {{/if}}
+      {{_ "score"}}: {{shortScore}}, {{_ "clicks"}}: {{clickCount}}, {{_ "views"}}: {{viewCount}}
+    </div>
+  {{/if}}
+
+  {{#if can_edit}}
+    <a href="/posts/{{_id}}/edit" class="edit-link goto-edit">Edit</a>
+  {{/if}}
+</template>
+

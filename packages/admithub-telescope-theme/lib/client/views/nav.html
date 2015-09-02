@@ -1,0 +1,48 @@
+<template name="ah_nav_application_robot">
+  <li>
+    <a href="https://www.admithub.com/welcome">App Robot</a>
+  </li>
+  {{#unless currentUser}}
+    <li>
+      <a class="account-link sign-in" href="/sign-in">Sign In</a>
+    </li>
+
+    <li>
+      <a class="account-link g-header-nav-user-sign-up sign-up" href="/register">Register</a>
+    </li>
+  {{/unless}}
+</template>
+
+<template name="ah_nav_top_questions">
+  <li>
+    <a href="/top">Top Questions</a>
+  </li>
+</template>
+
+<template name="ah_nav_user">
+  {{#if isLoggedIn}}
+    <div class="mod-dropdown-trigger g-header-user-menu user-menu">
+      <a class="user-dropdown g-header-user-menu-trigger" href="/">{{>avatar userId=currentUser._id size='small' class='pos-inline-block' }} <i class="g-header-user-carat type-icon-inline icon-carat-down"></i></a>
+      <div class="mod-dropdown">
+        <ul class="mod-dropdown-text-link-list" role="menu" aria-labelledby="dLabel">
+          <li><a href="{{profileUrl}}">{{_ "profile"}}</a></li>
+          <li><a href="/account">{{_ "edit_account"}}</a></li> 
+          <li><a href="/sign-out">{{_ "sign_out"}}</a></li>
+          {{#if isAdmin}}
+            {{> ah_nav_admin}}
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  {{else}}
+  {{/if}}
+</template>
+
+<template name="ah_nav_admin">
+  {{#if isAdmin}}
+    <li><hr></li>
+    {{#each menu}}
+      {{> UI.dynamic template=menuItem data=this}}
+    {{/each}}
+  {{/if}}
+</template>

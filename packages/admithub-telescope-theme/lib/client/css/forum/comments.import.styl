@@ -1,0 +1,40 @@
+.comment
+  max-width comment-width
+
+  .comment-content
+    row()
+
+  .comment-children
+    margin-left 4.5rem
+
+  .comment-actions
+    type-ui()
+
+  .comment-text,
+  .comment-actions
+    mod-space-bottom()
+    clear both
+
+  .user-avatar
+    float left
+    width comment-avatar-width
+
+  .comment-main
+    margin-left comment-avatar-width + (grid-gutter/2)
+    type-secondary()
+    type-small()
+
+  .comment-reply
+    type-ui()
+
+.comment-new
+  max-width comment-width
+  margin-bottom grid-gutter
+  padding-bottom grid-gutter
+  border-bottom border-secondary
+
+.comment-field textarea
+  width 100%
+  margin 1em 0
+  height 8rem
+  padding 0.5em

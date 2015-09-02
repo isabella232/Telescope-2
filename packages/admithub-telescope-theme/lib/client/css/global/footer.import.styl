@@ -1,0 +1,74 @@
+.footer
+  margin-top (space*6)
+  padding 0
+  clear both
+
+.g-footer
+  padding grid-gutter 0
+  clearfix()
+  type-small()
+  clear both
+
+.g-footer-copyright
+  margin-bottom (grid-gutter/4)
+
+  @media mq-med
+    float left
+    margin-bottom 0
+
+.g-footer-nav-left
+.g-footer-nav-right
+  type-small()
+
+  ul
+    margin 0 
+
+  li
+    display inline-block
+
+.g-footer-nav-left
+  float left
+
+  li 
+    margin-right space
+
+.g-footer-nav-right
+  margin-top (space*3)
+  li
+    margin-right space
+
+  @media mq-med
+    margin-top 0
+    float right
+
+    li
+      margin-left space
+      margin-right 0
+
+
+.g-footer-row
+  clearfix()
+  text-align left
+  border-bottom border
+  padding space 0
+
+  &:last-child
+    border-bottom 0
+
+.g-footer-logo-icon
+.g-footer-logo-type
+.g-footer-logo-tagline
+  display inline-block
+  vertical-align middle
+
+.g-footer-logo-icon
+  type-size 23 1
+  margin-right (space/2)
+
+.g-footer-logo-type
+  font-weight bold
+  type-size 15 1
+  margin-right space
+
+.g-footer-license
+  type-xsmall()

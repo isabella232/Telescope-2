@@ -1,0 +1,61 @@
+<template name="contributors">
+  <div class='pg-partners'>
+    <header class="g-header-aa-description-wrap">
+      <div class="g-header-aa-description">
+      AdmitHub's forum, <i>AboutAdmissions</i>, is an industry-supported community of admission and counseling professionals offering free and open advice about college admissions.
+      </div>
+    </header>
+
+    <section class='mod-section sponsors'>
+      <h2 class="mod-section-header">Sponsors</h2>
+
+      <div class="grid-inner-row">
+        {{#each aboutAdmissionsPartners}}
+        <div class="grid-2">
+          <div class="grid-space">
+            <div class='pg-partners-sponsor'>
+              <a href='{{ url }}' target='_blank' class="link-block">
+                <div href='{{ url }}' class="pg-partners-img-wrap link-block-hover" target='_blank'>
+                  <img src="{{ image }}">
+                </div><div class='pg-partners-info'>
+                  <h4 class="pg-partners-info-title" >{{ name }}</h4>
+                  <p class="type-medium js-description">{{{ shortDescription 75 }}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </section>
+
+    <section class="mod-section contributors">
+      <h2 class="mod-section-header">Contributors</h2>
+
+      <div class="grid-inner-row">
+        {{#each contributors}}
+        <div class='grid-2 no-margin'>
+          <div class="grid-space">
+            <div class='pg-partners-contrib'>
+              <div class="pg-partners-contrib-avatar">
+                <a href='/users/{{ slug }}'>
+                  {{> avatar user=. size='large' shape='rounded' }}
+                </a>
+                <span class='pg-partners-contrib-comment-count'><i class="icon-chat-triangle"></i><span class="count">{{ commentCount }}</span></span>
+              </div><div class="pg-partners-contrib-info">
+                <a href='/users/{{ slug }}' class='link-block'>
+                  <div class='pg-partners-contrib-name link-block-hover'>{{ getDisplayName }}</div>
+                </a>
+                <div class='signature'>{{{ profile.signatureHTML }}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </section>
+    <footer class="type-center mod-section">
+      <span class="mod-space-right-half">Want to Contribute to the <i>AboutAdmissions</i> forum?</span> <a class="ui-btn" href="mailto:info@aboutadmissions.com?subject=Can I join the AboutAdmissions Forum">Join The Conversation</a>
+    </footer>
+  </div>
+</template>

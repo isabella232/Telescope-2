@@ -6,10 +6,9 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    'telescope-lib',
-    'telescope-base',
-    'chuangbo:marked',
     'standard-app-packages',
+    'telescope:core',
+    'chuangbo:marked'
   ], ['client', 'server']);
   api.use(['jquery', 'underscore', 'templating'], 'client')
 

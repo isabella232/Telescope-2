@@ -1,0 +1,89 @@
+<template name='free_trial_bot_signup'>
+  <div class='pg-bot'>
+    <div class='pg-bot-header'>
+      <h3 class='pg-bot-header-left'>Our Application Robot can help you choose a college by asking you {{ questionCount }} simple questions.</h3>
+      <!-- TODO: phone handoff? -->
+    </div>
+    <div class='pg-bot-body'>
+      <div class='pg-bot-question'>
+        {{ enforceQuestionOrder step }}
+        {{#if equals errorState "existing_email"}}
+          {{> free_trial_bot_signup_existing_email }}
+        {{else}}
+          {{#with currentQuestion step}}
+            {{#if type}}
+              <div class='question'>
+                <h1>{{ question }}</h1>
+              </div>
+              <div class='answer'>
+                <form id='freeTrialBotSignup'>
+                  {{#if equals type "select"}}
+                    <select name='{{ field}}' data-schema-key='{{ field }}'>
+                      {{#each def.allowedValues}}
+                        {{#if equals . ../value}}
+                          <option value='{{ . }}' selected='selected'>{{ . }}</option>
+                        {{else}}
+                          <option value='{{ . }}'>{{ . }}</option>
+                        {{/if}}
+                      {{/each}}
+                    </select>
+
+                  {{ else }}
+                    <input type='{{ type }}' value='{{ value }}' name='{{ field }}' data-schema-key='{{ field }}' />
+                    {{#if errorMsg }}
+                      <div class='has-error'>
+                        <span class='help-block'>
+                          {{{ errorMsg }}}
+                        </span>
+                      </div>
+                    {{/if}}
+                  {{/if}}
+                </form>
+              </div>
+              <div class='nav ui-btn-set-middle'>
+                <button class='js-nav-prev ui-btn-secondary ui-large' data-step='{{ ../step }}'
+                    {{prevDisabled ../step}}>Prev</button><button class='js-nav-next ui-btn ui-large' data-step='{{ ../step }}'
+                    {{nextDisabled ../step}}>Next</button>
+              </div>
+            {{/if}}
+          {{/with}}
+        {{/if}}
+      </div>
+    </div>
+    <div class='pg-bot-answers'>
+      <h4 class="space-large">Your Answers</h4>
+      <div class="type-small">
+        {{#each allAnswers }}
+        <div class='q-and-a space-large'>
+          <div>
+            <a href='{{ pathFor "freeTrialBot" step=step }}' class='js-scroll-top'>
+              <span>{{ step }}.</span> {{ prompt }}
+            </a>
+          </div>
+          {{ answer }}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+      var fbds = document.createElement('script');
+      fbds.async = true;
+      fbds.src = '//connect.facebook.net/en_US/fbds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(fbds, s);
+      _fbq.loaded = true;
+    }
+  })();
+  </script>
+  {{#if showTracker step 1 }}
+    {{> facebookTracker id='6019739790441' }}
+    {{> googleTracker id='958019191' label='EbUkCIGG71kQ9-zoyAM' }}
+  {{/if}}
+  {{#if showTracker step 2 }}
+    {{> facebookTracker id='6019739820641' }}
+    {{> googleTracker id='958019191' label='U_bLCJaG71kQ9-zoyAM' }}
+  {{/if}}
+</template>

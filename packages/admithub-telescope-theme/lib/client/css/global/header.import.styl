@@ -1,0 +1,448 @@
+.g-header-wrap
+  width 100%
+  top 0
+  left 0
+  background-color color-purple
+
+.g-header
+  height g-header-height
+  type-serif()
+  text-align right
+
+  @media mq-med
+    position relative
+
+  .mod-dropdown
+    display block
+    position static
+
+    @media mq-med
+      position absolute
+      display none
+
+.g-header-logo
+  float left
+  line-height g-header-height
+
+  img
+    height 1.5em
+    width 1.5em
+    margin-top 1em  
+    margin-right 0.2em
+
+.g-header-search
+  position relative
+  inline-block()
+  color color-type-secondary
+  background-color color-white
+  width 100%
+  padding (grid-gutter/2) 0
+  border 0
+  height 3rem
+
+  @media mq-med
+    width 25rem
+    padding 0
+
+  .twitter-typeahead
+    width 100%
+
+input.g-header-search-input
+  type-medium()
+  border-radius 10rem
+  height g-header-search-mobile-height
+  line-height g-header-search-mobile-height
+  padding 0 g-header-search-input-padding
+  color color-type
+  width 100%
+
+  +placeholder()
+    line-height g-header-search-mobile-height
+
+  @media mq-med
+    height g-header-search-height
+    line-height g-header-search-height
+
+    +placeholder()
+      line-height g-header-search-height
+
+.g-header-search-submit
+  remove-button()
+  line-height 1em
+  position absolute
+  right g-header-search-input-padding
+  top 50%
+  margin-top -0.5em
+  type-medium()
+  line-height 1em
+  color color-green
+
+.g-header-hamburger
+  display block
+  float right
+  background none
+  border 0
+  height g-header-height
+
+  @media mq-med
+    display none
+
+.g-header-hamburger-bar
+  display block
+  width 2.25rem
+  height 0.35rem
+  margin 0.35rem 0
+  background-color color-white
+
+.g-header-touts
+  clear both
+  type-small()
+
+.g-header-touts-row
+  padding-top space
+  position relative
+
+.g-header-touts-section
+  position relative
+  border-bottom border
+
+.g-header-touts-section-close
+  position absolute
+  right layout-space
+  top 50%
+  margin-top -0.5em
+  padding-left 1em // make sure it's big enough for fat fingers
+  line-height 1em !important
+
+.g-header-touts-sponsor-img
+  display inline-block
+  vertical-align middle
+  padding (space/4)
+  border border
+  border-radius 0.4rem
+  height g-header-touts-sponsor-height
+  width g-header-touts-sponsor-height
+
+  img
+    display block
+
+.g-header-touts-sponsor-text
+  display inline-block
+  vertical-align middle
+  margin-left (space/2)
+  line-height 1.2 !important
+
+.g-header-touts-cta
+  display block
+  margin-top space
+
+  @media mq-med
+    position absolute
+    top 50%
+    margin-top -0.5em
+    right 0
+
+.g-header-search-wrap
+  position relative
+  margin-left g-header-nav-space
+  margin-bottom space
+
+  @media mq-med
+    inline-block()
+    margin-bottom 0
+
+  .g-header-search
+    padding-right: (space/2)
+    padding-left 3rem
+
+    @media mq-med
+      max-width 17.5rem
+
+  .g-header-search-magnifying-glass
+    position absolute
+    left 1em
+    top 50%
+    margin-top -0.5em
+    color color-type-secondary
+    type-small()
+    line-height 1em
+
+.g-flex-grid
+  display: flex
+  flex-direction column
+  @media mq-med
+    flex-direction row
+
+.g-flex-grow
+  flex-grow 1
+
+.g-header-logo
+  z-index 10
+  position relative
+
+  > *
+    display inline-block
+    vertical-align middle
+    margin-right: 0.75rem
+
+.g-header-logo-icon
+  type-size 30 1
+
+.g-header-logo-type
+  type-size 25 1
+  font-weight bold
+  margin-bottom -3px
+
+.g-header-nav
+  type-small() 
+  display none
+  position absolute
+  top 0 
+  left 0
+  width 100%
+  text-align left
+  padding grid-page-gutter-mobile
+  padding-top g-header-height 
+  margin 0
+  background-color color-purple
+  box-shadow 0 0.1rem 0.5rem rgba(color-black, 0.15)
+  type-ui()
+
+  li
+    margin-bottom space
+
+    @media mq-med
+      margin-bottom 0
+
+  .user-name
+    ellipsis()
+
+    @media mq-med
+      max-width 13rem
+
+  @media mq-med
+    inline-block(true)
+    position relative
+    text-align inherit
+    background none
+    padding 0
+    width auto
+    box-shadow 0 0 0 0
+
+    > *
+      inline-block()
+      margin-left g-header-nav-space
+
+  .btn
+    background-color color-purple
+    color white
+    font-weight bold
+    box-shadow 0px 0px 2px rgba(white, 0.3)
+
+  .mod-dropdown-trigger
+    @media mq-med-desk
+      margin-top 1rem
+      border-top border-secondary
+
+  @media mq-med-desk
+    .mod-dropdown
+      box-shadow none 
+
+      a
+        margin-bottom 0
+        padding 0.5rem 1.5rem
+
+  .credit-badge
+    color orange
+    text-shadow 0px 0px 5px yellow
+
+  .my-application-nav
+    @media mq-med
+      span
+        display: none
+
+  #userMenu
+    white-space: nowrap
+    max-width: 10em
+    overflow: hidden
+    text-overflow: ellipsis
+    margin: 15px
+
+  .dropdown-menu
+    background-color color-purple
+
+    a
+      margin-left 0
+      color white
+      &:hover
+        background-color lighten(color-purple, 10)
+        color darken(white, 15)
+    @media mq-med
+      margin-top: -15px
+
+  // Duplicate bs3 style for collapsed dropdown-menu
+  @media only screen and (max-width: mq-med-width)
+    .dropdown-menu
+      position static
+      width auto
+      margin-top 0px
+      background-color transparent
+      border 0px none
+      box-shadow none
+
+      // undo pull-right
+      &.pull-right
+        left 0
+        right auto
+        float none !important
+
+  .tt-dropdown-menu
+    padding: 0px
+    border-radius: 4px
+    background-color white
+    width 300px
+
+    @media mq-med-desk
+      box-shadow: 0px 1px 5px rgba(black, 0.35)
+
+  .typeahead-question
+    cursor: pointer
+    padding: 0.5em
+    padding-bottom: 1em
+    text-align: left
+    border-radius: 2px
+
+  .typeahead-question:hover
+    background-color: color-purple
+    color: white
+
+  .typeahead-question .upvotes
+    display: inline-block
+    vertical-align: baseline
+    background-color: #fca
+    border-radius: 1em
+    width: 2em
+    text-align: center
+    color: black
+
+  .typeahead-question .title
+    text-transform: none
+    font-weight: normal
+
+
+  .notifications-menu
+    @extend .mod-dropdown-trigger
+    display block
+
+    @media mq-med-desk
+      margin-bottom 0.75rem
+
+    @media mq-med
+      inline-block()
+
+    .mod-dropdown
+      position static
+      width 25rem
+      pos-x-center 25rem
+      type-small()
+      type-serif()
+
+      @media mq-med-desk
+        position static
+        background-color transparent
+
+      li
+        border-bottom border
+        padding (grid-gutter/2) 0
+
+        @media mq-med
+          padding (grid-gutter/2)
+
+        &:last-child
+          border-bottom 0
+
+      {class-list-header-links}
+        border-bottom 0
+        padding 0
+
+  .notification-item
+    margin-bottom 0
+
+  a.notifications-count
+    display none
+
+    @media mq-med
+      inline-block()
+
+  .notifications-title
+    type-large()
+    mod-space-top()
+
+    @media mq-med
+      padding 0 (grid-gutter/2)
+
+.g-header-hamburger
+  float left
+  padding 0 (grid-gutter/2)
+  margin-left -(grid-gutter/2)
+
+  .icon-x
+    position absolute
+    opacity 0
+
+  &.open
+    .icon-x
+      position static
+      opacity 1
+
+    .icon-hamburger
+      position absolute
+      opacity 0
+
+.g-header-cta-wrap
+  pos-y-center-companion()
+  inline-block()
+  height g-header-height
+
+.g-header-nav-admin
+  > a
+    border-bottom 0
+
+.g-header-admithub
+  margin-bottom layout-space
+  display block
+  image img-path + 'owl-repeat-light.png' 9.1rem 5.15rem
+  type-small()
+  cursor pointer
+
+  > *
+    display inline-block
+    vertical-align middle
+
+.g-header-admithub-owls
+  max-width 9.1rem
+  margin-right layout-space
+
+.g-header-aa-description-wrap
+  text-align center
+  padding 2rem 0 4rem
+  border-bottom border
+
+.g-header-aa-description
+  margin (0 auto)
+  type-large()
+
+.g-header-user-menu
+  @media mq-med
+    padding ((g-header-height - 3rem)/2rem)
+
+.g-header-user-avatar
+  dim 3rem
+  display inline-block
+  vertical-align middle
+  border-radius ui-border-radius
+
+.g-header-user-carat
+  display inline-block
+  vertical-align middle
+  margin-left: (space/2)

@@ -1,0 +1,135 @@
+.ui-base
+  ui-base()
+
+.ui-unbtn
+  ui-unbtn()
+
+.ui-btn
+.button, .btn.btn-primary
+  transition background-color 0.15s
+  text-align center
+  border 0
+  cursor pointer
+  padding 0 ui-padding
+  border-radius 0.2rem
+  ui-btn-color color-green, color-white
+  padding 0 ui-padding
+  inline-block()
+  ui-border-radius()
+  type-ui()
+  ui-height ui-height-default
+
+  > *
+    inline-block()
+    vertical-align middle
+
+    &.button-loader
+      display none
+
+  &:hover
+    text-decoration none
+
+  .icon-carat-right
+    type-size 15
+
+.ui-pill-checked
+  @extend .ui-btn
+  border border-secondary
+
+  &.ui-small
+    ui-height ui-small-height + 0.4rem false
+
+  .icon-check
+    color color-green
+
+.ui-btn-secondary
+a.ui-btn-secondary
+  @extend .ui-btn
+  ui-btn-color color-grey-light color-white
+
+.ui-btn-circle
+  padding 0
+  border-radius 100px
+  pos-y-center-companion()
+  line-height inherit
+  width ui-height-default
+
+  &.ui-small
+    width ui-small-height
+    padding 0
+    border-radius 100px
+
+  .icon-x
+    type-size 12
+
+.ui-large
+a.ui-large
+  @media mq-med
+    type-large()
+    ui-height 5.5rem
+
+  > *
+    line-height 5.5rem
+
+  .icon-carat-right
+    type-size 20
+
+
+.ui-xsmall
+a.ui-xsmall
+  ui-xsmall()
+
+.ui-round
+  border-radius 10rem !important
+
+.ui-btn-icon-right
+  margin-left 1em
+
+.ui-stretch
+  width 100%
+  display block
+
+.ui-btn-with-rank
+  padding-right 0
+
+.ui-rank
+  padding-right ui-padding
+  span
+    border-left 1px solid rgba(color-white, 0.35) 
+    margin-left ui-padding - 0.4rem
+    padding-left ui-padding
+
+.ui-btn-set-middle
+  > * 
+    margin 0 1rem
+
+.ui-btn-facebook
+.ui-btn-twitter
+.ui-btn-linked-in
+.ui-btn-google-plus
+  @extend .ui-btn
+  position relative
+
+  i 
+    position absolute
+    left (space/2)
+    top 50%
+    margin-top: -0.5em
+    line-height 1em
+
+.ui-btn-facebook
+  ui-btn-color color-facebook
+
+.ui-btn-twitter
+  ui-btn-color color-twitter
+
+.ui-btn-linked-in
+  ui-btn-color color-linked-in
+
+.ui-btn-google-plus
+  ui-btn-color color-google-plus
+
+.ui-tag
+  background-color #f2e9ee
+  border-radius 10rem
+  padding 0.2rem 0.75rem

@@ -1,0 +1,27 @@
+<template name='ah_touts'>
+  {{#if showTouts }} 
+    <div class="g-header-touts">
+      <div class="grid-wrap">
+        <div class="grid-space">
+          <div class='grid-row'>
+            <div class="g-header-touts-row">
+              <div class='pos-relative g-flex-grow'>
+                {{#with randomPartner}}
+                <div class="g-header-touts-sponsor-img">
+                  <img src="{{ image }}" />
+                </div>
+
+                <div class="g-header-touts-sponsor-text">
+                  <span class="type-secondary">Thanks to our partner</span>
+                  <a href="{{ url }}" target="_blank">{{ name }}</a>
+                </div>
+                {{/with}}
+              </div>
+              <a class='g-header-touts-cta' href='{{ pathFor "contributors" }}'>See all contributors<i class="type-icon-inline icon-carat-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>

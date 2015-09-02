@@ -1,0 +1,51 @@
+ui-height(height, children = true)
+  height height
+  line-height height
+
+  if children
+    > *
+      line-height height
+
+ui-xsmall()
+  type-small()
+  ui-height ui-xsmall-height
+
+  > *
+    line-height ui-xsmall-height
+
+ui-large()
+  type-large()
+  ui-height ui-large-height
+
+  > *
+    line-height ui-large-height
+
+ui-base()
+
+ui-unbtn()
+  font-size inherit
+  line-height inherit
+  font-weight inherit
+  color inherit
+  background-color transparent
+  margin 0 
+  padding 0
+  border-radius 0
+  border 0
+  vertical-align inherit
+
+ui-btn-color(background-color, type-color = color-white)
+  color type-color
+  if background-color
+    background-color background-color
+
+  a
+    color type-color
+
+  &:hover
+    color type-color
+    if background-color
+      background-color darken(background-color, 8)
+
+ui-border-radius()
+  border-radius ui-border-radius
