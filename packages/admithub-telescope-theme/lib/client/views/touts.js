@@ -2,7 +2,7 @@ function toutCloseKey(key) {
   return "close-" + key;
 }
 
-Template[getTemplate('ah_touts')].helpers({
+Template.ah_touts.helpers({
   sectionIsClosed: function(section) {
     var key = toutCloseKey(section);
     return Cookie.get(key) == "yes" || (Meteor.user() && !!getUserSetting(key, false));
@@ -16,7 +16,7 @@ Template[getTemplate('ah_touts')].helpers({
   }
 });
 
-Template[getTemplate("ah_touts")].events({
+Template.ah_touts.events({
   'click .js-close-section': function(event) {
     event.preventDefault()
     event.stopPropagation()

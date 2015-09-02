@@ -1,4 +1,4 @@
-Template[getTemplate('ah_post_content')].helpers({
+Template.post_content.helpers({
   justTitle: function() {
     return _.filter(postHeading, function(obj) {
       return obj.template === 'postTitle'

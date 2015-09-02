@@ -8,22 +8,23 @@ Package.describe({
 Package.onUse(function (api) {
 
   api.use([
-      'underscore',
-      'alanning:roles',
-      'aldeed:simple-schema',
-      'aldeed:autoform@5.3.2',
-      'bengott:avatar',
-      'jparker:gravatar',
-      'iron:router',
-      'richsilv:pikaday@1.0.0',
-      'telescope:core',
-      'telescope:daily',
-      'telescope:newsletter',
-      'telescope:rss',
-      'telescope:search',
-      'telescope:tags',
-      'standard-app-packages',
-      'stylus'
+    'standard-app-packages',
+    'stylus',
+
+    'telescope:core',
+    'telescope:daily',
+    'telescope:newsletter',
+    'telescope:rss',
+    'telescope:search',
+    'telescope:tags',
+
+    'alanning:roles',
+    'aldeed:simple-schema',
+    'aldeed:autoform@5.3.2',
+    'bengott:avatar',
+    'jparker:gravatar',
+    'iron:router',
+    'richsilv:pikaday@1.0.0',
   ]);
 
   api.addFiles('lib/permissions.js', ['client', 'server']);

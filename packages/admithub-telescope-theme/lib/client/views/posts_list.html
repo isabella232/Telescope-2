@@ -1,17 +1,17 @@
 <template name="ah_posts_list">
 <!--<h1 class='post-list-title'>{{ postListTitle }}</h1>-->
-  {{> UI.dynamic template=postsListIncoming data=incoming}}
+  {{> posts_list_incoming incoming}}
 
   {{> ah_posts_sidebar }}
 
   <div class="grid-posts posts list">
     {{#each enumerate postsCursor}}
-      {{#if equals i 2}}{{> UI.dynamic template=newsletterBanner}}{{/if}}
-        
-      {{> UI.dynamic template=post_item data=item}}
+      {{#if equals i 2}}{{> newsletter_banner }}{{/if}}
+
+      {{> post_item item}}
     {{/each}}
 
-    {{> UI.dynamic template=postsLoadMore}}
+    {{> posts_load_more }}
   </div>
 </template>
 

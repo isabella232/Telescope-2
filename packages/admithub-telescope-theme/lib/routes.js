@@ -14,7 +14,7 @@ if (Meteor.isClient) {
     function listTitle(title) {
       Session.set("postListTitle", title);
     }
-    var defaultView = getSetting("defaultView");
+    var defaultView = Telescope.theme.getSetting("defaultView");
     var topTitles = ["posts_top"];
     var newTitles = ["posts_new"];
     if (defaultView === "Top") {
@@ -136,7 +136,7 @@ if (Meteor.isClient) {
             for (var i = 0; i < ftbQuestions.length; i++) {
               var val;
               if (ftbQuestions[i].field) {
-                val = dottedLookup(ftbQuestions[i].field, ftb); 
+                val = dottedLookup(ftbQuestions[i].field, ftb);
               } else if (ftbQuestions[i].multipleBooleans) {
                 // Find any non-undefined value in the multiple boolean.
                 val = _.find(_.map(ftbQuestions[i].multipleBooleans, function(f) {

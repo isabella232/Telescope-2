@@ -7,13 +7,13 @@
       <div class="post {{rankClass}} {{#if sticky}}sticky{{/if}} {{inactiveClass}}" id="{{_id}}">
         <div class="modules-group center-modules">
           <div class="inner">
-            {{> UI.dynamic template=ah_post_title_content}}
+            {{> post_title_content }}
           </div>
         </div>
       </div>
     </div>
-    {{> UI.dynamic template=comment_form}}
-    {{> UI.dynamic template=comment_list}}
+    {{> comment_form}}
+    {{> comment_list}}
   </div>
 </template>
 

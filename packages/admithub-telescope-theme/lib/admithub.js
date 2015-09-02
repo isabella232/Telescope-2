@@ -1,16 +1,21 @@
-themeSettings.useDropdowns = true; // not strictly needed since "true" is the current default
+if (Meteor.isClient) {
+  Template.config.addCustomPrefix("ah_");
+}
 
+ahAssetPath = '/packages/admithub_admithub-telescope-theme/public/'
+
+/*
 _.extend(templates, {
   layout: 'ah_layout',
   nav: 'ah_header', // nee 'nav'
   submitButton: 'ah_header_cta',
   message_item: "ah_message_item",
- 
+
   userMenu: 'ah_nav_user',
   adminMenu: 'ah_nav_admin',
   topQuestions: 'ah_nav_top_questions',
   applicationRobot: 'ah_nav_application_robot',
- 
+
   post_body: 'ah_post_body',
   posts_list: 'ah_posts_list',
   post_item: 'ah_post_item',
@@ -43,8 +48,6 @@ _.extend(templates, {
   user_email: 'ah_user_email'
 });
 
-ahAssetPath = '/packages/admithub_admithub-telescope-theme/public/'
-
 primaryNav = [
   {template: 'notificationsMenu', order: 0},
   {template: 'applicationRobot', order: 1},
@@ -71,10 +74,11 @@ addToPostSchema.push({
     type: String, optional: true, label: "Details", autoform: {editable: true, rows: 5}
   }
 });
+*/
 
 Meteor.startup(function() {
   // Replace "top" in nav if we have that as our default view.
-  if (getSetting("defaultView") === "Top") {
+  if (Telescope.theme.getSetting("defaultView") === "Top") {
     for (var i = 0; i < primaryNav.length; i++) {
       if (primaryNav[i] === "topQuestions") {
         primaryNav[i] = "newQuestions";
@@ -83,23 +87,8 @@ Meteor.startup(function() {
   }
   Avatar.options.defaultImageUrl = ahAssetPath + "img/owlAvatar.png";
   Avatar.options.defaultType = 'image';
-  privacyOptions["roles"] = true;
+  Users.pubsub.publicProperties.roles = true;
 });
 
 contributorQueryTerms = {}
 contributorQueryTerms["roles." + Roles.GLOBAL_GROUP] = {$in: ["Admin", "Officer", "Editor"]};
-
-if (Meteor.isServer) {
-  // One-off migration to ensure that all users have an email_hash set, even if
-  // they came from AdmitHub.
-  Meteor.startup(function() {
-    Meteor.users.find(
-      {"email_hash": null},
-      {fields: {"_id": 1, "emails": 1}}
-    ).forEach(function(user) {
-      if (getEmail(user)) {
-        Meteor.users.update(user._id, {$set: {"email_hash": Gravatar.hash(getEmail(user))}});
-      }
-    });
-  });
-}

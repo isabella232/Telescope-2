@@ -80,7 +80,7 @@ var doSearch = _.debounce(function(val, form) {
 
 }, 700);
 
-Template[getTemplate('search')].events({
+Template.search.events({
   'keyup .js-ah-search-field, search .js-ah-search-field': function(e) {
     e.preventDefault();
     var val = $(e.currentTarget).val(),
@@ -91,8 +91,8 @@ Template[getTemplate('search')].events({
   'submit': function(e) {
     e.preventDefault();
   }
-}); 
-Template[getTemplate('search')].rendered = function() {
+});
+Template.search.rendered = function() {
   highlight(Session.get("searchQuery"));
 }
 

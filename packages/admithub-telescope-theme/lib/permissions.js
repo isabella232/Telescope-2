@@ -1,16 +1,16 @@
 // Override definition from telescope-lib/permissions.js
-can.comment = function(user, returnError) {
+Users.can.comment = function(user, returnError) {
   if (Roles.userIsInRole(user, ["Admin", "Editor", "Officer"])) {
     return true;
   }
   return returnError ? "no_rights" : false;
 }
 
-can.seeTimestamps = function(user) {
+Users.can.seeTimestamps = function(user) {
   return Roles.userIsInRole(user, ["Admin", "Officer"]);
 };
 
-can.seeUsernames = function(user) {
+Users.can.seeUsernames = function(user) {
   return Roles.userIsInRole(user, ["Admin"]);
 };
 

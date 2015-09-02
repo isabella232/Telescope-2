@@ -1,4 +1,4 @@
-Template.ah_comment_item.helpers({
+Template.comment_item.helpers({
   targetBlank: function(html) {
     var $html = $("<div>" + html + "</div>");
     $html.find("a").each(function(i, el) {

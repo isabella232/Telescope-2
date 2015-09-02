@@ -1,4 +1,4 @@
-Template[getTemplate('user_email')].events({
+Template.user_email.events({
   'submit form': function(e) {
     var userTagIds = [];
     $("[name='usertag']:checked").each(function(i, el) {

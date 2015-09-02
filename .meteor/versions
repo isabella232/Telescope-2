@@ -5,11 +5,8 @@ accounts-password@1.1.1
 accounts-twitter@1.0.4
 accounts-ui@1.1.5
 accounts-ui-unstyled@1.1.7
-admithub:admithub-ask-us-anything@0.0.1
 admithub:admithub-telescope-theme@0.0.1
 admithub:shared-auth@0.0.7
-admithub:telescope-user-signatures@0.0.1
-admithub:telescope-user-tags@0.0.1
 alanning:roles@1.2.13
 aldeed:autoform@5.4.1
 aldeed:collection2@2.3.3
@@ -155,8 +152,6 @@ telescope:singleday@0.23.0
 telescope:subscribe-to-posts@0.23.0
 telescope:tagline-banner@0.23.0
 telescope:tags@0.23.0
-telescope:theme-base@0.23.0
-telescope:theme-hubble@0.23.0
 telescope:update-prompt@0.23.0
 telescope:users@0.23.0
 templating@1.1.1

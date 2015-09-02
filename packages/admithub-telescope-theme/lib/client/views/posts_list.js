@@ -1,4 +1,4 @@
-Template[getTemplate("ah_posts_list")].helpers({
+Template.posts_list.helpers({
   postListTitle: function() {
     return Session.get("postListTitle");
   },
@@ -7,7 +7,4 @@ Template[getTemplate("ah_posts_list")].helpers({
       return {i: i, item: item};
     });
   },
-  newsletterBanner: function() {
-    return getTemplate("newsletterBanner");
-  }
 });

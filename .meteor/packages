@@ -29,15 +29,15 @@ telescope:singleday
 telescope:subscribe-to-posts
 telescope:tagline-banner
 telescope:tags
-telescope:theme-base
-telescope:theme-hubble
+#telescope:theme-base
+#telescope:theme-hubble
 telescope:update-prompt
 
 # Custom Packages for AdmitHub
 force-ssl
 alanning:roles
 admithub:shared-auth@0.0.7
-admithub:telescope-user-tags
-admithub:telescope-user-signatures
 admithub:admithub-telescope-theme
-admithub:admithub-ask-us-anything
+#admithub:admithub-ask-us-anything
+#admithub:telescope-user-tags
+#admithub:telescope-user-signatures

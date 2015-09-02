@@ -1,4 +1,4 @@
-Template.ah_post_categories.helpers({
+Template.post_categories.helpers({
   ahCategories: function() {
     var categories = [];
     _.each(this.categories || [], function (categoryId) {

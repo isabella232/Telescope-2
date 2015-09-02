@@ -3,7 +3,7 @@
  *  order to decouple styles from event triggers.
  */
 
-Template[getTemplate('newsletterBanner')].events({
+Template.newsletter_banner.events({
   "click .js-newsletter-button": function(e) {
     e.preventDefault();
     var $banner = $(".js-newsletter-banner-wrap");

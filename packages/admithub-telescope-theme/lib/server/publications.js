@@ -6,7 +6,7 @@ Meteor.publish("freetrialbots", function() {
 });
 Meteor.publish("contributors", function() {
   return [
-    Meteor.users.find(contributorQueryTerms, {fields: privacyOptions}),
+    Meteor.users.find(contributorQueryTerms, {fields: Users.pubsub.publicProperties}),
     Comments.find({isDeleted: {$ne: true}}, {fields: {userId: 1}})
   ];
 });

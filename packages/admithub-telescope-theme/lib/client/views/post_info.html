@@ -11,9 +11,9 @@
       {{#if usernameOrTags}}
         <span>by </span>
         {{#if canSeeUsernames}}
-          {{> UI.dynamic template=postAuthorName data=.}} 
+          {{> post_author_name .}}
         {{/if}}
-        {{> UI.dynamic template=userTagsForPost data=.}}
+        {{> user_tags_for_post .}}
       {{/if}}
     {{/if}}
   </span>

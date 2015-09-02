@@ -7,11 +7,11 @@ function targetBlankNoFollow(html) {
   return $html.html();
 }
 
-Template[getTemplate("post_body")].helpers({
+Template.post_body.helpers({
   targetBlankNoFollow: targetBlankNoFollow
 });
 
-Template[getTemplate("ah_post_teaser")].helpers({
+Template.post_teaser.helpers({
   targetBlankNoFollow: targetBlankNoFollow,
   postBodyTeaser: function() {
     var html = "";
