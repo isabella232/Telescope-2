@@ -114,7 +114,6 @@ if (Meteor.isClient) {
     Router.route("/survey/parent-educator", {
       name: "parentEducatorSurvey",
       template: "survey_parent_educator",
-      //onBeforeAction: filters.isLoggedIn, FIXME
       waitOn: waitOnLogin,
     });
 
@@ -123,7 +122,6 @@ if (Meteor.isClient) {
       waitOn: function() {
         return [waitOnLogin(), Meteor.subscribe("freetrialbots")]
       },
-      // onBeforeAction: filters.isLoggedIn, FIXME
       data: function() {
         if (this.ready()) {
           var ftb = FreeTrialBots.findOne({userId: Meteor.userId()});
@@ -154,6 +152,9 @@ if (Meteor.isClient) {
         }
       }
     });
+
+    Router.plugin('ensureSignedIn', {only: ['parentEducatorSurvey', 'freeTrialBot']});
+
 
     Router.route("/survey", {
       name: "freeTrialBotBase",

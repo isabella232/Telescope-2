@@ -4,13 +4,14 @@
 # but you can also edit it by hand.
 
 # Telescope core
-telescope:core@0.23.0
+telescope:core@0.24.0
 
 # Telescope optional packages
 telescope:migrations
 telescope:api
 telescope:daily
 telescope:datetimepicker
+telescope:debug
 telescope:email
 telescope:embedly
 telescope:getting-started

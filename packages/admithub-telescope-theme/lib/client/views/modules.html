@@ -1,0 +1,8 @@
+<template name="custom_modules">
+  <!-- remove wrapper div from modules. -->
+  {{#each getModules}}
+    {{#if showModule}}
+      {{> Template.dynamic template=template data=moduleData}}
+    {{/if}}
+  {{/each}}
+</template>

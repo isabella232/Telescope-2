@@ -113,8 +113,10 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/header.js', 'client');
   api.addFiles('lib/client/views/layout.html', 'client');
   api.addFiles('lib/client/views/layout.js', 'client');
+  api.addFiles('lib/client/views/logo.html', 'client');
   api.addFiles('lib/client/views/message_item.html', 'client');
   api.addFiles('lib/client/views/message_item.js', 'client');
+  api.addFiles('lib/client/views/modules.html', 'client');
   api.addFiles('lib/client/views/nav.html', 'client');
   api.addFiles('lib/client/views/notifications_menu.html', 'client');
   api.addFiles('lib/client/views/notifications_menu.js', 'client');
