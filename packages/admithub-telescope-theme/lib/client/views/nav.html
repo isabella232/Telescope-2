@@ -1,3 +1,4 @@
+<!-- FIXME -->
 <template name="ah_nav_application_robot">
   <li>
     <a href="https://www.admithub.com/welcome">App Robot</a>
@@ -13,12 +14,14 @@
   {{/unless}}
 </template>
 
+<!-- FIXME -->
 <template name="ah_nav_top_questions">
   <li>
     <a href="/top">Top Questions</a>
   </li>
 </template>
 
+<!-- FIXME -->
 <template name="ah_nav_user">
   {{#if isLoggedIn}}
     <div class="mod-dropdown-trigger g-header-user-menu user-menu">
@@ -26,7 +29,7 @@
       <div class="mod-dropdown">
         <ul class="mod-dropdown-text-link-list" role="menu" aria-labelledby="dLabel">
           <li><a href="{{profileUrl}}">{{_ "profile"}}</a></li>
-          <li><a href="/account">{{_ "edit_account"}}</a></li> 
+          <li><a href="/account">{{_ "edit_account"}}</a></li>
           <li><a href="/sign-out">{{_ "sign_out"}}</a></li>
           {{#if isAdmin}}
             {{> ah_nav_admin}}
@@ -38,6 +41,7 @@
   {{/if}}
 </template>
 
+<!-- FIXME -->
 <template name="ah_nav_admin">
   {{#if isAdmin}}
     <li><hr></li>

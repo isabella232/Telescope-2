@@ -1,9 +1,9 @@
-Template.post_upvote.helpers({
+Template.post_vote.helpers({
   voteCount: function() {
     return (this.upvotes || 0) - (this.downvotes || 0);
   }
 });
-Template.post_upvote.events({
+Template.post_vote.events({
   'click .js-unupvote': function(e, instance){
     var post = this;
     e.preventDefault();

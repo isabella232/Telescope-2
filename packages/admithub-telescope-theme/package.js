@@ -21,8 +21,6 @@ Package.onUse(function (api) {
     'alanning:roles',
     'aldeed:simple-schema',
     'aldeed:autoform@5.3.2',
-    'bengott:avatar',
-    'jparker:gravatar',
     'iron:router',
     'richsilv:pikaday@1.0.0',
   ]);
@@ -97,8 +95,10 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/ah_category_list.js', 'client');
   api.addFiles('lib/client/views/ah_free_trial_bot_widget.html', 'client');
   api.addFiles('lib/client/views/ah_free_trial_bot_widget.js', 'client');
-  api.addFiles('lib/client/views/ah_userTagsForPost.html', 'client');
-  api.addFiles('lib/client/views/comment_form.html', 'client');
+  api.addFiles('lib/client/views/ah_user_tags_for_post.html', 'client');
+  api.addFiles('lib/client/views/ah_header_cta.html', 'client');
+  api.addFiles('lib/client/views/ah_header_cta.js', 'client');
+  api.addFiles('lib/client/views/ah_tags.html', 'client');
   api.addFiles('lib/client/views/comment_item.html', 'client');
   api.addFiles('lib/client/views/comment_item.js', 'client');
   api.addFiles('lib/client/views/contributors.html', 'client');
@@ -109,8 +109,6 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/free_trial_bot_signup.js', 'client');
   api.addFiles('lib/client/views/free_trial_bot_parent_educator.html', 'client');
   api.addFiles('lib/client/views/free_trial_bot_parent_educator.js', 'client');
-  api.addFiles('lib/client/views/header_cta.html', 'client');
-  api.addFiles('lib/client/views/header_cta.js', 'client');
   api.addFiles('lib/client/views/header.html', 'client');
   api.addFiles('lib/client/views/header.js', 'client');
   api.addFiles('lib/client/views/layout.html', 'client');
@@ -118,8 +116,8 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/message_item.html', 'client');
   api.addFiles('lib/client/views/message_item.js', 'client');
   api.addFiles('lib/client/views/nav.html', 'client');
-  api.addFiles('lib/client/views/nav_notifications.html', 'client');
-  api.addFiles('lib/client/views/nav_notifications.js', 'client');
+  api.addFiles('lib/client/views/notifications_menu.html', 'client');
+  api.addFiles('lib/client/views/notifications_menu.js', 'client');
   api.addFiles('lib/client/views/newsletter_banner.html', 'client');
   api.addFiles('lib/client/views/newsletter_banner.js', 'client');
   api.addFiles('lib/client/views/notification_item.html', 'client');
@@ -147,11 +145,10 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/post_submit.html', 'client');
   api.addFiles('lib/client/views/post_title.html', 'client');
   api.addFiles('lib/client/views/post_title.js', 'client');
-  api.addFiles('lib/client/views/post_upvote.html', 'client');
-  api.addFiles('lib/client/views/post_upvote.js', 'client');
+  api.addFiles('lib/client/views/post_vote.html', 'client');
+  api.addFiles('lib/client/views/post_vote.js', 'client');
   api.addFiles('lib/client/views/posts_list.html', 'client');
   api.addFiles('lib/client/views/posts_list.js', 'client');
-  api.addFiles('lib/client/views/posts_load_more.html', 'client');
   api.addFiles('lib/client/views/search.html', 'client');
   api.addFiles('lib/client/views/search.js', 'client');
   api.addFiles('lib/client/views/touts.html', 'client');
@@ -159,8 +156,6 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/trackers.html', 'client');
   api.addFiles('lib/client/views/trackers.js', 'client');
   api.addFiles('lib/client/views/typekit.html', 'client');
-  api.addFiles('lib/client/views/user_email.html', 'client');
-  api.addFiles('lib/client/views/user_email.js', 'client');
 
   api.addFiles('public/icons/admithub.eot', 'client');
   api.addFiles('public/icons/admithub.svg', 'client');

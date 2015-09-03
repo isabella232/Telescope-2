@@ -1,4 +1,4 @@
-<template name="ah_posts_list">
+<template name="custom_posts_list">
 <!--<h1 class='post-list-title'>{{ postListTitle }}</h1>-->
   {{> posts_list_incoming incoming}}
 
@@ -11,7 +11,7 @@
       {{> post_item item}}
     {{/each}}
 
-    {{> posts_load_more }}
+    {{> postsLoadMore }}
   </div>
 </template>
 
@@ -35,3 +35,19 @@
     </div>
   </div>
 </template>
+<template name="custom_postsLoadMore">
+  {{#if postsReady}}
+    {{#if hasPosts}}
+      {{#if hasMorePosts}}
+        <a class="ui-btn ui-stretch more-button" href="{{loadMoreUrl}}"><span>{{_ "load_more"}}</span></a>
+      {{/if}}
+    {{else}}
+      <div class='no-posts'>{{_ "sorry_we_couldnt_find_any_posts"}}</div>
+    {{/if}}
+  {{else}}
+    <div class="grid loading-module">
+      {{> spinner}}
+    </div>
+  {{/if}}
+</template>
+

@@ -1,53 +1,6 @@
-if (Meteor.isClient) {
-  Template.config.addCustomPrefix("ah_");
-}
-
 ahAssetPath = '/packages/admithub_admithub-telescope-theme/public/'
 
 /*
-_.extend(templates, {
-  layout: 'ah_layout',
-  nav: 'ah_header', // nee 'nav'
-  submitButton: 'ah_header_cta',
-  message_item: "ah_message_item",
-
-  userMenu: 'ah_nav_user',
-  adminMenu: 'ah_nav_admin',
-  topQuestions: 'ah_nav_top_questions',
-  applicationRobot: 'ah_nav_application_robot',
-
-  post_body: 'ah_post_body',
-  posts_list: 'ah_posts_list',
-  post_item: 'ah_post_item',
-  post_edit: 'ah_post_edit',
-  post_page: 'ah_post_page',
-  post_submit: 'ah_post_submit',
-  postAdmin: 'ah_post_admin',
-  postDiscuss: 'ah_post_discuss',
-  postInfo: 'ah_post_info',
-  postUpvote: 'ah_post_upvote',
-  postContent: 'ah_post_content',
-  postAuthorName: 'ah_post_author_name',
-  postCommentsLink: 'ah_post_comments_link',
-  postCategories: 'ah_post_categories',
-  postShare: 'ah_post_share',
-  postTitle: 'ah_post_title',
-  postsLoadMore: 'ah_posts_load_more',
-  comment_form: 'ah_comment_form',
-  comment_item: 'ah_comment_item',
-  userTagsForPost: 'ah_userTagsForPost',
-
-  notificationsMenu: 'ah_nav_notifications_menu',
-  notificationItem: 'ah_notification_item',
-  notificationNewReply: 'ah_notification_new_reply',
-  notificationNewComment: 'ah_notification_new_comment',
-
-  newsletterBanner: 'ah_newsletter_banner',
-
-  search: 'ah_search',
-  user_email: 'ah_user_email'
-});
-
 primaryNav = [
   {template: 'notificationsMenu', order: 0},
   {template: 'applicationRobot', order: 1},
@@ -78,6 +31,7 @@ addToPostSchema.push({
 
 Meteor.startup(function() {
   // Replace "top" in nav if we have that as our default view.
+  /*
   if (Telescope.theme.getSetting("defaultView") === "Top") {
     for (var i = 0; i < primaryNav.length; i++) {
       if (primaryNav[i] === "topQuestions") {
@@ -85,6 +39,7 @@ Meteor.startup(function() {
       }
     }
   }
+  */
   Avatar.options.defaultImageUrl = ahAssetPath + "img/owlAvatar.png";
   Avatar.options.defaultType = 'image';
   Users.pubsub.publicProperties.roles = true;

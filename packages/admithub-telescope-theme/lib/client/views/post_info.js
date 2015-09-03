@@ -21,7 +21,7 @@ Template.post_info.helpers({
   }
 });
 
-Template.post_author_name.helpers({
+Template.post_author.helpers({
   hasTags: function() {
     var poster = Meteor.users.findOne(this.userId);
     return poster && poster.profile && poster.profile.tags && poster.profile.tags.length;

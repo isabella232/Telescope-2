@@ -1,4 +1,4 @@
-["category_list", "category_select"].forEach(function(template) {
+["ah_category_list", "ah_category_select"].forEach(function(template) {
   Template[template].helpers({
     categories: function() {
       var cats = []
@@ -15,7 +15,7 @@
   });
 });
 
-Template.category_select.events({
+Template.ah_category_select.events({
   "change .js-category-select-nav": function(event) {
     Router.go($(event.currentTarget).val());
   }

@@ -1,4 +1,4 @@
-<template name="ah_post_page">
+<template name="custom_post_page">
 
   {{> ah_posts_sidebar }}
 
@@ -7,7 +7,7 @@
       <div class="post {{rankClass}} {{#if sticky}}sticky{{/if}} {{inactiveClass}}" id="{{_id}}">
         <div class="modules-group center-modules">
           <div class="inner">
-            {{> post_title_content }}
+            {{> ah_post_title_and_content }}
           </div>
         </div>
       </div>

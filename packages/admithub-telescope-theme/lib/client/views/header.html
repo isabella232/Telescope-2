@@ -1,5 +1,4 @@
-<!-- Originally called <template name='nav'> -->
-<template name="ah_header">
+<template name="custom_header">
   <div class="g-header-wrap alt-on-dark">
     <div class="grid-wrap">
       <div class="grid-row">
@@ -10,35 +9,24 @@
               <i class="icon-x"></i>
             </button>
 
-            {{#if logo_url}}
-              <a class="g-header-logo" href="/">
-                <img src="{{logo_url}}" alt="{{site_title}}"/>
-              </a>
-            {{/if}}
-            <a class="g-header-logo" href="/"><i class="g-header-logo-icon icon-logo"></i><span class="g-header-logo-type">{{site_title}}</span></a>
+            {{> logo }}
 
             <ul class="g-header-nav js-header-nav">
-              <!-- <a href="https://www.admithub.com/welcome">APP ROBOT</a> -->
-              {{#each primaryNav}}
-                {{> UI.dynamic template=getTemplate}}
-              {{/each}}
+              {{#if hasPrimaryNav}}
+                {{> modules zone="primaryNav"}}
+              {{/if}}
 
-              {{> search}}
-
-              {{#each secondaryNav}}
-                <li>
-                  {{> UI.dynamic template=getTemplate}}
-                </li>
-              {{/each}}
+              {{#if hasSecondaryNav}}
+                {{> modules zone="secondaryNav"}}
+              {{/if}}
             </ul>
 
             {{> ah_header_cta}}
-
           </header>
         </div>
       </div>
     </div>
   </div>
 
-  {{> yield region='touts' }}
+  {{> yield 'touts'}}
 </template>

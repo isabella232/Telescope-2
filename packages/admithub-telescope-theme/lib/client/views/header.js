@@ -1,4 +1,4 @@
-Template.nav.events({
+Template.header.events({
   'click .js-hamburger': function(event) {
     $('.js-header-nav').toggle();
     $('.js-hamburger').toggleClass('open');

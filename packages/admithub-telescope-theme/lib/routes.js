@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
   Meteor.startup(function() {
     // load freetrialbots for use on landing page.
-    preloadSubscriptions.push("freetrialbots");
+    Telescope.subscriptions.preload("freetrialbots");
 
     // Put touts templates on post list pages.
     Router.onAfterAction(function() {
@@ -75,7 +75,7 @@ if (Meteor.isClient) {
 
     Router.route("/posts/:_id/p/:slug?", {
       name: "post_page_with_slug",
-      controller: PostPageController
+      controller: Posts.controllers.page
     });
 
     Router.route("/contributors", {
@@ -114,7 +114,7 @@ if (Meteor.isClient) {
     Router.route("/survey/parent-educator", {
       name: "parentEducatorSurvey",
       template: "survey_parent_educator",
-      onBeforeAction: filters.isLoggedIn,
+      //onBeforeAction: filters.isLoggedIn, FIXME
       waitOn: waitOnLogin,
     });
 
@@ -123,7 +123,7 @@ if (Meteor.isClient) {
       waitOn: function() {
         return [waitOnLogin(), Meteor.subscribe("freetrialbots")]
       },
-      onBeforeAction: filters.isLoggedIn,
+      // onBeforeAction: filters.isLoggedIn, FIXME
       data: function() {
         if (this.ready()) {
           var ftb = FreeTrialBots.findOne({userId: Meteor.userId()});

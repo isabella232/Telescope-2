@@ -11,7 +11,7 @@ Template.post_body.helpers({
   targetBlankNoFollow: targetBlankNoFollow
 });
 
-Template.post_teaser.helpers({
+Template.ah_post_teaser.helpers({
   targetBlankNoFollow: targetBlankNoFollow,
   postBodyTeaser: function() {
     var html = "";

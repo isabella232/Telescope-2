@@ -1,4 +1,4 @@
-<template name="ah_post_categories">
+<template name="custom_post_categories">
   <span class="post-categories">
     {{#each ahCategories}}<a href="{{categoryLink}}" class="post-category category-{{slug}} ui-tag">{{name}}</a>{{#unless last}}, {{else}}.{{/unless}}{{/each}}
   </span>
