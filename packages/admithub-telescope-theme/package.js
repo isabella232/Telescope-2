@@ -23,15 +23,14 @@ Package.onUse(function (api) {
     'aldeed:autoform@5.3.2',
     'iron:router',
     'richsilv:pikaday@1.0.0',
+
+    'admithub:admithub-common'
   ]);
 
-  api.addFiles('lib/permissions.js', ['client', 'server']);
   api.addFiles('lib/admithub.js', ['client', 'server']);
   api.addFiles('lib/routes.js', ['client', 'server']);
-  api.addFiles('lib/_fields.js', ['client', 'server']);
-  api.addFiles('lib/helpers.js', ['client', 'server']);
+  api.addFiles('lib/users.js', ['client', 'server']);
   api.addFiles('lib/freeTrialBot.js', ['client', 'server']);
-  api.addFiles("lib/smsvalidations.js", ['client', 'server']);
 
   api.addFiles('lib/server/methods.js', ['server']);
   api.addFiles('lib/server/publications.js', ['server']);
@@ -146,7 +145,6 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/post_share.js', 'client');
   api.addFiles('lib/client/views/post_submit.html', 'client');
   api.addFiles('lib/client/views/post_title.html', 'client');
-  api.addFiles('lib/client/views/post_title.js', 'client');
   api.addFiles('lib/client/views/post_vote.html', 'client');
   api.addFiles('lib/client/views/post_vote.js', 'client');
   api.addFiles('lib/client/views/posts_list.html', 'client');

@@ -9,9 +9,10 @@
       {{/if}}
       {{_ "score"}}: {{shortScore}}, {{_ "clicks"}}: {{clickCount}}, {{_ "views"}}: {{viewCount}}
     </div>
+    <a href='#' class='delete-link' title='{{_ 'delete'}}'>delete</a>
   {{/if}}
 
-  {{#if can_edit}}
+  {{#if canEdit this}}
     <a href="/posts/{{_id}}/edit" class="edit-link goto-edit">Edit</a>
   {{/if}}
 </template>

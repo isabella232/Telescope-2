@@ -165,6 +165,9 @@ FreeTrialBotStarterSchema = new SimpleSchema({
 })
 FreeTrialBotStarters.attachSchema(FreeTrialBotStarterSchema);
 
+if (typeof SMSWorkflows === "undefined") {
+  SMSWorkflows = {};
+}
 SMSWorkflows.freeTrialBotStarter = {
   name: "Free Trial Bot Starter",
   schema: FreeTrialBotStarterSchema,

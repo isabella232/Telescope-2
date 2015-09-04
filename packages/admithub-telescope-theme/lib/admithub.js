@@ -1,6 +1,4 @@
 // TODO:
-// - user schema changes
-// - permissions changes (roles)
 // - user tags
 // - user signatures
 // - 'ask us anything'?
@@ -9,7 +7,11 @@
 //   - user registration works as expected
 //   - roles, signature, tags all get published correctly
 // - import data
-ahAssetPath = '/packages/admithub_admithub-telescope-theme/public/'
+// - tests?
+// - update and integrate admithub-auth? at least, admithub-auth needs to use
+// telescope's new schema for email_hash etc.
+
+ahTelescopeThemeAssetPath = '/packages/admithub_admithub-telescope-theme/public/'
 
 // Get rid of the list of views (e.g. 'Top', 'Best', etc).
 Telescope.modules.remove("top", "views_menu");
@@ -48,11 +50,9 @@ Posts.addField({
 });
 
 Avatar.setOptions({
-  defaultImageUrl: ahAssetPath + "img/owlAvatar.png",
+  defaultImageUrl: ahTelescopeThemeAssetPath + "img/owlAvatar.png", // TODO: replace with admithub-common asset
   fallbackType: "default image"
 });
-
-Users.pubsub.publicProperties.roles = true;
 
 contributorQueryTerms = {}
 contributorQueryTerms["roles." + Roles.GLOBAL_GROUP] = {$in: ["Admin", "Officer", "Editor"]};

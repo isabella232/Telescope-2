@@ -5,6 +5,7 @@ accounts-password@1.1.1
 accounts-twitter@1.0.4
 accounts-ui@1.1.5
 accounts-ui-unstyled@1.1.7
+admithub:admithub-common@0.0.6
 admithub:admithub-telescope-theme@0.0.1
 admithub:shared-auth@0.0.7
 alanning:roles@1.2.13

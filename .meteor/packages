@@ -37,6 +37,14 @@ telescope:update-prompt
 # Custom Packages for AdmitHub
 force-ssl
 alanning:roles
+
+# The order is important here to get Meteor.users schema attachment right --
+# loading order must be:
+# 1. telescope:telescope-users
+# 2. admithub:admithub-common
+# 3. admithub:admithub-telescope-theme
+admithub:admithub-common # note order comment
+
 admithub:shared-auth@0.0.7
 admithub:admithub-telescope-theme
 #admithub:admithub-ask-us-anything

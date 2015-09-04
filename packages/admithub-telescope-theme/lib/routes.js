@@ -10,73 +10,52 @@ if (Meteor.isClient) {
       only: ['posts_top', 'posts_default', 'posts_new', 'posts_best', 'post_page']
     });
 
-    // Set titles on post list pages.
-    function listTitle(title) {
-      Session.set("postListTitle", title);
-    }
-    var defaultView = Telescope.theme.getSetting("defaultView");
-    var topTitles = ["posts_top"];
-    var newTitles = ["posts_new"];
-    if (defaultView === "Top") {
-      topTitles.push("posts_default");
-    } else if (defaultView === "New") {
-      newTitles.push("posts_default");
-    }
-    Router.onAfterAction(function() { listTitle("Top Questions"); },
-                         {only: topTitles});
-    Router.onAfterAction(function() { listTitle("Newest Questions"); },
-                         {only: newTitles});
-    Router.onAfterAction(function() { listTitle("Pending Questions"); },
-                         {only: ['posts_pending']});
-    Router.onAfterAction(function() { listTitle("Daily Digest"); },
-                         {only: ['posts_digest']});
-    Router.onAfterAction(function() {
-      cat = Categories.findOne({"slug": this.params.slug});
-      listTitle(cat ? "Posts tagged “" + cat.name + "”" : "");
-    }, {only: ["posts_category"]});
-    // Clear titles if we aren't using them.
-    Router.onAfterAction(function() { listTitle(""); }, {except: [
-      "posts_default", "posts_top", "posts_new", "posts_pending",
-      "posts_digest", "posts_category"
-    ]});
+//    // Set titles on post list pages.
+//    function listTitle(title) {
+//      Session.set("postListTitle", title);
+//    }
+//    var defaultView = Telescope.theme.getSetting("defaultView");
+//    var topTitles = ["posts_top"];
+//    var newTitles = ["posts_new"];
+//    if (defaultView === "Top") {
+//      topTitles.push("posts_default");
+//    } else if (defaultView === "New") {
+//      newTitles.push("posts_default");
+//    }
+//    Router.onAfterAction(function() { listTitle("Top Questions"); },
+//                         {only: topTitles});
+//    Router.onAfterAction(function() { listTitle("Newest Questions"); },
+//                         {only: newTitles});
+//    Router.onAfterAction(function() { listTitle("Pending Questions"); },
+//                         {only: ['posts_pending']});
+//    Router.onAfterAction(function() { listTitle("Daily Digest"); },
+//                         {only: ['posts_digest']});
+//    Router.onAfterAction(function() {
+//      cat = Categories.findOne({"slug": this.params.slug});
+//      listTitle(cat ? "Posts tagged “" + cat.name + "”" : "");
+//    }, {only: ["posts_category"]});
+//    // Clear titles if we aren't using them.
+//    Router.onAfterAction(function() { listTitle(""); }, {except: [
+//      "posts_default", "posts_top", "posts_new", "posts_pending",
+//      "posts_digest", "posts_category"
+//    ]});
 
     // Fix scroll position on category page links (issue #12)
-    Router.onAfterAction(function() { window.scrollTo(0, 0); }, {only: ["posts_category"]});
+//    Router.onAfterAction(function() { window.scrollTo(0, 0); }, {only: ["posts_category"]});
 
-    // Redirect post pages to page with slug.
-    Router.onBeforeAction(function() {
-      if (this.ready()) {
-        var post = Posts.findOne(this.params._id);
-        if (post && post.title) {
-          Router.go("post_page_with_slug",
-                    {_id: this.params._id, slug: slugifyPost(post.title)},
-                    {replaceState: true});
-        }
-        this.next();
-      };
-    }, {only: ["post_page"]});
-
-    // Redirect submit to login instead of permission denied.
-    Router.onBeforeAction(function() {
-      if (this.ready() && !Meteor.loggingIn()) {
-        if (!Meteor.user()) {
-          Router.go('/sign-in');
-          flashMessage("Please sign in or register to post a question", "info");
-          // Don't fire 'next' so that we don't get the unwanted flash message from core.
-        } else {
-          clearSeenMessages();
-          this.next();
-        }
-      }
-    }, {only: ['post_submit']});
-
-    // Clear the sign in request on login.
-    // https://github.com/meteor-useraccounts/core/blob/master/Guide.md#onsubmithook
-
-    Router.route("/posts/:_id/p/:slug?", {
-      name: "post_page_with_slug",
-      controller: Posts.controllers.page
-    });
+//    // Redirect submit to login instead of permission denied.
+//    Router.onBeforeAction(function() {
+//      if (this.ready() && !Meteor.loggingIn()) {
+//        if (!Meteor.user()) {
+//          Router.go('/sign-in');
+//          flashMessage("Please sign in or register to post a question", "info");
+//          // Don't fire 'next' so that we don't get the unwanted flash message from core.
+//        } else {
+//          clearSeenMessages();
+//          this.next();
+//        }
+//      }
+//    }, {only: ['post_submit']});
 
     Router.route("/contributors", {
       name: "contributors_redirect",
@@ -134,11 +113,11 @@ if (Meteor.isClient) {
             for (var i = 0; i < ftbQuestions.length; i++) {
               var val;
               if (ftbQuestions[i].field) {
-                val = dottedLookup(ftbQuestions[i].field, ftb);
+                val = dotGet(ftb, ftbQuestions[i].field);
               } else if (ftbQuestions[i].multipleBooleans) {
                 // Find any non-undefined value in the multiple boolean.
                 val = _.find(_.map(ftbQuestions[i].multipleBooleans, function(f) {
-                  return dottedLookup(f.field, ftb);
+                  return dotGet(ftb, f.field);
                 }), function(v) { return typeof v !== "undefined"; });
               }
               if (typeof val === "undefined") {

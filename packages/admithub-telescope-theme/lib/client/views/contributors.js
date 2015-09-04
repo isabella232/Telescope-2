@@ -28,7 +28,6 @@ Template.contributors.helpers({
   getDisplayName: function() {
     return getDisplayName(this);
   },
-  ahAssetPath: ahAssetPath,
   shortDescription: function(length) {
     var desc = this.description;
 
