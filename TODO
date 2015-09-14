@@ -1,5 +1,4 @@
 // TODO:
-// - flash/alert message styling
 // - ensure:
 //   - email address updates work as expected (incl hashes and user.emails)
 //   - user registration works as expected

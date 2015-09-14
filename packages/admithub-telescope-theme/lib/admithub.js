@@ -23,19 +23,16 @@ _.each({
   });
 });
 
-// We don't use URLs on posts; all posts have bodies. Make the URL field
-// un-editable.
-Posts.removeField("url");
-Posts.addField({
-  fieldName: "url",
-  fieldSchema: {
-    type: String,
-    optional: true,
-    max: 500,
-    editableBy: [],
-    autoform: {omit: true}
-  }
-});
+// Override Posts schema definitions.  We're not using addField/removeField
+// here so we don't upset the field order.
+var PostsSchema = Posts.simpleSchema()._schema;
+PostsSchema['title'].label = "Question";
+PostsSchema['body'].label = "Details";
+PostsSchema['url'].editableBy = [];
+PostsSchema['url'].autoform = {omit: true};
+PostsSchema['thumbnailUrl'].editableBy = [];
+PostsSchema['thumbnailUrl'].autoform = {omit: true};
+Posts.attachSchema(PostsSchema);
 
 Avatar.setOptions({
   defaultImageUrl: ahTelescopeThemeAssetPath + "img/owlAvatar.png", // TODO: replace with admithub-common asset?
