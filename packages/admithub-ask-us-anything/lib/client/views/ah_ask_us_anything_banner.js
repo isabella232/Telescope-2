@@ -1,15 +1,15 @@
-Template.ah_ask_us_anything_banner.created = function() {
+Template.newsletter_banner.created = function() {
   this.showEmail = new ReactiveVar(false);
   this.question = new ReactiveVar();
 };
 
-Template.ah_ask_us_anything_banner.helpers({
+Template.newsletter_banner.helpers({
   showEmail: function() {
     return Template.instance().showEmail.get();
   }
 });
 
-Template.ah_ask_us_anything_banner.events({
+Template.newsletter_banner.events({
   'submit #ah_ask_us_form': function(e) {
     e.preventDefault();
 
@@ -20,7 +20,11 @@ Template.ah_ask_us_anything_banner.events({
 
     function submitCallback(err, post) {
       if (err) {
-        Messages.flash(err.message.split('|')[0].split('[')[0].trim(), 'error');
+        var reason = err.reason;
+        if (reason === "Email already exists.") {
+          reason = "You already have an account! Please sign in first.";
+        }
+        Messages.flash(reason, 'error');
         Messages.clearSeen();
         return;
       }

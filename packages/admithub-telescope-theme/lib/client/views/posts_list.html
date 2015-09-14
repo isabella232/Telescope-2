@@ -4,7 +4,9 @@
 
   <div class="grid-posts posts list">
     {{#each enumerate postsCursor}}
-      {{#if equals i 2}}{{> newsletter_banner }}{{/if}}
+      {{#if equals i 2}}
+        {{> newsletter_banner }}
+      {{/if}}
 
       {{> before_post_item item }}
       {{> post_item item }}

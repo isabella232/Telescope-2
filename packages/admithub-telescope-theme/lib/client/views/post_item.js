@@ -11,14 +11,3 @@ Template.ah_post_title_and_content.helpers({
     return Users.can.edit(Meteor.user(), this);
   }
 });
-
-Template.post_admin.events({
-  'click .approve-link': function(e, instance){
-    Meteor.call('approvePost', this);
-    e.preventDefault();
-  },
-  'click .unapprove-link': function(e, instance){
-    Meteor.call('unapprovePost', this);
-    e.preventDefault();
-  }
-});

@@ -47,6 +47,6 @@ admithub:admithub-common # note order comment
 
 admithub:shared-auth@0.0.7
 admithub:admithub-telescope-theme
-#admithub:admithub-ask-us-anything
+admithub:admithub-ask-us-anything
 admithub:telescope-user-tags
 admithub:telescope-user-signatures

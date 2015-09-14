@@ -13,7 +13,6 @@ Package.onUse(function (api) {
 
     'telescope:core',
     'telescope:daily',
-    'telescope:newsletter',
     'telescope:rss',
     'telescope:search',
     'telescope:tags',
@@ -109,13 +108,12 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/nav.html', 'client');
   api.addFiles('lib/client/views/notifications_menu.html', 'client');
   api.addFiles('lib/client/views/notifications_menu.js', 'client');
-  api.addFiles('lib/client/views/newsletter_banner.html', 'client');
-  api.addFiles('lib/client/views/newsletter_banner.js', 'client');
   api.addFiles('lib/client/views/notification_item.html', 'client');
   api.addFiles('lib/client/views/notification_item.js', 'client');
   api.addFiles('lib/client/views/notification_new_comment.html', 'client');
   api.addFiles('lib/client/views/notification_new_reply.html', 'client');
   api.addFiles('lib/client/views/post_admin.html', 'client');
+  api.addFiles('lib/client/views/post_admin.js', 'client');
   api.addFiles('lib/client/views/post_body.html', 'client');
   api.addFiles('lib/client/views/post_body.js', 'client');
   api.addFiles('lib/client/views/post_categories.html', 'client');

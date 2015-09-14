@@ -2,6 +2,7 @@ ahTelescopeThemeAssetPath = '/packages/admithub_admithub-telescope-theme/public/
 
 // Get rid of the list of views (e.g. 'Top', 'Best', etc).
 Telescope.modules.remove("top", "views_menu");
+Telescope.modules.remove("hero", "newsletter_banner");
 
 // Fully replace primary and secondary nav with our own.
 Telescope.modules.removeAll("primaryNav");

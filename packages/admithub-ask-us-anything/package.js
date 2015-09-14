@@ -19,8 +19,6 @@ Package.onUse(function (api) {
       'reactive-var'
   ]);
 
-  api.addFiles('lib/ask_us_anything.js', ['client', 'server']);
-
   api.addFiles('lib/client/views/ah_ask_us_anything_banner.html', 'client');
   api.addFiles('lib/client/views/ah_ask_us_anything_banner.styl', 'client');
   api.addFiles('lib/client/views/ah_ask_us_anything_banner.js', 'client');
