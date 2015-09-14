@@ -47,32 +47,12 @@
   </li>
 </template>
 
-<template name='list_usertags'>
+<template name='profile_list_usertags'>
   <div class='user-profilie grid grid-module'>
-    <h3>I am a:</h3>
     <div>
       {{#each mytags}}
         <span class='user-tag'>{{name}}</span>
       {{/each}}
     </div>
-  </div>
-</template>
-
-<template name='edit_usertags_profile'>
-  <div class='grid-small grid-block dialog admin'>
-    <h3>Interest</h3>
-    <form id='user-tags-form'>
-      <div class=''>
-        <form>
-          <label>I am a:</label>
-          {{#each availableTags}}
-            <label>
-              <input type='checkbox' {{ attrs }} />
-              {{ name }}
-            </label>
-          {{/each}}
-        </form>
-      </div>
-    </form>
   </div>
 </template>

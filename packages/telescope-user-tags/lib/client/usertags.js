@@ -28,7 +28,6 @@ Template.usertags_autoform.events({
     form.find("[type=hidden][data-autoform-type='usertags'][name='" + name + "']").remove();
 
     var checked = form.find("[name='" + name + "']:checked");
-    console.log(checked);
     checked.each(function(i, input) {
       form.append("<input type='hidden' data-autoform-type='usertags' name='" + name + "' data-schema-key='" + name + "." + i + "' value='" + input.value + "' />");
     });
@@ -73,38 +72,12 @@ Template.admin_usertags.helpers({
   }
 });
 
-Template.list_usertags.helpers({
+Template.profile_list_usertags.helpers({
   mytags: function() {
-    var user = this;
-    return _getUserTags(user);
+    var tags = this;
+    return UserTags.find({_id: {$in: tags}}).fetch();
   }
 })
-
-Template.edit_usertags_profile.helpers({
-  availableTags: function() {
-    var user = this;
-    user.profile = user.profile || {};
-    var userTagIds = user.profile.tags || [];
-    var allTags = UserTags.find({}).fetch();
-    return _.map(allTags, function(tag) {
-      var attrs = {
-        name: "usertag",
-        value: tag._id
-      };
-      if (_.contains(userTagIds, tag._id)) {
-        attrs.checked = "checked";
-      }
-      return {name: tag.name, attrs: attrs};
-    });
-  }
-});
-Template.edit_usertags_profile.events({
-  'change [name=usertag]': function(event) {
-    var checked = $(event.target).closest("form").find("[name=usertag]:checked");
-    var tagIds = _.map(checked, function(el) { return el.value; });
-    Meteor.users.update(Meteor.userId(), {$set: {"profile.tags": tagIds}});
-  }
-});
 
 Template.admin_usertag_item.events({
   'submit .js-edit-user-tag': function(event) {

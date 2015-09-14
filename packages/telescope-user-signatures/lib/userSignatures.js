@@ -1,42 +1,40 @@
 // Add signature bits to the (currently unused) user schema.
-addToUserSchema.push({propertyName: "profile.signature", propertySchema: {type: String}});
-addToUserSchema.push({propertyName: "profile.signatureHTML", propertySchema: {type: String}});
-
-// Add the user signature bits to what is displayed on the user profile.
-userProfileDisplay.push({template: "userSignatureProfile", order: 1});
-// Add the signature bits to what is displayed when editing the user profile.
-userProfileEdit.push({template: "editUserSignatureProfile", order: 1});
-// Process changes to the signature.
-userEditClientCallbacks.push(function(user, properties) {
-  var sig = $.trim($("[name=signature]").val());
-  if (user.profile.signature !== sig) {
-    Meteor.call("updateUserSignature", user._id, sig, function(err) {
-      if (err) {
-        Messages.flash("Error updating signature", "error");
-      }
-    });
+Users.addField({
+  fieldName: "profile.signature",
+  fieldSchema: {
+    label: "Signature",
+    type: String,
+    optional: true,
+    public: true,
+    editableBy: ["member", "admin"],
   }
-  return properties;
+});
+Users.addField({
+  fieldName: "profile.signatureHTML",
+  fieldSchema: {
+    label: "Signature",
+    type: String,
+    optional: true,
+    public: true,
+    profile: true,
+    template: "user_signature_html",
+    autoform: {omit: true}
+  }
 });
 
+Users.before.update(function(userId, doc, fieldNames, modifier) {
+  if (Meteor.isServer) {
+    if (modifier.$unset && modifier.$unset["profile.signature"]) {
+      modifier.$unset["profile.signatureHTML"] = "";
+    }
+    if (modifier.$set && modifier.$set["profile.signature"]) {
+      var html = Telescope.utils.sanitize(marked(modifier.$set["profile.signature"]));
+      modifier.$set["profile.signatureHTML"] = html;
+    }
+  }
+});
 if (Meteor.isServer) {
-  Meteor.startup(function() {
-    Meteor.methods({
-      "updateUserSignature": function(userId, sig) {
-        if (userId !== Meteor.userId() && !isAdmin(Meteor.user())) {
-          throw new Meteor.Error(400, "Permission denied")
-        }
-        var html = sanitize(marked(sig));
-        console.log(userId, sig, html);
-        Meteor.users.update(userId, {$set: {
-          "profile.signature": sig,
-          "profile.signatureHTML": html
-        }});
-      }
-    });
-
-    // Expose signature and its sanitized/rendered HTML version.
-    privacyOptions["profile.signature"] = true;
-    privacyOptions["profile.signatureHTML"] = true;
-  });
+  // Expose signature and its sanitized/rendered HTML version.
+  Users.pubsub.publicProperties['profile.signature'] = true;
+  Users.pubsub.publicProperties['profile.signatureHTML'] = true;
 }

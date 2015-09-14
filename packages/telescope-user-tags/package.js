@@ -24,12 +24,9 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   api.add_files([
-    'lib/client/routes.js',
-    'lib/client/views/usertags.html',
-    'lib/client/views/usertags.js',
-    'lib/client/views/usertags.css',
-    'lib/client/views/user_complete.html',
-    'lib/client/views/user_complete.js'
+    'lib/client/usertags.html',
+    'lib/client/usertags.js',
+    'lib/client/usertags.css',
   ], ['client']);
 
   api.add_files([
