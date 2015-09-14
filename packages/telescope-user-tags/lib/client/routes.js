@@ -1,9 +1,15 @@
-preloadSubscriptions.push('usertags');
+//preloadSubscriptions.push('usertags');
 
-// Add our template to user profile viewing.
-userProfileDisplay.push({template: "listUserTags", order: 2});
-// Add our template to user profile editing.
-userProfileEdit.push({template: "editUserTagsProfile", order: 2});
+Telescope.modules.add("profileDisplay", {
+  template: "list_usertags", 
+  order: 1
+});
+Telescope.modules.add("profileEdit", {
+  template: "edit_usertags_profile",
+  order: 1
+});
+
+/*
 // Add our template to the finish-signup view.
 //userProfileFinishSignup.push({template: "editUserTags", order: 2});
 // Callback for processing user properties when editing a profile.
@@ -18,22 +24,19 @@ userEditClientCallbacks.push(function(user, properties) {
   }
   return properties;
 });
-// Callback to determine whether or not a user profile is complete.
-userProfileCompleteChecks.push(function(user) {
-  if (UserTags.find({}, {limit: 1}).count()) {
-    return user && user.profile && typeof user.profile.tags !== "undefined";
-  }
-  return true;
-});
-// Add tags to the post info byline display
-// postAuthor.push({template: "userTagsForPost", order: 2})
+*/
 
-// Add our admin view to nav.
-adminMenu.push({route: 'usertags', label: "User Tags"});
+Telescope.menuItems.add("adminMenu", {
+  route: "usertags",
+  label: "User Tags",
+  description: "Edit available user tags"
+});
+
 Meteor.startup(function() {
   Router.onBeforeAction(Router._filters.isAdmin, {only: ['usertags']});
   // User tags administration view
   Router.route('/usertags', {
-    name: 'usertags'
+    name: 'usertags',
+    template: 'admin_usertags'
   });
 });

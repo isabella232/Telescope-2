@@ -1,14 +1,15 @@
 <template name="custom_posts_list">
 <!--<h1 class='post-list-title'>{{ postListTitle }}</h1>-->
-  {{> posts_list_incoming incoming}}
-
   {{> ah_posts_sidebar }}
 
   <div class="grid-posts posts list">
     {{#each enumerate postsCursor}}
       {{#if equals i 2}}{{> newsletter_banner }}{{/if}}
 
-      {{> post_item item}}
+      {{> before_post_item item }}
+      {{> post_item item }}
+      {{> after_post_item item }}
+
     {{/each}}
 
     {{> postsLoadMore }}
@@ -31,7 +32,7 @@
     </div>
 
     <div class="responsive-hide-mobile grid-right-sidebar-collapse-left">
-      {{> ah_free_trial_bot_widget }}
+      <!-- app robot omitted -->
     </div>
   </div>
 </template>

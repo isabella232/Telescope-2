@@ -1,11 +1,17 @@
-<template name='userTagsForPost'>
+<template name='usertags_autoform'>
+  {{#each availableTags}}
+    <label>
+      <input type='checkbox' {{ attrs }} /> {{name }}
+    </label>
+  {{/each}}
+</template>
+<template name='usertags_for_post'>
   {{#each userTags}}
     <span class='user-tag {{slug}}'>, {{ name }}</span>
   {{/each}}
 </template>
 
-<!-- Admin -->
-<template name='usertags'>
+<template name='admin_usertags'>
   <div class="grid-small gid-module dialog admin">
     <h2>Edit Available User Tags</h2>
     <form class="form-block js-add-user-tag">
@@ -20,13 +26,13 @@
     </form>
     <ul>
       {{#each usertags}}
-        {{> UI.dynamic template="usertagItem"}}
+        {{> admin_usertag_item }}
       {{/each}}
     </ul>
   </div>
 </template>
 
-<template name='usertagItem'>
+<template name='admin_usertag_item'>
   <li>
     <form class='js-edit-user-tag'>
       <div class='control-group'>
@@ -41,38 +47,32 @@
   </li>
 </template>
 
-<template name='listUserTags'>
-  <tr>
-    <td>
-      I am a:
-    </td>
-    <td>
+<template name='list_usertags'>
+  <div class='user-profilie grid grid-module'>
+    <h3>I am a:</h3>
+    <div>
       {{#each mytags}}
         <span class='user-tag'>{{name}}</span>
       {{/each}}
-    </td>
-  </tr>
-</template>
-
-<template name='editUserTagsProfile'>
-  <div class='grid-small grid-block dialog admin'>
-    <h2>Interest</h2>
-    <form id='user-tags-form'>
-      {{> editUserTags}}
-    </form>
+    </div>
   </div>
 </template>
 
-<template name='editUserTags'>
-  <div class='control-group'>
-    <label>I am a:</label>
-    <div class='controls user-tag-form'>
-      {{#each availableTags}}
-        <label>
-          <input type='checkbox' {{ attrs }} />
-          {{ name }}
-        </label>
-      {{/each}}
-    </div>
+<template name='edit_usertags_profile'>
+  <div class='grid-small grid-block dialog admin'>
+    <h3>Interest</h3>
+    <form id='user-tags-form'>
+      <div class=''>
+        <form>
+          <label>I am a:</label>
+          {{#each availableTags}}
+            <label>
+              <input type='checkbox' {{ attrs }} />
+              {{ name }}
+            </label>
+          {{/each}}
+        </form>
+      </div>
+    </form>
   </div>
 </template>

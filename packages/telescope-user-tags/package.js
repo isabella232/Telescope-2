@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Telescope user tags package",
   name: "admithub:telescope-user-tags",
-  version: "0.0.1"
+  version: "0.1.0"
 });
 
 Package.onUse(function(api) {
@@ -15,22 +15,26 @@ Package.onUse(function(api) {
     'jquery',
     'underscore',
     'iron:router',
-    'templating'
+    'templating',
+    'aldeed:autoform'
   ], 'client');
 
   api.add_files([
-    'lib/userTags.js',
+    'lib/usertags.js',
   ], ['client', 'server']);
 
   api.add_files([
     'lib/client/routes.js',
-    'lib/client/views/userTag.html',
-    'lib/client/views/userTag.js',
-    'lib/client/views/userTag.css'
+    'lib/client/views/usertags.html',
+    'lib/client/views/usertags.js',
+    'lib/client/views/usertags.css',
+    'lib/client/views/user_complete.html',
+    'lib/client/views/user_complete.js'
   ], ['client']);
 
   api.add_files([
-    'lib/server/publications.js'
+    'lib/server/publications.js',
+    'lib/server/methods.js'
   ], ['server']);
 
   api.export([

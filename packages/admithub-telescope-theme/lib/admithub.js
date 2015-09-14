@@ -1,16 +1,3 @@
-// TODO:
-// - user tags
-// - user signatures
-// - 'ask us anything'?
-// - ensure:
-//   - email address updates work as expected (incl hashes and user.emails)
-//   - user registration works as expected
-//   - roles, signature, tags all get published correctly
-// - import data
-// - tests?
-// - update and integrate admithub-auth? at least, admithub-auth needs to use
-// telescope's new schema for email_hash etc.
-
 ahTelescopeThemeAssetPath = '/packages/admithub_admithub-telescope-theme/public/'
 
 // Get rid of the list of views (e.g. 'Top', 'Best', etc).
@@ -50,9 +37,9 @@ Posts.addField({
 });
 
 Avatar.setOptions({
-  defaultImageUrl: ahTelescopeThemeAssetPath + "img/owlAvatar.png", // TODO: replace with admithub-common asset
+  defaultImageUrl: ahTelescopeThemeAssetPath + "img/owlAvatar.png", // TODO: replace with admithub-common asset?
   fallbackType: "default image"
 });
 
-contributorQueryTerms = {}
-contributorQueryTerms["roles." + Roles.GLOBAL_GROUP] = {$in: ["Admin", "Officer", "Editor"]};
+ahContributorQueryTerms = {}
+ahContributorQueryTerms["roles." + Roles.GLOBAL_GROUP] = {$in: ["Admin", "Officer", "Editor"]};

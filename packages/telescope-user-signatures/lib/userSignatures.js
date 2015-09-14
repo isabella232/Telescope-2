@@ -12,7 +12,7 @@ userEditClientCallbacks.push(function(user, properties) {
   if (user.profile.signature !== sig) {
     Meteor.call("updateUserSignature", user._id, sig, function(err) {
       if (err) {
-        flashMessage("Error updating signature", "error");
+        Messages.flash("Error updating signature", "error");
       }
     });
   }

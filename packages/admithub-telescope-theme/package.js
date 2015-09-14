@@ -30,9 +30,7 @@ Package.onUse(function (api) {
   api.addFiles('lib/admithub.js', ['client', 'server']);
   api.addFiles('lib/routes.js', ['client', 'server']);
   api.addFiles('lib/users.js', ['client', 'server']);
-  api.addFiles('lib/freeTrialBot.js', ['client', 'server']);
 
-  api.addFiles('lib/server/methods.js', ['server']);
   api.addFiles('lib/server/publications.js', ['server']);
   api.addFiles('lib/server/emailTemplates.js', ['server']);
   api.addFiles('lib/server/postEditCallbacks.js', ['server']);
@@ -92,8 +90,6 @@ Package.onUse(function (api) {
 
   api.addFiles('lib/client/views/ah_category_list.html', 'client');
   api.addFiles('lib/client/views/ah_category_list.js', 'client');
-  api.addFiles('lib/client/views/ah_free_trial_bot_widget.html', 'client');
-  api.addFiles('lib/client/views/ah_free_trial_bot_widget.js', 'client');
   api.addFiles('lib/client/views/ah_user_tags_for_post.html', 'client');
   api.addFiles('lib/client/views/ah_header_cta.html', 'client');
   api.addFiles('lib/client/views/ah_header_cta.js', 'client');
@@ -102,12 +98,6 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/comment_item.js', 'client');
   api.addFiles('lib/client/views/contributors.html', 'client');
   api.addFiles('lib/client/views/contributors.js', 'client');
-  api.addFiles('lib/client/views/free_trial_bot.html', 'client');
-  api.addFiles('lib/client/views/free_trial_bot.js', 'client');
-  api.addFiles('lib/client/views/free_trial_bot_signup.html', 'client');
-  api.addFiles('lib/client/views/free_trial_bot_signup.js', 'client');
-  api.addFiles('lib/client/views/free_trial_bot_parent_educator.html', 'client');
-  api.addFiles('lib/client/views/free_trial_bot_parent_educator.js', 'client');
   api.addFiles('lib/client/views/header.html', 'client');
   api.addFiles('lib/client/views/header.js', 'client');
   api.addFiles('lib/client/views/layout.html', 'client');
@@ -179,23 +169,4 @@ Package.onUse(function (api) {
 
   // Make sure this is added *after* screen.styl above.
   api.addFiles('lib/client/css/asset_path_overrides.styl', 'client');
-
-  // Permissions overrides
-  api.export("isAdminById");
-  api.export('isAdmin');
-  api.export('updateAdmin');
-  api.export('adminMongoQuery');
-  api.export('notAdminMongoQuery');
-  api.export('getEmail');
-  api.export('getUserSetting');
-  api.export('adminUsers');
-
-  // Template overrides
-  api.export('templates');
-  api.export('themeSettings');
-  api.export('primaryNav');
-  api.export('secondaryNav');
-  api.export('FreeTrialBots');
-  api.export('FreeTrialBotSchema');
-  api.export('slugifyPost');
 });

@@ -16,7 +16,7 @@ var notAdminMongoQuery = {};
 notAdminMongoQuery["roles." + Roles.GLOBAL_GROUP] = {"$ne": "Admin"};
 
 Users.is.admin = function(userOrUserId) {
-  return Roles.userIsInRole(userOrUserId, ["Admin"]);
+  return Roles.userIsInRole(userOrUserId || Meteor.userId(), ["Admin"]);
 };
 Users.is.adminById = Users.is.admin;
 

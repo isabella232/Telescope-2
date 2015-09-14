@@ -11,15 +11,15 @@
       {{#if usernameOrTags}}
         <span>by </span>
         {{#if canSeeUsernames}}
-          {{> post_author_name .}}
+          {{> post_author .}}
         {{/if}}
-        {{> user_tags_for_post .}}
+        {{> ah_user_tags_for_post .}}
       {{/if}}
     {{/if}}
   </span>
 </template>
 
 <template name="custom_post_author">
-  <a class="post-author" href="{{profileUrl userId}}">{{displayName userId}}</a>{{#if hasTags}}<span>, </span>{{/if}}
+  <a class="post-author" href="{{getProfileUrl userId}}">{{getDisplayName userId}}</a>{{#if hasTags}}<span>, </span>{{/if}}
 </template>
 

@@ -20,8 +20,8 @@ Template.ah_ask_us_anything_banner.events({
 
     function submitCallback(err, post) {
       if (err) {
-        flashMessage(err.message.split('|')[0].split('[')[0].trim(), 'error');
-        clearSeenMessages();
+        Messages.flash(err.message.split('|')[0].split('[')[0].trim(), 'error');
+        Messages.clearSeen();
         return;
       }
       Router.go('post_page', {_id: post._id});

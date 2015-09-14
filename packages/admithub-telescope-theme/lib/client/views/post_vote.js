@@ -9,7 +9,7 @@ Template.post_vote.events({
     e.preventDefault();
     if(!Meteor.user()){
       Router.go(getSigninUrl());
-      flashMessage(i18n.t("Please log in first"), "info");
+      Messages.flash(i18n.t("Please log in first"), "info");
     }
     Meteor.call('cancelUpvotePost', post, function(error, result){
       trackEvent("post upvote cancelled", {'_id': post._id});

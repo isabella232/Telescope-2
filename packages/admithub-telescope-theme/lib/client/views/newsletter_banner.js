@@ -1,8 +1,3 @@
-/*
- *  These handlers are largely duplicated from packages/telescope-newsletter in
- *  order to decouple styles from event triggers.
- */
-
 Template.newsletter_banner.events({
   "click .js-newsletter-button": function(e) {
     e.preventDefault();
@@ -18,7 +13,7 @@ Template.newsletter_banner.events({
       $banner.removeClass("show-loader");
       if (err) {
         console.log(err);
-        flashMessage(err.message, "error");
+        Messages.flash(err.message, "error");
       } else {
         $banner.fadeOut("fast", function() {
           if (Meteor.user()) {
@@ -27,7 +22,7 @@ Template.newsletter_banner.events({
             Cookie.set('showBanner', 'no');
           }
         });
-        flashMessage("Thank you, request received!", "success");
+        Messages.flash("Thank you, request received!", "success");
       }
     });
   }

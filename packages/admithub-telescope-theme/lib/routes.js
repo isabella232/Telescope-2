@@ -1,13 +1,22 @@
 if (Meteor.isClient) {
   Meteor.startup(function() {
-    // load freetrialbots for use on landing page.
-    Telescope.subscriptions.preload("freetrialbots");
-
     // Put touts templates on post list pages.
     Router.onAfterAction(function() {
       this.render("ah_touts", {to: "touts"});
     }, {
       only: ['posts_top', 'posts_default', 'posts_new', 'posts_best', 'post_page']
+    });
+
+    Router.route("/contributors", {
+      name: "contributors_redirect",
+      action: function() {
+        Router.go("/partners-and-contributors", null, {"replaceState": true});
+      }
+    });
+
+    Router.route("/partners-and-contributors", {
+      name: "contributors",
+      waitOn: function() { return Meteor.subscribe("contributors"); }
     });
 
 //    // Set titles on post list pages.
@@ -48,118 +57,13 @@ if (Meteor.isClient) {
 //      if (this.ready() && !Meteor.loggingIn()) {
 //        if (!Meteor.user()) {
 //          Router.go('/sign-in');
-//          flashMessage("Please sign in or register to post a question", "info");
+//          Messages.flash("Please sign in or register to post a question", "info");
 //          // Don't fire 'next' so that we don't get the unwanted flash message from core.
 //        } else {
-//          clearSeenMessages();
+//          Messages.clearSeen();
 //          this.next();
 //        }
 //      }
 //    }, {only: ['post_submit']});
-
-    Router.route("/contributors", {
-      name: "contributors_redirect",
-      action: function() {
-        Router.go("/partners-and-contributors", null, {"replaceState": true});
-      }
-    });
-    Router.route("/partners-and-contributors", {
-      name: "contributors",
-      waitOn: function() { return Meteor.subscribe("contributors"); }
-    });
-
-    var waitOnLogin = function() {
-      return {ready: function() { return !Meteor.loggingIn(); }};
-    };
-
-    Router.route("/survey/signup/:step?", {
-      name: "free_trial_bot_signup",
-      waitOn: waitOnLogin,
-      data: function() {
-        if (this.ready()) {
-          var step = parseInt(this.params.step);
-          if (Meteor.user()) {
-            Router.go("/survey/", null, {replaceState: true});
-          } else if (!step || isNaN(step)) {
-            // TODO: Advance to "next" step instead of first.
-            Router.go("/survey/signup/1", null, {replaceState: true});
-          } else {
-            return {step: step};
-          }
-        }
-      }
-    });
-
-    Router.route("/survey/parent-educator", {
-      name: "parentEducatorSurvey",
-      template: "survey_parent_educator",
-      waitOn: waitOnLogin,
-    });
-
-    Router.route("/survey/student/:step?", {
-      name: "freeTrialBot",
-      waitOn: function() {
-        return [waitOnLogin(), Meteor.subscribe("freetrialbots")]
-      },
-      data: function() {
-        if (this.ready()) {
-          var ftb = FreeTrialBots.findOne({userId: Meteor.userId()});
-          if (!ftb) {
-            Meteor.call("createFreeTrialBotForUser", function(err, ftb) {
-              console.log(err);
-            });
-          } else if (!this.params.step || isNaN(parseInt(this.params.step))) {
-            // Find the next un-answered question
-            for (var i = 0; i < ftbQuestions.length; i++) {
-              var val;
-              if (ftbQuestions[i].field) {
-                val = dotGet(ftb, ftbQuestions[i].field);
-              } else if (ftbQuestions[i].multipleBooleans) {
-                // Find any non-undefined value in the multiple boolean.
-                val = _.find(_.map(ftbQuestions[i].multipleBooleans, function(f) {
-                  return dotGet(ftb, f.field);
-                }), function(v) { return typeof v !== "undefined"; });
-              }
-              if (typeof val === "undefined") {
-                break;
-              }
-            }
-            Router.go("/survey/student/" + (i + 1), null, {replaceState: true});
-          } else {
-            return { step: parseInt(this.params.step) }
-          }
-        }
-      }
-    });
-
-    Router.plugin('ensureSignedIn', {only: ['parentEducatorSurvey', 'freeTrialBot']});
-
-
-    Router.route("/survey", {
-      name: "freeTrialBotBase",
-      waitOn: waitOnLogin,
-      action: function() {
-        if (this.params.query.utm_medium) {
-          Session.set("utm_medium", this.params.query.utm_medium);
-        }
-        if (this.ready()) {
-          if (!Meteor.user()) {
-            Router.go("/survey/signup/", null, {replaceState: true});
-          } else {
-            var tags = Meteor.user().profile.tags;
-            if (!tags || tags.length === 0) {
-              Router.go("/survey/student/", null, {replaceState: true});
-            } else {
-              var student = UserTags.findOne({name: "Student"});
-              if (_.contains(tags, student._id)) {
-                Router.go("/survey/student/", null, {replaceState: true});
-              } else {
-                Router.go("/survey/parent-educator", null, {replaceState: true});
-              }
-            }
-          }
-        }
-      }
-    });
   });
 }

@@ -1,17 +1,7 @@
-// ok...,
 Meteor.startup(function () {
-  Template.post_share.helpers({
-    sourceLink: function(){
-      return !!this.url ? this.url : getSiteUrl() + "posts/"+this._id;
-    },
-    viaTwitter: function () {
-      var u = Meteor.user();
-      return !!u.getSetting('twitterAccount') ? 'via='+u.getSetting('twitterAccount') : '';
-    }
-  });
   Template.post_share.events({
     'click .js-share-link': function(event){
-      event.preventDefault();
+      //event.preventDefault();
       var $el = $(event.currentTarget);
       var $share = $el.next(".js-share-options");
       $(".js-share-link").not($el).removeClass("active");
