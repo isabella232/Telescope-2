@@ -1,5 +1,4 @@
 <template name="custom_post_page">
-{{ debug }}
   {{> ah_posts_sidebar }}
 
   <div class="single-post grid-posts">
@@ -12,8 +11,8 @@
         </div>
       </div>
     </div>
-    {{> comment_submit}}
-    {{> comment_list}}
+    {{> comment_submit post}}
+    {{> comment_list post}}
   </div>
 </template>
 

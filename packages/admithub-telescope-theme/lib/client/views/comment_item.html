@@ -16,7 +16,9 @@
               | <a class="edit-link" href="/comments/{{_id}}/edit">{{_ "edit"}}</a>
             {{/if}}
           </div>
-          <div class='signature'>{{> userSignature profile=author.profile }}</div>
+          {{#if author.profile.signatureHTML}}
+            <div class='signature'>{{> user_signature_html author.profile.signatureHTML }}</div>
+          {{/if}}
           {{#if canComment}}
             {{#if getSetting "nestedComments" true}}
               <a href="/comments/{{_id}}" class="comment-reply goto-comment">{{_ "reply"}}</a>
