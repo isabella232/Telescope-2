@@ -44,5 +44,43 @@ var migrationList = {
       Posts.update(post._id, {$set: {'postedAt': post.createdAt}});
     });
     return i;
-  }
+  },
+  overrideMoveVotesFromProfile: function() {
+    // Telescope's 'moveVotesFromProfile' assumes fields will be there that aren't.
+    // See https://github.com/TelescopeJS/Telescope/blob/04ee6e908dd65a6e94b127e534854bee812fff27/packages/telescope-migrations/lib/server/migrations.js#L326-L341
+
+    // Fetch the telescope migration -- if it has finished, move on.
+    var migration = Migrations.findOne({name: "moveVotesFromProfile"});
+    if (migration && _.isDate(migration.finishedAt)) {
+      return;
+    }
+
+    var i = 0;
+    ['profile.upvotedPosts',
+     'profile.downvotedPosts',
+     'profile.upvotedComments',
+     'profile.downvotedComments'].forEach(function(oldField) {
+
+      // Look for any users that have the given field.
+      var query = {};
+      query[oldField] = {$exists: true};
+      var users = Meteor.users.find(query);
+
+      users.forEach(function(user) {
+        var rename = {};
+        rename[oldField] = oldField.replace("profile", "telescope");
+        Meteor.users.update(user._id, {$rename: rename}, {multi: true, validate: false});
+        i++;
+      });
+    });
+
+    // mark the Telescope migration as finished so it doesn't run.
+    if (migration) {
+      Migrations.update(migration._id, {$set: {finishedAt: new Date()}});
+    } else {
+      Migrations.insert({name: "moveVotesFromProfile", finishedAt: new Date()});
+    }
+
+    return i;
+  },
 };
