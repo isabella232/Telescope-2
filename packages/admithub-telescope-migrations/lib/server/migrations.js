@@ -89,7 +89,9 @@ var migrationList = {
   setTelescopeEmail: function() {
     var i = 0;
     Meteor.users.find({"telescope.email": {$exists: false}, "emails.0.address": {$exists: true}}).forEach(function(user) {
-      Meteor.users.update(user._id, {$set: {"telescope.email": user.emails[0].address}});
+      if (SimpleSchema.RegEx.Email.test(user.emails[0].address)) {
+        Meteor.users.update(user._id, {$set: {"telescope.email": user.emails[0].address}});
+      }
       i++;
     });
     return i;

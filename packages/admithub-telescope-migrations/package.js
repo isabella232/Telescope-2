@@ -6,7 +6,8 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    'telescope:core'
+    'telescope:core',
+    'aldeed:simple-schema'
   ]);
 
   api.addFiles([
