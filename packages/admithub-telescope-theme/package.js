@@ -88,6 +88,7 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/css/pages/current-release.import.styl', 'client');
   // end styles
 
+  api.addFiles('lib/client/views/admin_wrapper.html', 'client');
   api.addFiles('lib/client/views/ah_category_list.html', 'client');
   api.addFiles('lib/client/views/ah_category_list.js', 'client');
   api.addFiles('lib/client/views/ah_user_tags_for_post.html', 'client');
