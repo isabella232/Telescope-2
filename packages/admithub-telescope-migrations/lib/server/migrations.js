@@ -96,4 +96,27 @@ var migrationList = {
     });
     return i;
   },
+
+  setTelescopeSlug: function() {
+    var i = 0;
+    Meteor.users.find({
+      "telescope.slug": {$exists: false},
+      "slug": {$exists: true}
+    }).forEach(function(user) {
+      Meteor.users.update(user._id, {$set: {"telescope.slug": user.slug}});
+      i++;
+    });
+    return i;
+  },
+
+  setTelescopeDisplayName: function() {
+    var i = 0;
+    Meteor.users.find({
+      "telescope.displayName": {$exists: false},
+      "profile.name": {$exists: true}
+    }).forEach(function(user) {
+      Meteor.users.update(user._id, {$set: {"telescope.displayName": user.profile.name}});
+    });
+  }
+
 };

@@ -26,7 +26,7 @@ Template.contributors.helpers({
     return aboutAdmissionsPartners;
   },
   getDisplayName: function() {
-    return getDisplayName(this);
+    return Users.getDisplayName(this);
   },
   shortDescription: function(length) {
     var desc = this.description;
