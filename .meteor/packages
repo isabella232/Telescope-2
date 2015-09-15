@@ -7,6 +7,7 @@
 telescope:core@0.24.0
 
 # Telescope optional packages
+admithub:admithub-telescope-migrations
 telescope:migrations
 telescope:api
 telescope:daily
