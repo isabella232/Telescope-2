@@ -37,6 +37,7 @@ var runMigration = function(migrationName) {
 };
 
 var migrationList = {
+
   addPostedAt: function() {
     var i = 0;
     Posts.find({postedAt: {$exists: false}, submitted: {$exists: false}}).forEach(function(post) {
@@ -45,6 +46,7 @@ var migrationList = {
     });
     return i;
   },
+
   overrideMoveVotesFromProfile: function() {
     // Telescope's 'moveVotesFromProfile' assumes fields will be there that aren't.
     // See https://github.com/TelescopeJS/Telescope/blob/04ee6e908dd65a6e94b127e534854bee812fff27/packages/telescope-migrations/lib/server/migrations.js#L326-L341
@@ -81,6 +83,15 @@ var migrationList = {
       Migrations.insert({name: "moveVotesFromProfile", finishedAt: new Date()});
     }
 
+    return i;
+  },
+
+  setTelescopeEmail: function() {
+    var i = 0;
+    Meteor.users.find({"telescope.email": {$exists: false}, "emails.0.address": {$exists: true}}).forEach(function(user) {
+      Meteor.users.update(user._id, {$set: {"telescope.email": user.emails[0].address}});
+      i++;
+    });
     return i;
   },
 };
