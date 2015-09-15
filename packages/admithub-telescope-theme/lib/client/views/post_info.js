@@ -16,6 +16,14 @@ Template.post_info.helpers({
   canSeeUsernames: function() {
     return Users.can.seeUsernames(Meteor.user());
   },
+  getUserTag: function(userId) {
+    var tagId = dotGet(Meteor.users.findOne(userId), "profile.tags.0");
+    if (tagId) {
+      var tag = UserTags.findOne(tagId);
+      return tag.name;
+    }
+    return null;
+  },
   canSeeTimestamps: function() {
     return Users.can.seeTimestamps(Meteor.user());
   }

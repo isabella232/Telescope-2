@@ -9,10 +9,12 @@
       {{/if}}
 
       {{#if usernameOrTags}}
-        <span>by </span>
         {{#if canSeeUsernames}}
-          {{> post_author .}}
-        {{/if}}
+          <span>by </span> {{> post_author .}}
+        {{else}}{{#if getUserTag userId}}
+          <span>by </span> {{getUserTag userId}}
+        {{/if}}{{/if}}
+
         {{> ah_user_tags_for_post .}}
       {{/if}}
     {{/if}}
