@@ -7,17 +7,24 @@ var _getUserTags = function(user) {
 
 Template.usertags_autoform.helpers({
   availableTags: function() {
-    console.log(this);
+    var hiddenCount = 0;
     return _.map(UserTags.find({}).fetch(), function(tag) {
       var attrs = {
         name: this.name,
         "data-autoform-type": "usertags",
         value: tag._id
       };
+      var hiddenAttrs;
       if (_.contains(this.value, tag._id)) {
         attrs.checked = "checked";
+        hiddenAttrs = _.extend({
+          "data-schema-key": this.name + "." + hiddenCount
+        }, attrs);
+        hiddenCount++;
+      } else {
+        hiddenAttrs = null;
       }
-      return {name: tag.name, attrs: attrs};
+      return {name: tag.name, attrs: attrs, hiddenAttrs: hiddenAttrs};
     }.bind(this));
   }
 });

@@ -88,17 +88,6 @@ Users.updateAdmin = function(userId, admin) {
   }
 };
 
-Users.getEmail = function(user) {
-  if (user && user.emails && user.emails[0] && user.emails[0].address) {
-    return user.emails[0].address;
-  } else if (user && user.telescope && user.telescope.email) {
-    return user.telescope.email;
-  }
-  return null;
-};
-Users.helpers({getEmail: function() { return Users.getEmail(this); }});
-
-
 Users.adminUsers = function(options) {
   return Meteor.users.find(adminMongoQuery, options);
 };

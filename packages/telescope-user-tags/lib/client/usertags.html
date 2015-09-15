@@ -3,6 +3,9 @@
     <label>
       <input type='checkbox' {{ attrs }} /> {{name }}
     </label>
+    {{#if hiddenAttrs}}
+      <input type='hidden' {{hiddenAttrs}} />
+    {{/if}}
   {{/each}}
 </template>
 <template name='usertags_for_post'>

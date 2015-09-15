@@ -11,7 +11,9 @@
             {{> yield "adminMenu" }}
             {{> modules zone="top" zoneClass="top" }}
             {{> yield}}
-            {{> modules zone="footer" zoneClass="footer" }}
+            <div class='footer grid static'>
+              {{> modules zone="footer" }}
+            </div>
           </div>
         </div>
       </div>

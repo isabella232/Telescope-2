@@ -85,6 +85,7 @@ Package.onUse(function (api) {
 
   api.addFiles('lib/client/css/pages/sign-in.import.styl', 'client');
   api.addFiles('lib/client/css/pages/bot.import.styl', 'client');
+  api.addFiles('lib/client/css/pages/current-release.import.styl', 'client');
   // end styles
 
   api.addFiles('lib/client/views/ah_category_list.html', 'client');
@@ -97,6 +98,7 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/comment_item.js', 'client');
   api.addFiles('lib/client/views/contributors.html', 'client');
   api.addFiles('lib/client/views/contributors.js', 'client');
+  api.addFiles('lib/client/views/current_release.html', 'client');
   api.addFiles('lib/client/views/header.html', 'client');
   api.addFiles('lib/client/views/header.js', 'client');
   api.addFiles('lib/client/views/layout.html', 'client');

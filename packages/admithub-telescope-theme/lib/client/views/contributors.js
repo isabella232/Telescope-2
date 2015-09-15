@@ -34,7 +34,6 @@ Template.contributors.helpers({
     if (desc.length > length) {
       var shortDesc = $.trim(desc).substring(0, length)
       .split(" ").slice(0, -1).join(" ") + "... <span data-desc='" + desc + "' class='type-link js-untruncate'>Read More</span>";
-      console.log(desc);
     }
 
     return shortDesc;
