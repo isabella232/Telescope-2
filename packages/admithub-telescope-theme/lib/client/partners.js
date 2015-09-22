@@ -23,4 +23,14 @@ aboutAdmissionsPartners = [{
   image: ahTelescopeThemeAssetPath + 'img/tcu-square-logo.png',
   url: "http://www.tcu.edu/",
   description: "TCU educates individuals to think and act as ethical leaders and responsible citizens in the global community.  Horned Frogs choose between 131 undergraduate majors and graduate well-prepared for professional accomplishment."
+}, {
+  name: "University of Houston",
+  image: ahTelescopeThemeAssetPath + 'img/houston-forum.png',
+  url: "http://www.uh.edu/",
+  description: "At the University of Houston, you’ll find degree programs that will pave the way to the future you envision—whether you want to build the physical foundations of the future as an engineer or architect, shape young minds as an educator, or study how far humanity has already come as an anthropologist."
+}, {
+  name: "Allegheny College",
+  image: ahTelescopeThemeAssetPath + 'img/allegheny.jpg',
+  url: "http://allegheny.edu/",
+  description: "Allegheny College is national liberal arts college where 2,100 students with unusual combinations of interests, skills and talents excel."
 }]

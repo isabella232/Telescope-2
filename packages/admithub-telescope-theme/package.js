@@ -167,6 +167,8 @@ Package.onUse(function (api) {
   api.addFiles('public/img/owl-repeat-light@2x.png', 'client');
   api.addFiles('public/img/OwlWeb-120x120.png', 'client');
   api.addFiles('public/img/forum-header-shadow.png', 'client');
+  api.addFiles('public/img/houston-forum.png', 'client');
+  api.addFiles('public/img/allegheny.jpg', 'client');
 
   // Make sure this is added *after* screen.styl above.
   api.addFiles('lib/client/css/asset_path_overrides.styl', 'client');
