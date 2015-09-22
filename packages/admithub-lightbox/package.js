@@ -11,9 +11,10 @@ Package.onUse(function(api) {
     'telescope:core@0.24.0',
     'aldeed:simple-schema',
     'aldeed:collection2',
-    'aldeed:autoform'  
+    'aldeed:autoform'
   ]);
 
-  api.addFiles('lib/lightBox.js', ['client', 'server']);
-  api.addFiles('lib/lightbox.html', ['client', 'server']);
+  api.addFiles('lib/client/lightBox.js', 'client');
+  api.addFiles('lib/client/lightbox.html', 'client');
+  api.addFiles('lib/client/lightbox.styl', 'client');
 });
