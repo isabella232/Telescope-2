@@ -1,20 +1,28 @@
 <template name="lightBox">
-  {{#if lightBoxOn}}
+    {{#if lightBoxOn}}
     <div class="pg-light-box-wrapper">
       <a href="#" id="pg-hide-login-form-x" class="invisible-btn pg-right">X</a>
       <div class="grid-wrap">
         <div class="pg-light-box-form at-form">
           <h3>Sign Up For Our Newsletter</h3>
           <form id="">
+            <!-- <label>Which Best Describes You</label>
+            <select name="lead-type">
+              <option value="student">Student</option>
+              <option value="parent">Parent</option>
+              <option value="admissions-officer">Admissions Officer</option>
+            </select>
+            </label> -->
             <div class="at-input">
               <label>Email<br>
-              <input type="" id="pg-user-email-input" class="pg-user-email-input"></label>
+                <input type="" id="pg-user-email-input" class="pg-user-email-input"></label>
             </div>
             <br>
-            <button id="pg-user-email-unput-button" class="pg-call-to-action-btn ui-btn">submit</button>
+            <button id="pg-light-box-leadin-button" class="pg-call-to-action-btn ui-btn">submit</button>
           </form>    
       </div>
     </div>
-    </div>
+  </div>
   {{/if}}
+
 </template>

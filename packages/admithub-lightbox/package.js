@@ -14,7 +14,7 @@ Package.onUse(function(api) {
     'aldeed:autoform'
   ]);
 
-  api.addFiles('lib/client/lightBox.js', 'client');
   api.addFiles('lib/client/lightbox.html', 'client');
+  api.addFiles('lib/client/lightBox.js', 'client');
   api.addFiles('lib/client/lightbox.styl', 'client');
 });

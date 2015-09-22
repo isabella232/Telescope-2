@@ -12,13 +12,21 @@ if (Meteor.isClient) {
 
   Template.lightBox.helpers({
     lightBoxOn: function() {
-      return true;
+      return false;
     }
   });
 
-}
+  Template.lightBox.events({
+    'click #pg-light-box-leadin-button': function(e) {
+      e.preventDefault();
+      Meteor.call('sendToMailChimp', function(err,result) {
+        if (err) {
 
-//above template helper does not work so i am using global helper  
-  UI.registerHelper("lightBoxOn", function() {
-    return Session.get('lightBoxPageViewCounter') === 1;
+        } else {
+
+        }
+          //send error to view
+      });
+    }
   });
+}
