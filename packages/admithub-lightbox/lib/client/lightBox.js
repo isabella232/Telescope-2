@@ -32,7 +32,6 @@ if (Meteor.isClient) {
     });
   };
 
-  Meteor.startup(function () {
     Template.newsletter_alt.helpers({
       isNotConnected: function () {
         return !Meteor.user();
@@ -40,11 +39,11 @@ if (Meteor.isClient) {
       showBanner: function () {
         // note: should not be reactive
         if(
-              Settings.get('lightBoxPageViewCounter') === false
-          // ||  !Users.can.view(Meteor.user())
+          Settings.get('lightBoxPageViewCounter') === false
+          ||  !Users.can.view(Meteor.user())
           // ||  Cookie.get('showBanner') === "no"
-          // ||  (Meteor.user() && Meteor.user().getSetting('newsletter.showBanner', true) === false)
-          // ||  (Meteor.user() && Meteor.user().getSetting('newsletter.subscribeToNewsletter', false) === true)
+          ||  (Meteor.user() && Meteor.user().getSetting('newsletter.showBanner', true) === false)
+          ||  (Meteor.user() && Meteor.user().getSetting('newsletter.subscribeToNewsletter', false) === true)
         ){
           return false;
         }else{
@@ -98,7 +97,6 @@ if (Meteor.isClient) {
         e.preventDefault();
       }
     });
-  });
 
 
 }
