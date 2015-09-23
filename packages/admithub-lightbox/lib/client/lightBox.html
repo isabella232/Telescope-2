@@ -1,28 +1,23 @@
-<template name="lightBox">
-    {{#if lightBoxOn}}
-    <div class="pg-light-box-wrapper">
-      <a href="#" id="pg-hide-login-form-x" class="invisible-btn pg-right">X</a>
-      <div class="grid-wrap">
-        <div class="pg-light-box-form at-form">
-          <h3>Sign Up For Our Newsletter</h3>
-          <form id="">
-            <!-- <label>Which Best Describes You</label>
-            <select name="lead-type">
-              <option value="student">Student</option>
-              <option value="parent">Parent</option>
-              <option value="admissions-officer">Admissions Officer</option>
-            </select>
-            </label> -->
-            <div class="at-input">
-              <label>Email<br>
-                <input type="" id="pg-user-email-input" class="pg-user-email-input"></label>
-            </div>
-            <br>
-            <button id="pg-light-box-leadin-button" class="pg-call-to-action-btn ui-btn">submit</button>
-          </form>    
+<template name="newsletter_alt">
+  {{#if showBanner}}
+     <div class="newsletter-banner-wrapper content-wrapper">
+      <div class="newsletter-banner grid-module grid banner">
+        <a href="#" class="newsletter-dismiss banner-dismiss pg-hide-login-form-x">X</a>
+        <br>
+        <h3>Get full access to AdmitHub’s resources</h3>
+        <hr>
+        <br>
+        <p>Sign up for AdmitHub's newsletter to receive college admissions advice and assistance from our team of experts.</p>
+        <br>
+        <form>
+          <h4 class="newsletter-tagline"></h4>
+         <!--  {{#if isNotConnected}} -->
+            <input class="newsletter-email" type="email" placeholder="Your Email">
+          <!-- {{/if}} -->
+          <button class="button newsletter-button btn btn-primary">Subscribe!<span class="button-loader"><img src="/packages/telescope_core/public/img/loading-balls.svg"/></span></button>
+        </form>
+        <h4 class="newsletter-subscribed">{{_ "thanks_for_subscribing"}}</h4>
       </div>
     </div>
-  </div>
   {{/if}}
-
 </template>

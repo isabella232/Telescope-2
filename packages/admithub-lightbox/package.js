@@ -8,10 +8,13 @@ Package.onUse(function(api) {
   api.use([
     'accounts-base',
     'stylus',
-    'telescope:core@0.24.0',
+    'telescope:core',
     'aldeed:simple-schema',
     'aldeed:collection2',
-    'aldeed:autoform'
+    'aldeed:autoform',
+    'telescope:newsletter',
+    'telescope:notifications',
+    'standard-app-packages',
   ]);
 
   api.addFiles('lib/client/lightbox.html', 'client');
