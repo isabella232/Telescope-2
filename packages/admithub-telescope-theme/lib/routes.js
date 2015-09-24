@@ -19,8 +19,5 @@ if (Meteor.isClient) {
       waitOn: function() { return Meteor.subscribe("contributors"); }
     });
 
-    Router.route("/posts/:id/p/", {
-      Router.go("/");
-    });
   });
 }
