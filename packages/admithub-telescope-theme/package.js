@@ -33,6 +33,7 @@ Package.onUse(function (api) {
   api.addFiles('lib/server/publications.js', ['server']);
   api.addFiles('lib/server/emailTemplates.js', ['server']);
   api.addFiles('lib/server/postEditCallbacks.js', ['server']);
+  api.addFiles('lib/server/overRideCommentLimit.js', ['client','server']);
 
   api.addFiles('lib/client/partners.js', 'client');
 
