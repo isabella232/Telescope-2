@@ -2,20 +2,18 @@
   {{#if showBanner}}
      <div class="newsletter-banner-wrapper content-wrapper">
       <div class="newsletter-banner grid-module grid banner">
-        <a href="#" class="newsletter-dismiss banner-dismiss pg-hide-login-form-x">X</a>
+        
+        <a href="#" class="newsletter-dismiss banner-dismiss pg-hide-login-form-x"><div class="pg-dismiss-newsletter-circle"><p>X</p></div></a>
         <br>
         <br>
         <h3>Get full access to AdmitHub’s resources</h3>
-        <hr>
         <br>
         <p>Sign up for AdmitHub's newsletter to receive college admissions advice and assistance from our team of experts.</p>
         <br>
         <form>
           <h4 class="newsletter-tagline"></h4>
-         <!--  {{#if isNotConnected}} -->
             <input class="newsletter-email" type="email" placeholder="Your Email">
-          <!-- {{/if}} -->
-          <button class="button newsletter-button btn btn-primary">Subscribe!<span class="button-loader"><img src="/packages/telescope_core/public/img/loading-balls.svg"/></span></button>
+          <button class="button newsletter-button btn btn-primary">Subscribe<span class="button-loader"><img src="/packages/telescope_core/public/img/loading-balls.svg"/></span></button>
         </form>
         <br>
         <a href='#' class="newsletter-dismiss pg-dont-ask">Don't Ask Me Again</a>

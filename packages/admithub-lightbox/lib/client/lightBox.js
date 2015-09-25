@@ -1,7 +1,7 @@
 Meteor.startup(function(){
   Meteor.setTimeout(function(){
       if ( checkShowSettings() ) { Session.set('lightBoxPageViewSetting', true) }
-  }, 1000 * 60);
+  }, 1000 );
 });
 
 Telescope.modules.add("top", {
