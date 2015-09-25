@@ -14,6 +14,11 @@ if (Meteor.isClient) {
       }
     });
 
+    Router.route("/partners-and-contributors", {
+      name: "contributors",
+      waitOn: function() { return Meteor.subscribe("contributors"); }
+    });
+
     Router.route("/posts/:id/p/:postname", {
       action: function() {
         Router.go("/posts/"+ this.params.id + "/" + this.params.postname );
