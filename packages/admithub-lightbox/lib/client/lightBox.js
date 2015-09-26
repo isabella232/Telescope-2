@@ -1,6 +1,10 @@
+
 Meteor.startup(function(){
   Meteor.setTimeout(function(){
-      if ( checkShowSettings() ) { Session.set('lightBoxPageViewSetting', true) }
+      if ( checkShowSettings() ) { 
+        Session.set('lightBoxPageViewSetting', true);
+        showMask(); 
+      }
   }, 1000 );
 });
 
@@ -8,6 +12,10 @@ Telescope.modules.add("top", {
 template: "newsletter_alt",
 order: 0
 });
+
+var toggleMask = function() {
+ $('body').toggleClass('pg-mask');
+}
 
 var checkShowSettings = function () {
   if (
@@ -39,7 +47,8 @@ Meteor.setInterval(function () {
 };
 
 var dismissBanner = function () {
-$('.newsletter-banner').fadeOut('fast', function () {
+  toggleMask();
+  $('.newsletter-banner').fadeOut('fast', function () {
   if(Meteor.user()){
     // if user is connected, change setting in their account
     Users.setSetting(Meteor.user(), 'newsletter.showBanner', false);
