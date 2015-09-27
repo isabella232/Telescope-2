@@ -1,23 +1,27 @@
-.newsletter-banner
+.custom-lightbox-banner
   position absolute
   position absolute
   background-color white
   width 80%
   margin 0 auto
-  border-radius 1rem
   left 0
   right 0
   color color-black
   margin-top 10rem
   z-index 1
-  padding 3rem
-  width 50%
+  padding 45px
+  padding-bottom 20px
+  @media only screen and (min-width: 1150px)
+    width 50%
   h3
     color  #26061C
     text-align center
     font-size 30pt
   p
     color #8C878A
+  p.pg-signup-copy
+    font-style italic
+    text-align center
   .button.btn.btn-primary
     border-radius 0px
     font-size 14pt
@@ -34,7 +38,7 @@ a.pg-hide-login-form-x
   float right
   font-size 90%
 
-.newsletter-banner
+.custom-lightbox-banner
   .newsletter-email.newsletter-email 
     font-family serif !important
     font-size 16px !important
@@ -56,8 +60,14 @@ a.pg-hide-login-form-x
   height:100%;
   left:0;
   top:0;
-  z-index:1;
+  z-index:10000;
   background: rgba(0,0,0,0.7);
   
 }
 
+.pg-email-input-style-fix
+  @media only screen and (max-width: 645px)
+    text-align center
+    button
+      margin-top 5px
+     

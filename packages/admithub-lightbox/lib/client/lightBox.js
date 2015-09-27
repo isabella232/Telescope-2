@@ -1,11 +1,10 @@
 
 Meteor.startup(function(){
   Meteor.setTimeout(function(){
-      if ( checkShowSettings() ) { 
-        Session.set('lightBoxPageViewSetting', true);
-        toggleMask(); 
+      if (Session.get('lightBoxPageViewSetting') === undefined ) {
+        Session.set('lightBoxPageViewSetting', checkShowSettings());
       }
-  }, 1000 );
+  }, 60*1000 );
 });
 
 Telescope.modules.add("top", {
@@ -13,43 +12,52 @@ template: "newsletter_alt",
 order: 0
 });
 
-var toggleMask = function() {
- $('body').toggleClass('pg-mask');
+var addMask = function() {
+ $('body').addClass('pg-mask');
+}
+
+var removeMask = function() {
+  $('body').removeClass('pg-mask');
 }
 
 var checkShowSettings = function () {
   if (
     !Users.can.view(Meteor.user())
-    || Session.get('lightBoxPageViewSetting') === false
+    ||  Session.get('lightBoxPageViewSetting') === false
     ||  Cookie.get('showCustomBanner') === "no"        
-    ||  (Meteor.user() && Meteor.user().getSetting('newsletter.showBanner', true) === false)
-    ||  (Meteor.user() && Meteor.user().getSetting('newsletter.subscribeToNewsletter', false) === true)
+    ||  (Meteor.user() && Meteor.user().getSetting('profile.dontShowCustomEmailBanner', true) === true)
     ) {
+      removeMask();
       return false
     } else {
+      addMask();
       return true
     }
   }
 
 Template.layout.events({
   'click a': function (e) {
-    var viewCount = Session.get('lightBoxPageViewCount') ? Session.get('lightBoxPageViewCount') + 1 : 1 ;
-    if (viewCount > 1 ) { Session.set('lightBoxPageViewSetting', checkShowSettings() ) }
+    Session.get('lightBoxPageViewCount') === undefined ? Session.set('lightBoxPageViewCount', 1 ) : Session.set('lightBoxPageViewCount', (Session.get('lightBoxPageViewCount') + 1 )) ;
+    if (Session.get('lightBoxPageViewCount') === 4 ) { Session.set('lightBoxPageViewSetting', checkShowSettings() ) }
   }
 });
 
-var confirmSubscription = function () {
-    dismissBanner();
-};
+var updateDontShowCustomEmailBannerField = function() {
+   Meteor.call('dontShowCustomEmailBanner', function (error, result) {
+      if(error) {
+        console.log(error.reason);
+      } else {
+        console.log(result)
+      }
+    });
+}
 
 var dismissBanner = function () {
-  toggleMask();
+  removeMask();
   Session.set('lightBoxPageViewSetting', false);
   Cookie.set('showCustomBanner', "no");
-  if(Meteor.user()){
-    console.log('if')
-    // if user is connected, change setting in their account
-    Users.setSetting(Meteor.user(), 'newsletter.showBanner', false);
+  if (Meteor.user()) {
+    updateDontShowCustomEmailBannerField();
   }
 };
 
@@ -65,44 +73,32 @@ Template.newsletter_alt.helpers({
 Template.newsletter_alt.events({
   'click .newsletter-button': function (e) {
     e.preventDefault();
-    var $banner = $('.newsletter-banner');
-    if(Meteor.user()){
-      $banner.addClass('show-loader');
-      Meteor.call('addCurrentUserToMailChimpList', function (error, result) {
-        $banner.removeClass('show-loader');
-        if(error){
-          console.log(error);
-          Messages.flash(error.message, "error");
-        }else{
-          console.log(result);
-          confirmSubscription();
-        }
-      });
-    }else{
-      var email = $('.newsletter-email').val();
-      if(!email){
-        alert('Please fill in your email.');
-        return;
-      }
-      $banner.addClass('show-loader');
-      Meteor.call('addEmailToMailChimpList', email, function (error, result) {
-        $banner.removeClass('show-loader');
-        if(error){
-          console.log(error);
-          Messages.flash(error.reason, "error");
-        }else{
-          Messages.clearSeen();
-          console.log(result);
-          confirmSubscription();
-        }
-      });
+    var $banner = $('.newsletter-banner'); 
+    var email = $('.newsletter-email').val();
+    if(!email){
+      alert('Please fill in your email.');
+      return;
     }
-  
+    $banner.addClass('show-loader');
+    Meteor.call('addEmailToMailChimpList', email, function (error, result) {
+      $banner.removeClass('show-loader');
+      if(error){
+        console.log(error);
+        Messages.flash(error.reason, "error");
+      }else{
+        Messages.clearSeen();
+        console.log(result);
+        dismissBanner();
+      }
+    });
+    if (Meteor.user()) {
+      updateDontShowCustomEmailBannerField();
+    }
   },
   'click .newsletter-dismiss': function (e) {
+    e.preventDefault();
     Session.set('lightBoxPageViewSetting', false);
     dismissBanner();
-    e.preventDefault();
   }
 });
 

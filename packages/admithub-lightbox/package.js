@@ -20,4 +20,5 @@ Package.onUse(function(api) {
   api.addFiles('lib/client/lightbox.html', 'client');
   api.addFiles('lib/client/lightBox.js', 'client');
   api.addFiles('lib/client/lightbox.styl', 'client');
+  api.addFiles('lib/server/methods.js', 'server');
 });
