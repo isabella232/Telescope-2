@@ -14,7 +14,7 @@ Package.onUse(function(api) {
     'aldeed:autoform',
     'telescope:newsletter',
     'telescope:notifications',
-    'standard-app-packages',
+    'standard-app-packages'
   ]);
 
   api.addFiles('lib/client/lightbox.html', 'client');
