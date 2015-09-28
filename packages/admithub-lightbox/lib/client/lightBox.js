@@ -53,11 +53,12 @@ var updateDontShowCustomEmailBannerField = function() {
 }
 
 var dismissBanner = function () {
+  var checked = $('#dont-ask-me-again-check').is(':checked');
   removeMask();
   Session.set('lightBoxPageViewSetting', false);
-  Cookie.set('showCustomBanner', "no");
-  if (Meteor.user()) {
+  if (Meteor.user() && checked ) {
     updateDontShowCustomEmailBannerField();
+    Cookie.set('showCustomBanner', "no");
   }
 };
 
