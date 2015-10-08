@@ -131,5 +131,18 @@ var migrationList = {
       i += 1;
     });
     return i;
+  },
+
+  adjustCommentCountsDenormalization: function() {
+    var i = 0;
+    var userCommentCount = {};
+    Comments.find().forEach(function(comment) {
+      userCommentCount[comment.userId] = (userCommentCount[comment.userId] || 0) + 1;
+    });
+    _.each(userCommentCount, function(commentCount, userId) {
+      Meteor.users.update(userId, {$set: {"telescope.commentCount": commentCount}});
+      i += 1;
+    });
+    return i;
   }
 };
