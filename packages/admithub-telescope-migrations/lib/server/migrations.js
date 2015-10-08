@@ -117,6 +117,19 @@ var migrationList = {
     }).forEach(function(user) {
       Meteor.users.update(user._id, {$set: {"telescope.displayName": user.profile.name}});
     });
-  }
+    return i;
+  },
 
+  adjustPostCountsDenormalization: function() {
+    var i = 0;
+    var userPostCount = {};
+    Posts.find().forEach(function(post) {
+      userPostCount[post.userId] = (userPostCount[post.userId] || 0) + 1;
+    });
+    _.each(userPostCount, function(postCount, userId) {
+      Meteor.users.update(userId, {$set: {"telescope.postCount": postCount}});
+      i += 1;
+    });
+    return i;
+  }
 };
