@@ -11,3 +11,4 @@ Template.ah_post_title_and_content.helpers({
     return Users.can.edit(Meteor.user(), this);
   }
 });
+
