@@ -1,3 +1,5 @@
+//custom_post_body helpers causing errors, thus we have imageLicenseInfo
+
 Template.ah_post_teaser.helpers({
   postBodyTeaser: function() {
     var html = "";
@@ -9,5 +11,18 @@ Template.ah_post_teaser.helpers({
       }
     }
     return html;
+  },
+
+  getThumbnail: function() {
+    return dotGet(this, 'imageUrl');
   }
 });
+
+Template.imageLicenseInfo.helpers({
+  convertToHtml: function(imageLicense) {
+    $('.insert-links').html(imageLicense);
+    return null;
+  } 
+});
+
+
