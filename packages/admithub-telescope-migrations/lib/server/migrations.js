@@ -159,7 +159,7 @@ var migrationList = {
     return i;
   },
 
-  setTelescopeSlug: function() {
+  setTelescopeSlugAgain: function() {
     var i = 0;
     Meteor.users.find({"telescope.slug": {$exists: 0}}).forEach(function(user) {
       Meteor.users.update(user._id, {
