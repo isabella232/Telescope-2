@@ -157,5 +157,17 @@ var migrationList = {
       i += 1;
     });
     return i;
+  },
+
+  setTelescopeSlug: function() {
+    var i = 0;
+    Meteor.users.find({"telescope.slug": {$exists: 0}}).forEach(function(user) {
+      Meteor.users.update(user._id, {
+        $set: { "telescope.slug": user.slug || user._id, }
+      });
+      i += 1;
+    });
+    return i;
   }
+
 };
