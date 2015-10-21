@@ -4,7 +4,7 @@
       <img src='{{imageUrl}}'>
     {{/if}}
     {{#if imageLicense}}
-      {{> imageLicenseInfo this}}
+      {{{imageLicense}}}
     {{/if}}
     {{#if htmlBody }}{{{targetBlankNoFollow htmlBody}}}{{/if}}</div>
   {{tester}}
@@ -17,11 +17,5 @@
  {{else}}
  <div class="post-body markdown post-teaser">{{{targetBlankNoFollow postBodyTeaser}}}</div>
  {{/if}}
-</template>
-
-<template name="imageLicenseInfo">
-  <div class="insert-links">
-    {{convertToHtml imageLicense}}
-  </div>
 </template>
 
