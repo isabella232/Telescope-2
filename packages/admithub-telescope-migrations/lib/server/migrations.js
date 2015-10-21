@@ -144,5 +144,18 @@ var migrationList = {
       i += 1;
     });
     return i;
+  },
+
+  moveProfileBioToTelescopeBio: function() {
+    var i = 0;
+    Meteor.users.find({"profile.bio": {$exists: 1}}).forEach(function(user) {
+      Meteor.users.update(user._id, {
+        // "telescope.htmlBio" should be handled by Users.before.update hook
+        $set: {"telescope.bio": user.profile.bio},
+        $unset: {"profile.bio": ""}
+      });
+      i += 1;
+    });
+    return i;
   }
 };
