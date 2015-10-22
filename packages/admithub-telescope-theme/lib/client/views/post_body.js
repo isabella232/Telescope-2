@@ -18,11 +18,5 @@ Template.ah_post_teaser.helpers({
   }
 });
 
-Template.imageLicenseInfo.helpers({
-  convertToHtml: function(imageLicense) {
-    $('.insert-links').html(imageLicense);
-    return null;
-  } 
-});
 
 
