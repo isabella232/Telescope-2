@@ -46,9 +46,7 @@ var updateDontShowCustomEmailBannerField = function() {
    Meteor.call('dontShowCustomEmailBanner', function (error, result) {
       if(error) {
         console.log(error.reason);
-      } else {
-        console.log(result)
-      }
+      } 
     });
 }
 
@@ -88,7 +86,6 @@ Template.newsletter_alt.events({
         Messages.flash(error.reason, "error");
       }else{
         Messages.clearSeen();
-        console.log(result);
         dismissBanner();
       }
     });
