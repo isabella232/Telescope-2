@@ -6,15 +6,8 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    'accounts-base',
     'stylus',
     'telescope:core@0.24.0',
-    'aldeed:simple-schema',
-    'aldeed:collection2',
-    'aldeed:autoform',
-    'telescope:newsletter',
-    'telescope:notifications',
-    'standard-app-packages'
   ]);
 
   api.addFiles('lib/client/lightbox.html', 'client');
