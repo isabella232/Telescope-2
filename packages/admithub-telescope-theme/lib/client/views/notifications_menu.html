@@ -5,8 +5,8 @@
       <div class="mod-dropdown mod-dropdown-center">
         <h6 class="notifications-title">Notifications</h6>
         <ul role="menu" aria-labelledby="dLabel">
-          {{#each notifications}}
-            {{> UI.dynamic template=notificationItem}}
+          {{#each getNotifications }}
+            {{> notification_item .}}
           {{/each}}
           <li><button class="ui-btn ui-small ui-stretch mark-as-read">{{_ "mark_as_read"}}</button></li>
         </ul>

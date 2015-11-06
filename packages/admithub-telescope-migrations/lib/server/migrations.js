@@ -117,6 +117,57 @@ var migrationList = {
     }).forEach(function(user) {
       Meteor.users.update(user._id, {$set: {"telescope.displayName": user.profile.name}});
     });
+    return i;
+  },
+
+  adjustPostCountsDenormalization: function() {
+    var i = 0;
+    var userPostCount = {};
+    Posts.find().forEach(function(post) {
+      userPostCount[post.userId] = (userPostCount[post.userId] || 0) + 1;
+    });
+    _.each(userPostCount, function(postCount, userId) {
+      Meteor.users.update(userId, {$set: {"telescope.postCount": postCount}});
+      i += 1;
+    });
+    return i;
+  },
+
+  adjustCommentCountsDenormalization: function() {
+    var i = 0;
+    var userCommentCount = {};
+    Comments.find().forEach(function(comment) {
+      userCommentCount[comment.userId] = (userCommentCount[comment.userId] || 0) + 1;
+    });
+    _.each(userCommentCount, function(commentCount, userId) {
+      Meteor.users.update(userId, {$set: {"telescope.commentCount": commentCount}});
+      i += 1;
+    });
+    return i;
+  },
+
+  moveProfileBioToTelescopeBio: function() {
+    var i = 0;
+    Meteor.users.find({"profile.bio": {$exists: 1}}).forEach(function(user) {
+      Meteor.users.update(user._id, {
+        // "telescope.htmlBio" should be handled by Users.before.update hook
+        $set: {"telescope.bio": user.profile.bio},
+        $unset: {"profile.bio": ""}
+      });
+      i += 1;
+    });
+    return i;
+  },
+
+  setTelescopeSlugAgain: function() {
+    var i = 0;
+    Meteor.users.find({"telescope.slug": {$exists: 0}}).forEach(function(user) {
+      Meteor.users.update(user._id, {
+        $set: { "telescope.slug": user.slug || user._id, }
+      });
+      i += 1;
+    });
+    return i;
   }
 
 };

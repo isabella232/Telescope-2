@@ -28,10 +28,14 @@ Users.is.admin = function(userOrUserId) {
 Users.is.adminById = Users.is.admin;
 
 Users.can.comment = function(user, returnError) {
-  if (Roles.userIsInRole(user, ["Admin", "Editor", "Officer"])) {
+  if (Roles.userIsInRole(user, ["Admin", "Editor", "Officer"], Roles.GLOBAL_GROUP)) {
     return true;
   }
   return returnError ? "no_rights" : false;
+};
+
+Users.commenters = function(options) {
+  return Roles.getUsersInRole(["Admin", "Editor", "Officer"], Roles.GLOBAL_GROUP, options);
 };
 
 

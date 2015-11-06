@@ -33,6 +33,8 @@ Package.onUse(function (api) {
   api.addFiles('lib/server/publications.js', ['server']);
   api.addFiles('lib/server/emailTemplates.js', ['server']);
   api.addFiles('lib/server/postEditCallbacks.js', ['server']);
+  api.addFiles('lib/server/overRideCommentLimit.js', ['client','server']);
+  api.addFiles('lib/server/addImageField.js', ['client','server']);
 
   api.addFiles('lib/client/partners.js', 'client');
 
@@ -63,6 +65,7 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/css/common/no.import.styl', 'client');
   api.addFiles('lib/client/css/common/sidebar.import.styl', 'client');
   api.addFiles('lib/client/css/common/responsive.import.styl', 'client');
+  api.addFiles('lib/client/css/common/custom-images.import.styl', 'client');
 
   api.addFiles('lib/client/css/modules/section.import.styl', 'client');
   api.addFiles('lib/client/css/modules/hero.import.styl', 'client');
