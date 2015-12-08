@@ -25,7 +25,6 @@ if (Meteor.isClient) {
 
   Template.layout.events({
     'click a': function (e) {
-      console.log( Session.get('lightBoxPageViewCount') );
       Session.get('lightBoxPageViewCount') === undefined ? Session.set('lightBoxPageViewCount', 1 ) : Session.set('lightBoxPageViewCount', (Session.get('lightBoxPageViewCount') + 1 )) ;
       Session.get('lightBoxPageViewCount') === 4  ? Session.set('lightBoxPageViewSetting', checkShowSettings() ) : null ;
     }
