@@ -1,13 +1,18 @@
+.g-header-wrap
+  position absolute
+  z-index 10
+
 .custom-lightbox-banner
-  position absolute
-  position absolute
+  position fixed
   background-color white
   width 80%
   margin 0 auto
   left 0
   right 0
   color color-black
-  margin-top 10rem
+  margin-top 8rem
+  @media only screen and (max-width: 645px)
+    margin-top -2.5rem
   z-index 2
   padding-left 45px
   padding-right 45px
@@ -54,29 +59,15 @@ a.pg-hide-login-form-x
     font-size larger
     font-wieght 900
 
-#mark-wrapper 
-  position relative
-
-.pg-mask {
-  position:absolute;
-  width:100%;
-  height:100%;
-  left:0;
-  top:0;
-  z-index:1;
-  background: #d3d3d3;
-}
-
-.secondary-mask {
-   position:absolute;
-  width:100%;
-  height:100%;
-  left:0;
-  top:0;
-  z-index:1;
-  background: #D3d3d3;
-  opacity: 0.5;
-}
+#mask-wrapper 
+  position fixed
+  width 100%
+  height 100%
+  background-color black
+  z-index 1
+  top 0
+  left 0
+  opacity 0.7
 
 .pg-email-input-style-fix
   @media only screen and (max-width: 645px)
