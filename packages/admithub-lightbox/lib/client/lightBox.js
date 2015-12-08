@@ -3,7 +3,7 @@ if (Meteor.isClient) {
   Meteor.startup(function(){
     Meteor.setTimeout(function(){
       Session.get('lightBoxPageViewSetting') === undefined  ? Session.set('lightBoxPageViewSetting', checkShowSettings() ) : null ;
-    }, 6000*1000 );
+    }, 60*1000 );
   });
 
   Telescope.modules.add("top", {
@@ -25,8 +25,9 @@ if (Meteor.isClient) {
 
   Template.layout.events({
     'click a': function (e) {
+      console.log( Session.get('lightBoxPageViewCount') );
       Session.get('lightBoxPageViewCount') === undefined ? Session.set('lightBoxPageViewCount', 1 ) : Session.set('lightBoxPageViewCount', (Session.get('lightBoxPageViewCount') + 1 )) ;
-      if (Session.get('lightBoxPageViewCount') === 4 ) { Session.set('lightBoxPageViewSetting', checkShowSettings() ) }
+      Session.get('lightBoxPageViewCount') === 4  ? Session.set('lightBoxPageViewSetting', checkShowSettings() ) : null ;
     }
   });
 
