@@ -3,7 +3,11 @@ if (Meteor.isClient) {
   Meteor.startup(function(){
     Meteor.setTimeout(function(){
       Session.get('lightBoxPageViewSetting') === undefined  ? Session.set('lightBoxPageViewSetting', checkShowSettings() ) : null ;
-    }, 60*1000 );
+    }, 1*1000 );
+  });
+
+  Template.newsletter_alt.onCreated(function() {
+    this.thankYouForSubmission = new ReactiveVar(false);
   });
 
   Telescope.modules.add("top", {
@@ -41,29 +45,36 @@ if (Meteor.isClient) {
   Template.newsletter_alt.helpers({
     showBanner: function () {
       return Session.get('lightBoxPageViewSetting');
+    },
+    thankYouForSubmission: function () {
+      return Template.instance().thankYouForSubmission.get();
     }
   });
 
   Template.newsletter_alt.events({
-    'click .newsletter-button': function (e) {
+    'click .newsletter-button': function (e, t) {
       e.preventDefault();
       var $banner = $('.newsletter-banner'); 
       var email = $('.newsletter-email').val();
-      if(!email){
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(!email || !re.test(email)){
         alert('Please fill in your email.');
         return;
       }
-      $banner.addClass('show-loader');
-      Meteor.call('addEmailToMailChimpList', email, function (error, result) {
-        $banner.removeClass('show-loader');
-        if(error){
-          console.log(error);
-          Messages.flash(error.reason, "error");
-        }else{
-          Messages.clearSeen();
-          dismissBanner();
-        }
-      });
+      t.thankYouForSubmission.set(true);
+      Meteor.setTimeout(function(){
+
+        Meteor.call('addEmailToMailChimpList', email, function (error, result) {
+          $banner.removeClass('show-loader');
+          if(error){
+            console.log(error);
+            Messages.flash(error.reason, "error");
+          }else{
+            Messages.clearSeen();
+            dismissBanner();
+          }
+        });
+      },2000);
     },
 
     'click .newsletter-dismiss': function (e) {
