@@ -17,8 +17,7 @@ _.each({
   "primaryNav": [
     {template: "notifications_menu", order: 0},
     {template: "ah_application_robot_link", order: 1},
-    {template: "ah_signin", order: 2},
-    {template: "search", order: 3}
+    {template: "ah_signin", order: 2}
   ],
   "secondaryNav": [
     {template: "user_menu"}

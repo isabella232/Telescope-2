@@ -8,7 +8,7 @@
         <div class="user-avatar">{{>avatar userId=userId shape="circle"}}</div>
         <div class="comment-main">
           <div class="comment-meta">
-            <a class="comment-username" href="{{profileUrl}}">{{authorName}}</a>,
+            <a class="comment-username" href="/users/{{userId}}">{{authorName}}</a>,
             <span class="comment-time">{{timeAgo ago}},</span>
             <span class="points">{{upvotes}}</span> <span class="unit">point{{#unless equals upvotes 1 }}s{{/unless}} </span>
             <a href="/comments/{{_id}}" class="comment-permalink icon-link goto-comment"></a>

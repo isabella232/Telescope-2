@@ -1,9 +1,10 @@
+
 if (Meteor.isClient) {
   
   Meteor.startup(function(){
     Meteor.setTimeout(function(){
       Session.get('lightBoxPageViewSetting') === undefined  ? Session.set('lightBoxPageViewSetting', checkShowSettings() ) : null ;
-    }, 1*1000 );
+    }, 60*1000 );
   });
 
   Template.newsletter_alt.onCreated(function() {
@@ -63,7 +64,6 @@ if (Meteor.isClient) {
       }
       t.thankYouForSubmission.set(true);
       Meteor.setTimeout(function(){
-
         Meteor.call('addEmailToMailChimpList', email, function (error, result) {
           $banner.removeClass('show-loader');
           if(error){
