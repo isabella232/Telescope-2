@@ -63,6 +63,10 @@ if (Meteor.isClient) {
         return;
       }
       t.thankYouForSubmission.set(true);
+      analytics.track('newsletter sign up', {
+        location: 'lightbox popup',
+        email: email
+      });
       Meteor.setTimeout(function(){
         Meteor.call('addEmailToMailChimpList', email, function (error, result) {
           $banner.removeClass('show-loader');

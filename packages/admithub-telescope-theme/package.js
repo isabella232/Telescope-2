@@ -23,7 +23,8 @@ Package.onUse(function (api) {
     'iron:router',
     'richsilv:pikaday@1.0.0',
 
-    'admithub:admithub-common'
+    'admithub:admithub-common',
+    'percolatestudio:segment.io@=2.0.0_1',
   ]);
 
   api.addFiles('lib/admithub.js', ['client', 'server']);
@@ -150,6 +151,7 @@ Package.onUse(function (api) {
   api.addFiles('lib/client/views/trackers.html', 'client');
   api.addFiles('lib/client/views/trackers.js', 'client');
   api.addFiles('lib/client/views/typekit.html', 'client');
+  api.addFiles('lib/segment.js');
 
   api.addFiles('public/icons/admithub.eot', 'client');
   api.addFiles('public/icons/admithub.svg', 'client');
@@ -172,6 +174,11 @@ Package.onUse(function (api) {
   api.addFiles('public/img/forum-header-shadow.png', 'client');
   api.addFiles('public/img/houston-forum.png', 'client');
   api.addFiles('public/img/allegheny.jpg', 'client');
+
+  api.addFiles('lib/client/views/lightBox.html', 'client');
+  api.addFiles('lib/client/views/lightBox.js', 'client');
+  api.addFiles('lib/client/css/lightBox.styl', 'client');
+  api.addFiles('lib/server/methods.js', 'server');
 
   // Make sure this is added *after* screen.styl above.
   api.addFiles('lib/client/css/asset_path_overrides.styl', 'client');
