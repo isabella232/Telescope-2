@@ -13,8 +13,8 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles('segment.js');
-  api.addFiles('client/lightBox.html', 'client');
-  api.addFiles('client/lightBox.js', 'client');
-  api.addFiles('client/lightBox.styl', 'client');
+  api.addFiles('client/lightbox.html', 'client');
+  api.addFiles('client/lightbox.js', 'client');
+  api.addFiles('client/lightbox.styl', 'client');
   api.addFiles('server/methods.js', 'server');
 });
