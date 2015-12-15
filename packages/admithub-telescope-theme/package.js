@@ -177,7 +177,7 @@ Package.onUse(function (api) {
 
   api.addFiles('lib/client/views/lightBox.html', 'client');
   api.addFiles('lib/client/views/lightBox.js', 'client');
-  api.addFiles('lib/client/css/lightBox.styl', 'client');
+  api.addFiles('lib/client/css/pages/lightBox.styl', 'client');
   api.addFiles('lib/server/methods.js', 'server');
 
   // Make sure this is added *after* screen.styl above.
