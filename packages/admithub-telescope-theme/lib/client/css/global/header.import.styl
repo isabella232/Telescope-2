@@ -179,6 +179,8 @@ input.g-header-search-input
 .g-header-logo
   z-index 10
   position relative
+  &:hover
+    color #57c0b9
 
   > *
     display inline-block
@@ -192,9 +194,10 @@ input.g-header-search-input
   type-size 25 1
   font-weight bold
   margin-bottom -3px
+  type-sans-bold()
+  
 
 .g-header-nav
-  type-small() 
   display none
   position absolute
   top 0 
@@ -206,7 +209,11 @@ input.g-header-search-input
   margin 0
   background-color color-purple
   box-shadow 0 0.1rem 0.5rem rgba(color-black, 0.15)
-  type-ui()
+  text-transform uppercase
+  type-sans()
+  font-size .9em
+  a:hover
+    color #57c0b9
 
   li
     margin-bottom space
