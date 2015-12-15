@@ -1,25 +1,39 @@
+.g-header-wrap
+  position absolute
+  z-index 13
+
 .custom-lightbox-banner
-  position absolute
-  position absolute
+  position fixed
   background-color white
   width 80%
   margin 0 auto
   left 0
   right 0
   color color-black
-  margin-top 10rem
-  z-index 2
+  margin-top 4rem 
+  z-index 12
   padding-left 45px
   padding-right 45px
   padding-top 15px
   padding-bottom 20px
-  @media only screen and (min-width: 1150px)
-    width 50%
   h3
     color  #26061C
     text-align center
     font-size 30pt
     padding-top 30px
+  @media only screen and (max-width: 645px)
+    margin-top -5rem
+    h3
+      font-size 25px
+  @media only screen and (max-width: 350px)
+    z-index 100
+    width 100%
+    padding-left 15px
+    padding-right 40px
+    p
+      font-size 15px
+  @media only screen and (min-width: 1150px)
+    width 50%
   p
     color #8C878A
   p.pg-signup-copy
@@ -54,29 +68,15 @@ a.pg-hide-login-form-x
     font-size larger
     font-wieght 900
 
-#mark-wrapper 
-  position relative
-
-.pg-mask {
-  position:absolute;
-  width:100%;
-  height:100%;
-  left:0;
-  top:0;
-  z-index:1;
-  background: #d3d3d3;
-}
-
-.secondary-mask {
-   position:absolute;
-  width:100%;
-  height:100%;
-  left:0;
-  top:0;
-  z-index:1;
-  background: #D3d3d3;
-  opacity: 0.5;
-}
+#mask-wrapper 
+  position fixed
+  width 100%
+  height 100%
+  background-color black
+  z-index 11
+  top 0
+  left 0
+  opacity 0.7
 
 .pg-email-input-style-fix
   @media only screen and (max-width: 645px)
@@ -93,5 +93,11 @@ form
   input[type="email"].newsletter-email
     border 1px solid #8C878A
     border-color #d3d3d3
+
+.thank-you-for-submission
+  h3
+    color #99226f
+    padding-top 10rem
+    padding-bottom 10rem
 
      

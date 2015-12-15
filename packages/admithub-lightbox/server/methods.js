@@ -7,4 +7,3 @@ Meteor.methods({
     });
   }
 });
-

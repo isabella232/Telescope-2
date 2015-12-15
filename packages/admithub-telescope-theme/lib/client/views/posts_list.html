@@ -20,6 +20,9 @@
 
 <template name='ah_posts_sidebar'>
   <div class="grid-left-sidebar">
+    <div class="sidebar-section">
+      {{> search}}
+    </div>
     <div class="sidebar-section responsive-hide-tablet">
       {{> ah_category_select}}
     </div>
@@ -33,15 +36,6 @@
       <p class="type-secondary type-small">Check out our podcast, <a href="https://soundcloud.com/aboutadmissions">About Admissions</a>.  Cheaper than the therapist and a lot more fun.</p>
     </div>
 
-    <div class="responsive-hide-mobile grid-right-sidebar-collapse-left">
-      <h6>
-        App Robot
-        <a class='pos-right' href='https://www.admithub.com/welcome'>Get Started</a>
-      </h6>
-      <p class='type-secondary type-small'>
-        We'll help guide you to college by asking 30 simple questions.
-      </p>
-    </div>
   </div>
 </template>
 <template name="custom_postsLoadMore">

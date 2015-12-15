@@ -23,7 +23,7 @@ Package.onUse(function (api) {
     'iron:router',
     'richsilv:pikaday@1.0.0',
 
-    'admithub:admithub-common'
+    'admithub:admithub-common',
   ]);
 
   api.addFiles('lib/admithub.js', ['client', 'server']);
