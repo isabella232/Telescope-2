@@ -10,6 +10,7 @@ Package.onUse(function(api) {
     'admithub:admithub-common',
     'telescope:core@0.24.0',
     'percolatestudio:segment.io@=2.0.0_1',
+    'admithub:dot-get@1.0.1'
   ]);
 
   api.addFiles('segment.js');
