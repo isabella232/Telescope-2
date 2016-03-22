@@ -15,7 +15,6 @@ Telescope.modules.removeAll("primaryNav");
 Telescope.modules.removeAll("secondaryNav");
 _.each({
   "primaryNav": [
-    {template: "notifications_menu", order: 0},
     {template: "ah_application_robot_link", order: 1},
     {template: "ah_signin", order: 2}
   ],
