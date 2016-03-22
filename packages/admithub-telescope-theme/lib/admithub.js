@@ -36,6 +36,7 @@ PostsSchema['url'].editableBy = [];
 PostsSchema['url'].autoform = {omit: true};
 PostsSchema['thumbnailUrl'].editableBy = [];
 PostsSchema['thumbnailUrl'].autoform = {omit: true};
+PostsSchema['status'].autoform = {omit: true};
 Posts.attachSchema(PostsSchema);
 
 Avatar.setOptions({
