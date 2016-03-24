@@ -24,6 +24,7 @@ Package.onUse(function (api) {
     'richsilv:pikaday@1.0.0',
 
     'admithub:admithub-common',
+    "cmather:handlebars-server@2.0.0"
   ]);
 
   api.addFiles('lib/admithub.js', ['client', 'server']);
@@ -175,4 +176,6 @@ Package.onUse(function (api) {
 
   // Make sure this is added *after* screen.styl above.
   api.addFiles('lib/client/css/asset_path_overrides.styl', 'client');
+
+  api.addFiles('lib/server/templates/custom_emailPostItem.handlebars', 'server');
 });

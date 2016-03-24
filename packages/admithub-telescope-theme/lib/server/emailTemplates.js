@@ -1,3 +1,5 @@
+Telescope.config.addCustomPrefix("custom_");
+
 Meteor.startup(function() {
   Accounts.emailTemplates.enrollAccount.subject = function (user) {
     return "Welcome to AdmitHub!";
